@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html style="height: 100%;"><head>
+	<title>jQGrid PDF Export - CodeProject</title> 
+	<link type="text/css" rel="stylesheet" href="jQGrid%20PDF%20Export%20-%20CodeProject_files/Main.css">
+<link type="text/css" rel="stylesheet" href="jQGrid%20PDF%20Export%20-%20CodeProject_files/no-media-query.css">
+
+	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Description" content="Export your content from jQGrid to PDF format with less pain using iTextSharp.; Author: Thanigainathan.S; Updated: 18 Jun 2013; Section: ASP.NET; Chapter: Web Development; Updated: 18 Jun 2013">
+<meta name="Keywords" content="C#, ASP.NET, Javascript, Intermediate, jQuery,ASP.NET,Web Development,Free source code, tutorials">
+<meta name="Author" content="Thanigainathan.S">
+<meta name="Rating" content="General">
+<meta name="Revisit-After" content="1 days">
+<meta name="application-name" content="CodeProject">
+<meta name="google-translate-customization" content="d908bb7ce7aff658-4c2f3a504525c916-g629383f736781a8a-13">
+
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+
+
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All Topics" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Android" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=22">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - iOS" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=25">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C++" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - Web" href="http://www.codeproject.com/WebServices/ArticleRSS.aspx?cat=23">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<meta name="robots" content="index, follow">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- base href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export" -->
+	<link rel="icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+<script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/osd.js"></script><script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/expansion_embed.js"></script><script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/gpt.js" type="text/javascript" async=""></script><script type="text/javascript" language="Javascript" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/jquery.js"></script><script type="text/javascript">//<![CDATA[
+if (typeof jQuery == 'undefined') {
+  var altScript  = document.createElement('script');
+  altScript.type = 'text/javascript';
+  altScript.src  = unescape('%2fscript%2fJS%2fjquery-1.6.2.min.js');
+  var target = document.getElementsByTagName('script')[0];
+  target.parentNode.insertBefore(altScript, target);
+}//]]></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+function defrm () { /* thanks twitter */ document.write = ''; window.top.location = window.self.location;  setTimeout(function() { document.body.innerHTML = ''; }, 0);  window.self.onload = function(evt) { document.body.innerHTML = ''; }; }if (window.top !== window.self) {  try {  if (window.top.location.host) { /* will throw */ } else { defrm(); /* chrome */ }  } catch (ex) { defrm(); /* everyone else */ } }if (typeof(DemoUrl)!='undefined')   document.write(unescape('%3Cme')+'ta http'+'-equiv="re'+'fresh"                  con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+(function() { 
+	var _dma = document.createElement('script');
+        _dma.type = 'text/javascript';
+        _dma.async = true;
+        _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn2.developermedia.com/a.min.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+})();
+
+//]]>
+</script><script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/a.js" async="" type="text/javascript"></script>
+
+	
+
+
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</script><script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/ga.js" async="" type="text/javascript"></script>
+
+
+<script async="" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pubads_impl_95.js"></script><link href="http://tpc.googlesyndication.com/safeframe/1-0-4/html/container.html" rel="prefetch"><link href="jQGrid%20PDF%20Export%20-%20CodeProject_files/translateelement.css" charset="UTF-8" rel="stylesheet" type="text/css"><script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/main_ru.js" charset="UTF-8" type="text/javascript"></script><script src="jQGrid%20PDF%20Export%20-%20CodeProject_files/element_main.js" charset="UTF-8" type="text/javascript"></script></head>	
+
+<body style="position: relative; min-height: 100%; top: 0px;" class="firefox firefox0">
+
+<a class="access-link" href="#Main"><img alt="Click here to Skip to main content" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t_002.gif"></a>
+
+
+
+
+
+<div class="page-background">
+
+	
+	<div id="ctl00_Suggest" class="suggestions">
+		
+<div class="alert-bar " style="">
+	<a href="#" class="close-notify">×</a>
+	<div><b>Not quite what you are looking for? You may want to try:</b><ul class="see-also"><li><a href="http://www.codeproject.com/Articles/609442/Using-JqGrid-in-ASP-NET?q=jqgrid">Using JqGrid in ASP.NET</a></li><li><a href="http://www.codeproject.com/Articles/771767/JqGrid-In-MVC-Basics?q=jqgrid">JqGrid In MVC -Basics</a></li></ul><div id="removeHilite" class="alert-bar-command">
+<a href="#" onclick="unmarkText('contentdiv','removeHilite')">highlights off</a>
+</div>
+</div>
+</div>
+	</div>
+
+	
+
+	
+    <div id="ctl00_STM" class="site-top-menu fixed">
+        <div class="main-content">
+            
+
+<div class="container memberbar clearfix">
+
+	<div id="ctl00_MemberMenu_GenInfo" class="float-left">12,510,403 members (50,659 online)</div>
+
+	<div class="float-left">
+		
+	</div>
+
+	<div class="float-right">
+
+		
+
+		<span id="ctl00_MemberMenu_CurRat" class="member-links tooltip">
+				<a id="ctl00_MemberMenu_MyProfile" dir="ltr" href="http://www.codeproject.com/script/Membership/View.aspx?mid=4958624">GrG</a><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/arrow-down-16.png" style="width:16px;height:16px;vertical-align:middle">
+				<div class="tooltip-flyout" style="width:13em !important;">
+					
+					<div class="list-item"><a id="ctl00_MemberMenu_MySettingsDefault" href="https://www.codeproject.com/script/Membership/Modify.aspx">My Settings</a></div>
+					
+					<div class="list-item"><a id="ctl00_MemberMenu_MyBookmarks" href="http://www.codeproject.com/script/Bookmarks/List.aspx?obtid=2">My Bookmarks</a></div>
+					<div class="list-item"><a id="ctl00_MemberMenu_MyArticles" href="http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=4958624">My Articles</a></div>
+					<div class="list-item"><a id="ctl00_MemberMenu_MyMessages" href="http://www.codeproject.com/script/Forums/Messages.aspx?fmid=4958624">My Messages</a></div>
+					<div class="list-item"><a id="ctl00_MemberMenu_MyQuestions" href="http://www.codeproject.com/script/Answers/MemberPosts.aspx?tab=questions&amp;mid=4958624&amp;showall=True">My Questions</a></div>
+					<div class="list-item"><a id="ctl00_MemberMenu_MyAnswers" href="http://www.codeproject.com/script/Answers/MemberPosts.aspx?tab=answers&amp;mid=4958624&amp;showall=True">My Answers</a></div>
+					<div class="list-item"><a id="ctl00_MemberMenu_MyComments" href="http://www.codeproject.com/script/comments/MemberComments.aspx?mid=4958624">My Comments</a></div>
+					<div class="list-item"><a id="ctl00_MemberMenu_MyContacts" href="http://www.codeproject.com/script/Membership/ListContacts.aspx">My Contact info</a></div>
+					
+					
+					
+					
+				</div>
+			</span><span id="ctl00_MemberMenu_TotalPoints" title="Total reputation points"><a class="bold member-rep-box bronze" title="359" href="http://www.codeproject.com/script/Reputation/List.aspx?mid=4958624">359</a></span>
+			&nbsp;
+			<a id="ctl00_MemberMenu_Signout" href="http://www.codeproject.com/script/Membership/LogOff.aspx?rp=%2fArticles%2f608173%2fjQGrid-PDF-Export">Sign out</a>
+			<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/circle-cross.gif" style="vertical-align:middle;margin-top:-3px;" height="16px" width="16px">
+		
+
+		
+	</div>
+</div>
+        </div>
+    </div>
+
+	
+    <div id="ctl00_SH" class="site-header fixed">
+        <div class="main-content">
+            <div class="logo"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" tabindex="1" title="CodeProject" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/logo250x135.gif" alt="Home" style="height:135px;width:250px;border-width:0px;"></a></div>
+            <div class="promo"><div class="msg-728x90" data-format="728x90" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Web-Development/ASP-NET/Howto" data-country="RU" data-tags="C#, ASP.NET, Javascript, Intermediate, jQuery,rating4.5"><noscript><a href="http://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=728x90&c=778774"><img src="http://pubads.g.doubleclick.net/gampad/ad?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=728x90&c=778774"  width="728px" height="90px" target="_blank"/></a></noscript><div data-google-query-id="CMLKpdq9ts8CFUWJGQodarkPhA" id="div-gpt-ad-lqm.codeproject.site/web-development/asp-net/howto-1" style="height: 90px; width: 728px; box-sizing: border-box; border: 0px none; font-size: 0px;"><div style="border: 0pt none; display: inline-block; width: 728px; height: 90px;" id="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_0__container__"><iframe data-is-safeframe="true" marginheight="0" marginwidth="0" scrolling="no" name="1-0-4;35612;&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body leftMargin=&quot;0&quot; topMargin=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot;&gt;&lt;script&gt;(function(){var g=this,l=function(a,b){var c=a.split(&quot;.&quot;),d=g;c[0]in d||!d.execScript||d.execScript(&quot;var &quot;+c[0]);for(var e;c.length&amp;&amp;(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b},m=function(a,b,c){return a.call.apply(a.bind,arguments)},n=function(a,b,c){if(!a)throw Error();if(2&lt;arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}},p=function(a,b,c){p=Function.prototype.bind&amp;&amp;-1!=Function.prototype.bind.toString().indexOf(&quot;native code&quot;)?m:n;return p.apply(null,arguments)},q=Date.now||function(){return+new Date};var r=document,s=window;var t=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&amp;&amp;b.call(null,a[c],c,a)},w=function(a,b){a.google_image_requests||(a.google_image_requests=[]);var c=a.document.createElement(&quot;img&quot;);c.src=b;a.google_image_requests.push(c)};var x=function(a){return{visible:1,hidden:2,prerender:3,preview:4}[a.webkitVisibilityState||a.mozVisibilityState||a.visibilityState||&quot;&quot;]||0},y=function(a){var b;a.mozVisibilityState?b=&quot;mozvisibilitychange&quot;:a.webkitVisibilityState?b=&quot;webkitvisibilitychange&quot;:a.visibilityState&amp;&amp;(b=&quot;visibilitychange&quot;);return b};var C=function(){this.g=r;this.k=s;this.j=!1;this.i=null;this.h=[];this.o={};if(z)this.i=q();else if(3==x(this.g)){this.i=q();var a=p(this.q,this);A&amp;&amp;(a=A(&quot;di::vch&quot;,a));this.p=a;var b=this.g,c=y(this.g);b.addEventListener?b.addEventListener(c,a,!1):b.attachEvent&amp;&amp;b.attachEvent(&quot;on&quot;+c,a)}else B(this)},A;C.m=function(){return C.n?C.n:C.n=new C};var D=/^([^:]+:\/\/[^/]+)/m,G=/^\d*,(.+)$/m,z=!1,B=function(a){if(!a.j){a.j=!0;for(var b=0;b&lt;a.h.length;++b)a.l.apply(a,a.h[b]);a.h=[]}};C.prototype.s=function(a,b){var c=b.target.u();(c=G.exec(c))&amp;&amp;(this.o[a]=c[1])};C.prototype.l=function(a,b){this.k.rvdt=this.i?q()-this.i:0;var c;if(c=this.t)t:{try{var d=D.exec(this.k.location.href),e=D.exec(a);if(d&amp;&amp;e&amp;&amp;d[1]==e[1]&amp;&amp;b){var f=p(this.s,this,b);this.t(a,f);c=!0;break t}}catch(u){}c=!1}c||w(this.k,a)};C.prototype.q=function(){if(3!=x(this.g)){B(this);var a=this.g,b=y(this.g),c=this.p;a.removeEventListener?a.removeEventListener(b,c,!1):a.detachEvent&amp;&amp;a.detachEvent(&quot;on&quot;+b,c)}};var H=/^true$/.test(&quot;&quot;)?!0:!1;var I={},J=function(a){var b=a.toString();a.name&amp;&amp;-1==b.indexOf(a.name)&amp;&amp;(b+=&quot;: &quot;+a.name);a.message&amp;&amp;-1==b.indexOf(a.message)&amp;&amp;(b+=&quot;: &quot;+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&amp;&amp;(a=c+&quot;\n&quot;+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,&quot;$1&quot;);b=a.replace(/\n */g,&quot;\n&quot;)}catch(e){b=c}}return b},M=function(a,b,c,d){var e=K,f,u=!0;try{f=b()}catch(h){try{var N=J(h);b=&quot;&quot;;h.fileName&amp;&amp;(b=h.fileName);var E=-1;h.lineNumber&amp;&amp;(E=h.lineNumber);var v;t:{try{v=c?c():&quot;&quot;;break t}catch(S){}v=&quot;&quot;}u=e(a,N,b,E,v)}catch(k){try{var O=J(k);a=&quot;&quot;;k.fileName&amp;&amp;(a=k.fileName);c=-1;k.lineNumber&amp;&amp;(c=k.lineNumber);K(&quot;pAR&quot;,O,a,c,void 0,void 0)}catch(F){L({context:&quot;mRE&quot;,msg:F.toString()+&quot;\n&quot;+(F.stack||&quot;&quot;)},void 0)}}if(!u)throw h;}finally{if(d)try{d()}catch(T){}}return f},K=function(a,b,c,d,e,f){a={context:a,msg:b.substring(0,512),eid:e&amp;&amp;e.substring(0,40),file:c,line:d.toString(),url:r.URL.substring(0,512),ref:r.referrer.substring(0,512)};P(a);L(a,f);return!0},L=function(a,b){try{if(Math.random()&lt;(b||.01)){var c=&quot;/pagead/gen_204?id=jserror&quot;+Q(a),d=&quot;http&quot;+(&quot;https:&quot;==s.location.protocol?&quot;s&quot;:&quot;&quot;)+&quot;://pagead2.googlesyndication.com&quot;+c,d=d.substring(0,2E3);w(s,d)}}catch(e){}},P=function(a){var b=a||{};t(I,function(a,d){b[d]=s[a]})},R=function(a,b,c,d,e){return function(){var f=arguments;return M(a,function(){return b.apply(c,f)},d,e)}},Q=function(a){var b=&quot;&quot;;t(a,function(a,d){if(0===a||a)b+=&quot;&amp;&quot;+d+&quot;=&quot;+(&quot;function&quot;==typeof encodeURIComponent?encodeURIComponent(a):escape(a))});return b};A=function(a,b,c,d){return R(a,b,void 0,c,d)};z=H;l(&quot;vu&quot;,R(&quot;vu&quot;,function(a,b){var c=a.replace(&quot;&amp;amp;&quot;,&quot;&amp;&quot;),d=/(google|doubleclick).*\/pagead\/adview/.test(c),e=C.m();if(d){d=&quot;&amp;vis=&quot;+x(e.g);b&amp;&amp;(d+=&quot;&amp;ve=1&quot;);var f=c.indexOf(&quot;&amp;adurl&quot;),c=-1==f?c+d:c.substring(0,f)+d+c.substring(f)}e.j?e.l(c,b):e.h.push([c,b])}));l(&quot;vv&quot;,R(&quot;vv&quot;,function(){z&amp;&amp;B(C.m())}));})();&lt;/script&gt;&lt;script&gt;vu(&quot;https://adx.g.doubleclick.net/pagead/adview?ai\x3dCx3L1owjuV4JtxZJm6vK-oAjDhZa-Rvm5xsSzA8CNtwEQASAAYISF84XkHoIBF2NhLXB1Yi04NDcyNDM3Mzg1ODU0NjM5yAEJ4AIAqAMBqgTpAU_Qar_0MTxwWN9knEpofBemoo_QeROynIiF0ZubdW92SKnZcM8oAzLPQjRmZhkyyrn9ZqyNGe3x7D8Xr6X01e4jbvnukprbdEMTcWTfN4sLQ_hk2v-flMfw14qqNtQhVNCejyDCrWDIIPJ4JmQngDL3fxOeHB6CVPlCarzuJSL-H8bMLUN-yAEhwFkKyvXsCA80fXaMBNcDkzdN00pUi3dHYnKos04znxsgHCJP8ZwCFeytMG8tsyyHb-aYCMyEgSfxaXvMRVSfs08fSEpcJWjRPvsO-cUzlA_McXooLuwWdYq7TzjhIg6T4AQBgAbQp_LbxbSY81ugBiGoB6a-G9gHANIIBQiAYRAB\x26sigh\x3dIdDb-aMalJ4&quot;)&lt;/script&gt;&lt;SCRIPT language=&quot;JavaScript1.1&quot; SRC=&quot;https://bid.g.doubleclick.net/xbbe/creative/adj?d=APEucNVWvML2I6VAtb6JsW0w0Etxt3disoaY75-WtBef8mU09nLQKlSCepGnV86sr_pB-JZE7gbrSLCgHVnp6dRZfQNEvOwNOrgFVrifXre1kmJma7lARvZkgu1fn5nCZ7KiMdSxRKzAcnizPbcKCQ0aT0HtW7HBgjnkPbJH7QehUKkGWZnfzLqtEJIj3T8XP-N3RwTKzCEaqwYAgwrpYSdHGusmZ3ol9FGcy4mWB2W2M4PT6AD3nJmewAlAzELURWFuUUTUq2_tItsmP6u1lQlGl-JXzWFzyM0TIchozRGdgkXfT7owVZ8apW1XzpgFAZzx4sBmuVLqa89gYgzx8ePfu0CoBEA6RUEKafUFpdWdUhOehvW9KUVKaoKjQaYQzKCy5XdP5K5cngGuRDpKd3EZkKECbU0w98yD25p1FXve6NVfQvPtNDdIXqnaSXbQNGFIZRXCnzAf&amp;pr=V-4IowAANoIKGYlFAA-5ag8bZJs19diuSXvZjQ&amp;c=https://adclick.g.doubleclick.net/aclk%3Fsa%3DL%26ai%3DCx3L1owjuV4JtxZJm6vK-oAjDhZa-Rvm5xsSzA8CNtwEQASAAYISF84XkHoIBF2NhLXB1Yi04NDcyNDM3Mzg1ODU0NjM5yAEJ4AIAqAMBqgTpAU_Qar_0MTxwWN9knEpofBemoo_QeROynIiF0ZubdW92SKnZcM8oAzLPQjRmZhkyyrn9ZqyNGe3x7D8Xr6X01e4jbvnukprbdEMTcWTfN4sLQ_hk2v-flMfw14qqNtQhVNCejyDCrWDIIPJ4JmQngDL3fxOeHB6CVPlCarzuJSL-H8bMLUN-yAEhwFkKyvXsCA80fXaMBNcDkzdN00pUi3dHYnKos04znxsgHCJP8ZwCFeytMG8tsyyHb-aYCMyEgSfxaXvMRVSfs08fSEpcJWjRPvsO-cUzlA_McXooLuwWdYq7TzjhIg6T4AQBgAbQp_LbxbSY81ugBiGoB6a-G9gHANIIBQiAYRAB%26num%3D1%26sig%3DAOD64_0sv9IRuG-JzrxM-0L7I49xfNBFyQ%26client%3Dca-pub-8472437385854639%26adurl%3D&quot;&gt;&lt;/SCRIPT&gt;&lt;NOSCRIPT&gt;&lt;A HREF=&quot;https://adclick.g.doubleclick.net/aclk?sa=L&amp;ai=Cx3L1owjuV4JtxZJm6vK-oAjDhZa-Rvm5xsSzA8CNtwEQASAAYISF84XkHoIBF2NhLXB1Yi04NDcyNDM3Mzg1ODU0NjM5yAEJ4AIAqAMBqgTpAU_Qar_0MTxwWN9knEpofBemoo_QeROynIiF0ZubdW92SKnZcM8oAzLPQjRmZhkyyrn9ZqyNGe3x7D8Xr6X01e4jbvnukprbdEMTcWTfN4sLQ_hk2v-flMfw14qqNtQhVNCejyDCrWDIIPJ4JmQngDL3fxOeHB6CVPlCarzuJSL-H8bMLUN-yAEhwFkKyvXsCA80fXaMBNcDkzdN00pUi3dHYnKos04znxsgHCJP8ZwCFeytMG8tsyyHb-aYCMyEgSfxaXvMRVSfs08fSEpcJWjRPvsO-cUzlA_McXooLuwWdYq7TzjhIg6T4AQBgAbQp_LbxbSY81ugBiGoB6a-G9gHANIIBQiAYRAB&amp;num=1&amp;sig=AOD64_0sv9IRuG-JzrxM-0L7I49xfNBFyQ&amp;client=ca-pub-8472437385854639&amp;adurl=https://bid.g.doubleclick.net/xbbe/creative/jump%3Fd%3DAPEucNVWvML2I6VAtb6JsW0w0Etxt3disoaY75-WtBef8mU09nLQKlSCepGnV86sr_pB-JZE7gbrSLCgHVnp6dRZfQNEvOwNOrgFVrifXre1kmJma7lARvZkgu1fn5nCZ7KiMdSxRKzAcnizPbcKCQ0aT0HtW7HBgjnkPbJH7QehUKkGWZnfzLqtEJIj3T8XP-N3RwTKzCEaqwYAgwrpYSdHGusmZ3ol9FGcy4mWB2W2M4PT6AD3nJmewAlAzELURWFuUUTUq2_tItsmP6u1lQlGl-JXzWFzyM0TIchozRGdgkXfT7owVZ8apW1XzpgFAZzx4sBmuVLqa89gYgzx8ePfu0CoBEA6RUEKafUFpdWdUhOehvW9KUVKaoKjQaYQzKCy5XdP5K5cngGuRDpKd3EZkKECbU0w98yD25p1FXve6NVfQvPtNDdIXqnaSXbQNGFIZRXCnzAf&quot;&gt;&lt;IMG SRC=&quot;https://bid.g.doubleclick.net/xbbe/creative/ad?d=APEucNVWvML2I6VAtb6JsW0w0Etxt3disoaY75-WtBef8mU09nLQKlSCepGnV86sr_pB-JZE7gbrSLCgHVnp6dRZfQNEvOwNOrgFVrifXre1kmJma7lARvZkgu1fn5nCZ7KiMdSxRKzAcnizPbcKCQ0aT0HtW7HBgjnkPbJH7QehUKkGWZnfzLqtEJIj3T8XP-N3RwTKzCEaqwYAgwrpYSdHGusmZ3ol9FGcy4mWB2W2M4PT6AD3nJmewAlAzELURWFuUUTUq2_tItsmP6u1lQlGl-JXzWFzyM0TIchozRGdgkXfT7owVZ8apW1XzpgFAZzx4sBmuVLqa89gYgzx8ePfu0CoBEA6RUEKafUFpdWdUhOehvW9KUVKaoKjQaYQzKCy5XdP5K5cngGuRDpKd3EZkKECbU0w98yD25p1FXve6NVfQvPtNDdIXqnaSXbQNGFIZRXCnzAf&amp;pr=V-4IowAANoIKGYlFAA-5ag8bZJs19diuSXvZjQ&quot; BORDER=0 WIDTH=728 HEIGHT=90 ALT=&quot;Advertisement&quot;&gt;&lt;/A&gt;&lt;/NOSCRIPT&gt;&lt;script type=&quot;text/javascript&quot;&gt;  if ('') {  document.write('&lt;script src=&quot;https://c.betrad.com/surly.js?;ad_w=728;ad_h=90;coid=322;nid=4311;cps=&quot;&gt;&lt;/sc' + 'ript&gt;');  }&lt;/script&gt;&lt;iframe src=&quot;https://googleads.g.doubleclick.net/xbbe/pixel?d=CJ3FExDU8DEYutPGCw&amp;v=APEucNXlm4nEnKuqtoJuwOFmPvTWhhBW_io4ajs2fE6svQCFFMMkMQV9h_7lJdYJlZulIHfztJyD_aFXGfiq3F_gdvxN96ZSCOCKVptn-o7fq0boXa6IlTs&quot; style=&quot;display:none&quot;&gt;&lt;/iframe&gt;&lt;DIV STYLE=&quot;position: absolute; left: 0px; top: 0px; visibility: hidden;&quot;&gt;&lt;IMG SRC=&quot;https://bid.g.doubleclick.net/xbbe/beacon?data=APEucNXnuv-wTtJNVL5uoDylmhtdO2rHFOROtvdfm-kInq-zixQ1tGj1jTjJxM8yMzur3ln8UpbIlanhFnkY0lv-kHIywyA7Cw&quot; BORDER=0 WIDTH=1 HEIGHT=1 ALT=&quot;&quot; STYLE=&quot;display:none&quot;&gt;&lt;/DIV&gt;&lt;script&gt;(function(){var e=this,k=function(a,b,c){return a.call.apply(a.bind,arguments)},l=function(a,b,c){if(!a)throw Error();if(2&lt;arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}},m=function(a,b,c){m=Function.prototype.bind&amp;&amp;-1!=Function.prototype.bind.toString().indexOf(&quot;native code&quot;)?k:l;return m.apply(null,arguments)},n=Date.now||function(){return+new Date};var p=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,&quot;&quot;)},q=function(a,b){return a&lt;b?-1:a&gt;b?1:0};var t;a:{var u=e.navigator;if(u){var v=u.userAgent;if(v){t=v;break a}}t=&quot;&quot;};var x=function(a,b){var c=w;Object.prototype.hasOwnProperty.call(c,a)||(c[a]=b(a))};var y=-1!=t.indexOf(&quot;Opera&quot;),z=-1!=t.indexOf(&quot;Trident&quot;)||-1!=t.indexOf(&quot;MSIE&quot;),A=-1!=t.indexOf(&quot;Edge&quot;),B=-1!=t.indexOf(&quot;Gecko&quot;)&amp;&amp;!(-1!=t.toLowerCase().indexOf(&quot;webkit&quot;)&amp;&amp;-1==t.indexOf(&quot;Edge&quot;))&amp;&amp;!(-1!=t.indexOf(&quot;Trident&quot;)||-1!=t.indexOf(&quot;MSIE&quot;))&amp;&amp;-1==t.indexOf(&quot;Edge&quot;),C=-1!=t.toLowerCase().indexOf(&quot;webkit&quot;)&amp;&amp;-1==t.indexOf(&quot;Edge&quot;),D=function(){var a=e.document;return a?a.documentMode:void 0},E;a:{var F=&quot;&quot;,G=function(){var a=t;if(B)return/rv\:([^\);]+)(\)|;)/.exec(a);if(A)return/Edge\/([\d\.]+)/.exec(a);if(z)return/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a);if(C)return/WebKit\/(\S+)/.exec(a);if(y)return/(?:Version)[ \/]?(\S+)/.exec(a)}();G&amp;&amp;(F=G?G[1]:&quot;&quot;);if(z){var H=D();if(null!=H&amp;&amp;H&gt;parseFloat(F)){E=String(H);break a}}E=F}var I=E,w={},J=function(a){x(a,function(){for(var b=0,c=p(String(I)).split(&quot;.&quot;),d=p(String(a)).split(&quot;.&quot;),r=Math.max(c.length,d.length),h=0;0==b&amp;&amp;h&lt;r;h++){var f=c[h]||&quot;&quot;,g=d[h]||&quot;&quot;;do{f=/(\d*)(\D*)(.*)/.exec(f)||[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;];g=/(\d*)(\D*)(.*)/.exec(g)||[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;];if(0==f[0].length&amp;&amp;0==g[0].length)break;b=q(0==f[1].length?0:parseInt(f[1],10),0==g[1].length?0:parseInt(g[1],10))||q(0==f[2].length,0==g[2].length)||q(f[2],g[2]);f=f[3];g=g[3]}while(0==b)}return 0&lt;=b})},K;var L=e.document;K=L&amp;&amp;z?D()||(&quot;CSS1Compat&quot;==L.compatMode?parseInt(I,10):5):void 0;var M;if(!(M=!B&amp;&amp;!z)){var N;if(N=z)N=9&lt;=Number(K);M=N}M||B&amp;&amp;J(&quot;1.9.1&quot;);z&amp;&amp;J(&quot;9&quot;);var O=function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&amp;&amp;a.attachEvent(&quot;on&quot;+b,c)};var P=/^(?:([^:/?#.]+):)?(?:\/\/(?:([^/?#]*)@)?([^/#?]*?)(?::([0-9]+))?(?=[/#?]|$))?([^?#]+)?(?:\?([^#]*))?(?:#([\s\S]*))?$/,Q=function(a){return a?decodeURI(a):a};var R=document,S=window;var V=function(a,b,c,d,r,h,f,g,aa){T(R.hidden)?(this.h=&quot;hidden&quot;,this.j=&quot;visibilitychange&quot;):T(R.mozHidden)?(this.h=&quot;mozHidden&quot;,this.j=&quot;mozvisibilitychange&quot;):T(R.msHidden)?(this.h=&quot;msHidden&quot;,this.j=&quot;msvisibilitychange&quot;):T(R.webkitHidden)&amp;&amp;(this.h=&quot;webkitHidden&quot;,this.j=&quot;webkitvisibilitychange&quot;);this.m=!1;this.g=a;this.i=-1;this.B=b;this.C=c;this.I=d;this.F=h;this.v=f?&quot;mousedown&quot;:&quot;click&quot;;r&amp;&amp;R[this.h]&amp;&amp;U(this,2);this.G=g;this.D=aa||0;this.s=this.w=this.l=this.u=null;a=m(this.H,this);O(R,this.j,a);ba(this)};V.prototype.H=function(){if(R[this.h])this.m&amp;&amp;(this.A(),this.i=n(),U(this,0));else{if(-1!=this.i){var a=n()-this.i;a&gt;this.D&amp;&amp;(this.i=-1,U(this,1,a),null!==this.g&amp;&amp;(this.g.registerFinalizeCallback(m(this.g.fireOnObject,this.g,&quot;attempt_survey_trigger&quot;,[&quot;wfocus&quot;,this.C,this.B,this.l,this.w,this.s,a])),5E3&lt;a&amp;&amp;this.g.fireOnObject(&quot;should_show_thank_you&quot;,{})))}this.F&amp;&amp;U(this,3)}};var ba=function(a){if(null!==a.g){var b=m(function(a,b,c){this.l=b.L().K();this.l||(a=b.J(),this.l=&quot;&quot;+Q(a.match(P)[3]||null)+Q(a.match(P)[5]||null));this.w=b.creativeConversionUrl();this.s=b.adGroupCreativeId();this.o(c)},a),c=a.v;a.g.forEachAd(function(a){a.forEachNavigationAdPiece(function(d){a.listen(d,c,b)})})}else{var d=m(a.o,a);O(S,a.v,d)}};V.prototype.o=function(a){this.u=a.button;this.m=!0;a=m(this.A,this);S.setTimeout(a,5E3)};V.prototype.handleClick=V.prototype.o;V.prototype.A=function(){this.m=!1};var U=function(a,b,c){var d=[&quot;//&quot;,a.I?&quot;googleads.g.doubleclick.net&quot;:&quot;pagead2.googlesyndication.com&quot;,&quot;/pagead/gen_204?id=wfocus&quot;,&quot;&amp;gqid=&quot;+a.B,&quot;&amp;qqid=&quot;+a.C].join(&quot;&quot;);0==b&amp;&amp;(d+=&quot;&amp;return=0&quot;);1==b&amp;&amp;(d+=&quot;&amp;return=1&amp;timeDelta=&quot;+c,a.G&amp;&amp;(d+=&quot;&amp;cbtn=&quot;+a.u));2==b&amp;&amp;(d+=&quot;&amp;bgload=1&quot;);3==b&amp;&amp;(d+=&quot;&amp;fg=1&quot;);S.google_image_requests||(S.google_image_requests=[]);a=S.document.createElement(&quot;img&quot;);a.src=d;S.google_image_requests.push(a)},T=function(a){return&quot;undefined&quot;!==typeof a};var W=function(a,b,c,d,r,h,f,g){return new V(null,a,b,c,d,r,h,f,g)},X=[&quot;wfocusnhinit&quot;],Y=e;X[0]in Y||!Y.execScript||Y.execScript(&quot;var &quot;+X[0]);for(var Z;X.length&amp;&amp;(Z=X.shift());)X.length||void 0===W?Y=Y[Z]?Y[Z]:Y[Z]={}:Y[Z]=W;}).call(this);window['window_focus_for_click'] =wfocusnhinit(&quot;owjuV7gxzohm3setqAw&quot;,&quot;CMLKpdq9ts8CFUWJGQodarkPhA&quot;,true,true,true,false,false,0);&lt;/script&gt;&lt;iframe scrolling=&quot;no&quot; frameborder=0 height=0 width=0 src=&quot;https://cm.g.doubleclick.net/push?client=ca-pub-8472437385854639&quot; style=&quot;position:absolute&quot;&gt;&lt;/iframe&gt;&lt;script type=&quot;text/javascript&quot;&gt;(function(){var l=this,aa=function(){},ba=function(a){var b=typeof a;if(&quot;object&quot;==b)if(a){if(a instanceof Array)return&quot;array&quot;;if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if(&quot;[object Window]&quot;==c)return&quot;object&quot;;if(&quot;[object Array]&quot;==c||&quot;number&quot;==typeof a.length&amp;&amp;&quot;undefined&quot;!=typeof a.splice&amp;&amp;&quot;undefined&quot;!=typeof a.propertyIsEnumerable&amp;&amp;!a.propertyIsEnumerable(&quot;splice&quot;))return&quot;array&quot;;if(&quot;[object Function]&quot;==c||&quot;undefined&quot;!=typeof a.call&amp;&amp;&quot;undefined&quot;!=typeof a.propertyIsEnumerable&amp;&amp;!a.propertyIsEnumerable(&quot;call&quot;))return&quot;function&quot;}else return&quot;null&quot;;else if(&quot;function&quot;==b&amp;&amp;&quot;undefined&quot;==typeof a.call)return&quot;object&quot;;return b},m=function(a){return&quot;string&quot;==typeof a},ca=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},p=Date.now||function(){return+new Date},q=function(a,b){var c=a.split(&quot;.&quot;),d=l;c[0]in d||!d.execScript||d.execScript(&quot;var &quot;+c[0]);for(var e;c.length&amp;&amp;(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b};var da=function(a,b,c,d,e){if(e)c=a+(&quot;&amp;&quot;+b+&quot;=&quot;+c);else{var f=&quot;&amp;&quot;+b+&quot;=&quot;,g=a.indexOf(f);0&gt;g?c=a+f+c:(g+=f.length,f=a.indexOf(&quot;&amp;&quot;,g),c=0&lt;=f?a.substring(0,g)+c+a.substring(f):a.substring(0,g)+c)}return 2E3&lt;c.length?void 0!==d?da(a,b,d,void 0,e):a:c};var ea=function(){var a=/[&amp;\?#]exk=([^&amp; ]+)/.exec(t.location.href);return a&amp;&amp;2==a.length?a[1]:null};var fa=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,&quot;&quot;)},ha=function(a,b){for(var c=0,d=fa(String(a)).split(&quot;.&quot;),e=fa(String(b)).split(&quot;.&quot;),f=Math.max(d.length,e.length),g=0;0==c&amp;&amp;g&lt;f;g++){var h=d[g]||&quot;&quot;,k=e[g]||&quot;&quot;;do{h=/(\d*)(\D*)(.*)/.exec(h)||[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;];k=/(\d*)(\D*)(.*)/.exec(k)||[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;];if(0==h[0].length&amp;&amp;0==k[0].length)break;c=ga(0==h[1].length?0:parseInt(h[1],10),0==k[1].length?0:parseInt(k[1],10))||ga(0==h[2].length,0==k[2].length)||ga(h[2],k[2]);h=h[3];k=k[3]}while(0==c)}return c},ga=function(a,b){return a&lt;b?-1:a&gt;b?1:0};var ia=function(a,b,c){if(&quot;array&quot;==ba(b))for(var d=0;d&lt;b.length;d++)ia(a,String(b[d]),c);else null!=b&amp;&amp;c.push(&quot;&amp;&quot;,a,&quot;&quot;===b?&quot;&quot;:&quot;=&quot;,encodeURIComponent(String(b)))},ja=function(a,b,c){for(c=c||0;c&lt;b.length;c+=2)ia(b[c],b[c+1],a);return a},ka=function(a,b){var c=2==arguments.length?ja([a],arguments[1],0):ja([a],arguments,1);if(c[1]){var d=c[0],e=d.indexOf(&quot;#&quot;);0&lt;=e&amp;&amp;(c.push(d.substr(e)),c[0]=d=d.substr(0,e));e=d.indexOf(&quot;?&quot;);0&gt;e?c[1]=&quot;?&quot;:e==d.length-1&amp;&amp;(c[1]=void 0)}return c.join(&quot;&quot;)};var la=function(a){la[&quot; &quot;](a);return a};la[&quot; &quot;]=aa;var na=function(a,b){var c=ma;return Object.prototype.hasOwnProperty.call(c,a)?c[a]:c[a]=b(a)};var oa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&amp;&amp;b.call(void 0,a[c],c,a)},ta=function(){var a=pa;if(!a)return&quot;&quot;;var b=/.*[&amp;#?]google_debug(=[^&amp;]*)?(&amp;.*)?$/;try{var c=b.exec(decodeURIComponent(a));if(c)return c[1]&amp;&amp;1&lt;c[1].length?c[1].substring(1):&quot;true&quot;}catch(d){}return&quot;&quot;};var ua=function(a,b){this.v=a;this.w=b},va=function(a,b){this.url=a;this.m=!!b;this.depth=null};var wa=function(a,b,c,d){a.addEventListener?a.addEventListener(b,c,d||!1):a.attachEvent&amp;&amp;a.attachEvent(&quot;on&quot;+b,c)};var xa=function(a,b,c,d,e){this.o=c||4E3;this.g=a||&quot;&amp;&quot;;this.H=b||&quot;,$&quot;;this.h=void 0!==d?d:&quot;trn&quot;;this.R=e||null;this.l=!1;this.f={};this.M=0;this.c=[]},ya=function(a,b){var c={};c[a]=b;return[c]},u=function(a,b,c,d){a.c.push(b);a.f[b]=ya(c,d)},Ba=function(a,b,c,d){b=b+&quot;//&quot;+c+d;var e=za(a)-d.length-0;if(0&gt;e)return&quot;&quot;;a.c.sort(function(a,b){return a-b});d=null;c=&quot;&quot;;for(var f=0;f&lt;a.c.length;f++)for(var g=a.c[f],h=a.f[g],k=0;k&lt;h.length;k++){if(!e){d=null==d?g:d;break}var n=Aa(h[k],a.g,a.H);if(n){n=c+n;if(e&gt;=n.length){e-=n.length;b+=n;c=a.g;break}else a.l&amp;&amp;(c=e,n[c-1]==a.g&amp;&amp;--c,b+=n.substr(0,c),c=a.g,e=0);d=null==d?g:d}}f=&quot;&quot;;a.h&amp;&amp;null!=d&amp;&amp;(f=c+a.h+&quot;=&quot;+(a.R||d));return b+f+&quot;&quot;},za=function(a){if(!a.h)return a.o;var b=1,c;for(c in a.f)b=c.length&gt;b?c.length:b;return a.o-a.h.length-b-a.g.length-1},Aa=function(a,b,c,d,e){var f=[];oa(a,function(a,h){var g=Ca(a,b,c,d,e);g&amp;&amp;f.push(h+&quot;=&quot;+g)});return f.join(b)},Ca=function(a,b,c,d,e){if(null==a)return&quot;&quot;;b=b||&quot;&amp;&quot;;c=c||&quot;,$&quot;;&quot;string&quot;==typeof c&amp;&amp;(c=c.split(&quot;&quot;));if(a instanceof Array){if(d=d||0,d&lt;c.length){for(var f=[],g=0;g&lt;a.length;g++)f.push(Ca(a[g],b,c,d+1,e));return f.join(c[d])}}else if(&quot;object&quot;==typeof a)return e=e||0,2&gt;e?encodeURIComponent(Aa(a,b,c,d,e+1)):&quot;...&quot;;return encodeURIComponent(String(a))};var Da=function(a,b,c,d,e){if((d?a.P:Math.random())&lt;(e||a.I))try{var f;c instanceof xa?f=c:(f=new xa,oa(c,function(a,b){var c=f,d=c.M++,e=ya(b,a);c.c.push(d);c.f[d]=e}));var g=Ba(f,a.O,a.J,a.N+b+&quot;&amp;&quot;);g&amp;&amp;v(l,g)}catch(h){}},v=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement(&quot;img&quot;);if(c){var e=function(a){c(a);a=e;d.removeEventListener?d.removeEventListener(&quot;load&quot;,a,!1):d.detachEvent&amp;&amp;d.detachEvent(&quot;onload&quot;,a);a=e;d.removeEventListener?d.removeEventListener(&quot;error&quot;,a,!1):d.detachEvent&amp;&amp;d.detachEvent(&quot;onerror&quot;,a)};wa(d,&quot;load&quot;,e);wa(d,&quot;error&quot;,e)}d.src=b;a.google_image_requests.push(d)};var Ea=function(a,b,c){this.u=a;this.L=b;this.i=c;this.j=null;this.K=this.s;this.A=!1},Fa=function(a,b,c){this.message=a;this.fileName=b||&quot;&quot;;this.lineNumber=c||-1},Ha=function(a,b,c){var d;try{d=c()}catch(g){var e=a.i;try{var f=Ga(g),e=a.K.call(a,b,f,void 0,void 0)}catch(h){a.s(&quot;pAR&quot;,h)}if(!e)throw g;}finally{}return d},w=function(a,b){var c=Ia;return function(){for(var d=[],e=0;e&lt;arguments.length;++e)d[e]=arguments[e];return Ha(c,a,function(){return b.apply(void 0,d)})}};Ea.prototype.s=function(a,b,c,d,e){try{var f=e||this.L,g=new xa;g.l=!0;u(g,1,&quot;context&quot;,a);b instanceof Fa||(b=Ga(b));u(g,2,&quot;msg&quot;,b.message.substring(0,512));b.fileName&amp;&amp;u(g,3,&quot;file&quot;,b.fileName);0&lt;b.lineNumber&amp;&amp;u(g,4,&quot;line&quot;,b.lineNumber.toString());b={};if(this.j)try{this.j(b)}catch(G){}if(d)try{d(b)}catch(G){}d=[b];g.c.push(5);g.f[5]=d;var h;e=l;d=[];var k,n=null;do{b=e;var r;try{var W;if(W=!!b&amp;&amp;null!=b.location.href)b:{try{la(b.foo);W=!0;break b}catch(G){}W=!1}r=W}catch(G){r=!1}r?(k=b.location.href,n=b.document&amp;&amp;b.document.referrer||null):(k=n,n=null);d.push(new va(k||&quot;&quot;));try{e=b.parent}catch(G){e=null}}while(e&amp;&amp;b!=e);k=0;for(var H=d.length-1;k&lt;=H;++k)d[k].depth=H-k;b=l;if(b.location&amp;&amp;b.location.ancestorOrigins&amp;&amp;b.location.ancestorOrigins.length==d.length-1)for(k=1;k&lt;d.length;++k){var qa=d[k];qa.url||(qa.url=b.location.ancestorOrigins[k-1]||&quot;&quot;,qa.m=!0)}for(var ra=new va(l.location.href,!1),sa=d.length-1,H=sa;0&lt;=H;--H){var I=d[H];if(I.url&amp;&amp;!I.m){ra=I;break}}var I=null,Sb=d.length&amp;&amp;d[sa].url;0!=ra.depth&amp;&amp;Sb&amp;&amp;(I=d[sa]);h=new ua(ra,I);h.w&amp;&amp;u(g,6,&quot;top&quot;,h.w.url||&quot;&quot;);u(g,7,&quot;url&quot;,h.v.url||&quot;&quot;);Da(this.u,f,g,this.A,c)}catch(G){try{Da(this.u,f,{context:&quot;ecmserr&quot;,rctx:a,msg:Ja(G),url:h.v.url},this.A,c)}catch(wc){}}return this.i};var Ga=function(a){return new Fa(Ja(a),a.fileName,a.lineNumber)},Ja=function(a){var b=a.toString();a.name&amp;&amp;-1==b.indexOf(a.name)&amp;&amp;(b+=&quot;: &quot;+a.name);a.message&amp;&amp;-1==b.indexOf(a.message)&amp;&amp;(b+=&quot;: &quot;+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&amp;&amp;(a=c+&quot;\n&quot;+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,&quot;$1&quot;);b=a.replace(/\n */g,&quot;\n&quot;)}catch(e){b=c}}return b};var x=document,t=window;var Ka=Array.prototype.indexOf?function(a,b,c){return Array.prototype.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0&gt;c?Math.max(0,a.length+c):c;if(m(a))return m(b)&amp;&amp;1==b.length?a.indexOf(b,c):-1;for(;c&lt;a.length;c++)if(c in a&amp;&amp;a[c]===b)return c;return-1},La=Array.prototype.forEach?function(a,b,c){Array.prototype.forEach.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=m(a)?a.split(&quot;&quot;):a,f=0;f&lt;d;f++)f in e&amp;&amp;b.call(c,e[f],f,a)},Ma=Array.prototype.map?function(a,b,c){return Array.prototype.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f=m(a)?a.split(&quot;&quot;):a,g=0;g&lt;d;g++)g in f&amp;&amp;(e[g]=b.call(c,f[g],g,a));return e};var Na=function(a,b){for(var c in a)b.call(void 0,a[c],c,a)},Oa=function(a,b){return null!==a&amp;&amp;b in a};var y;a:{var Pa=l.navigator;if(Pa){var Qa=Pa.userAgent;if(Qa){y=Qa;break a}}y=&quot;&quot;}var z=function(a){return-1!=y.indexOf(a)},Ra=function(a){for(var b=RegExp(&quot;(\\w[\\w ]+)/([^\\s]+)\\s*(?:\\((.*?)\\))?&quot;,&quot;g&quot;),c=[],d;d=b.exec(a);)c.push([d[1],d[2],d[3]||void 0]);return c};var Sa=function(){return z(&quot;Trident&quot;)||z(&quot;MSIE&quot;)},A=function(){return(z(&quot;Chrome&quot;)||z(&quot;CriOS&quot;))&amp;&amp;!z(&quot;Edge&quot;)},Ua=function(){function a(a){var b;a:{b=d;for(var e=a.length,h=m(a)?a.split(&quot;&quot;):a,k=0;k&lt;e;k++)if(k in h&amp;&amp;b.call(void 0,h[k],k,a)){b=k;break a}b=-1}return c[0&gt;b?null:m(a)?a.charAt(b):a[b]]||&quot;&quot;}var b=y;if(Sa())return Ta(b);var b=Ra(b),c={};La(b,function(a){c[a[0]]=a[1]});var d=ca(Oa,c);return z(&quot;Opera&quot;)?a([&quot;Version&quot;,&quot;Opera&quot;]):z(&quot;Edge&quot;)?a([&quot;Edge&quot;]):A()?a([&quot;Chrome&quot;,&quot;CriOS&quot;]):(b=b[2])&amp;&amp;b[1]||&quot;&quot;},Ta=function(a){var b=/rv: *([\d\.]*)/.exec(a);if(b&amp;&amp;b[1])return b[1];var b=&quot;&quot;,c=/MSIE +([\d\.]+)/.exec(a);if(c&amp;&amp;c[1])if(a=/Trident\/(\d.\d)/.exec(a),&quot;7.0&quot;==c[1])if(a&amp;&amp;a[1])switch(a[1]){case &quot;4.0&quot;:b=&quot;8.0&quot;;break;case &quot;5.0&quot;:b=&quot;9.0&quot;;break;case &quot;6.0&quot;:b=&quot;10.0&quot;;break;case &quot;7.0&quot;:b=&quot;11.0&quot;}else b=&quot;7.0&quot;;else b=c[1];return b};var Va=function(){return z(&quot;iPhone&quot;)&amp;&amp;!z(&quot;iPod&quot;)&amp;&amp;!z(&quot;iPad&quot;)};var Wa=z(&quot;Opera&quot;),B=Sa(),Xa=z(&quot;Edge&quot;),C=z(&quot;Gecko&quot;)&amp;&amp;!(-1!=y.toLowerCase().indexOf(&quot;webkit&quot;)&amp;&amp;!z(&quot;Edge&quot;))&amp;&amp;!(z(&quot;Trident&quot;)||z(&quot;MSIE&quot;))&amp;&amp;!z(&quot;Edge&quot;),Ya=-1!=y.toLowerCase().indexOf(&quot;webkit&quot;)&amp;&amp;!z(&quot;Edge&quot;),Za=function(){var a=l.document;return a?a.documentMode:void 0},$a;a:{var ab=&quot;&quot;,bb=function(){var a=y;if(C)return/rv\:([^\);]+)(\)|;)/.exec(a);if(Xa)return/Edge\/([\d\.]+)/.exec(a);if(B)return/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a);if(Ya)return/WebKit\/(\S+)/.exec(a);if(Wa)return/(?:Version)[ \/]?(\S+)/.exec(a)}();bb&amp;&amp;(ab=bb?bb[1]:&quot;&quot;);if(B){var cb=Za();if(null!=cb&amp;&amp;cb&gt;parseFloat(ab)){$a=String(cb);break a}}$a=ab}var db=$a,ma={},D=function(a){return na(a,function(){return 0&lt;=ha(db,a)})},eb;var fb=l.document;eb=fb&amp;&amp;B?Za()||(&quot;CSS1Compat&quot;==fb.compatMode?parseInt(db,10):5):void 0;var E=function(a,b){this.width=a;this.height=b};E.prototype.clone=function(){return new E(this.width,this.height)};E.prototype.ceil=function(){this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};E.prototype.floor=function(){this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};E.prototype.round=function(){this.width=Math.round(this.width);this.height=Math.round(this.height);return this};E.prototype.scale=function(a,b){this.width*=a;this.height*=&quot;number&quot;==typeof b?b:a;return this};!C&amp;&amp;!B||B&amp;&amp;9&lt;=Number(eb)||C&amp;&amp;D(&quot;1.9.1&quot;);B&amp;&amp;D(&quot;9&quot;);var F=null,gb=function(){if(!x.body)return!1;if(!F){var a=x.createElement(&quot;iframe&quot;);a.style.display=&quot;none&quot;;a.id=&quot;anonIframe&quot;;F=a;x.body.appendChild(a)}return!0};var Ia;Ia=new Ea(new function(){this.O=&quot;http:&quot;===t.location.protocol?&quot;http:&quot;:&quot;https:&quot;;this.J=&quot;pagead2.googlesyndication.com&quot;;this.N=&quot;/pagead/gen_204?id=&quot;;this.I=.01;this.P=Math.random()},&quot;jserror&quot;,!0);var J=function(a,b){return w(a,b)};B&amp;&amp;D(&quot;9&quot;);!Ya||D(&quot;528&quot;);C&amp;&amp;D(&quot;1.9b&quot;)||B&amp;&amp;D(&quot;8&quot;)||Wa&amp;&amp;D(&quot;9.5&quot;)||Ya&amp;&amp;D(&quot;528&quot;);C&amp;&amp;!D(&quot;8&quot;)||B&amp;&amp;D(&quot;9&quot;);var hb=0,K={},jb=function(a){var b=K.imageLoadingEnabled;if(null!=b)a(b);else{var c=!1;ib(function(b,e){delete K[e];c||(c=!0,null!=K.imageLoadingEnabled||(K.imageLoadingEnabled=b),a(b))})}},ib=function(a){var b=new Image,c,d=&quot;&quot;+hb++;K[d]=b;b.onload=function(){clearTimeout(c);a(!0,d)};c=setTimeout(function(){a(!1,d)},300);b.src=&quot;data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==&quot;},kb=function(a){if(a){var b=document.createElement(&quot;OBJECT&quot;);b.data=a;b.width=&quot;1&quot;;b.height=&quot;1&quot;;b.style.visibility=&quot;hidden&quot;;var c=&quot;&quot;+hb++;K[c]=b;b.onload=b.onerror=function(){delete K[c]};document.body.appendChild(b)}},lb=function(a){if(a){var b=new Image,c=&quot;&quot;+hb++;K[c]=b;b.onload=b.onerror=function(){delete K[c]};b.src=a}},mb=function(a){a&amp;&amp;jb(function(b){b?lb(a):kb(a)})};var nb={G:&quot;ud=1&quot;,F:&quot;ts=0&quot;,V:&quot;sc=1&quot;,C:&quot;gz=1&quot;,D:&quot;op=1&quot;,W:&quot;efp=1&quot;,U:&quot;rda=1&quot;,T:&quot;dcl=1&quot;,S:&quot;ocy=1&quot;,B:&quot;co=1&quot;};if(x&amp;&amp;x.URL){var pa=x.URL,ob=!(pa&amp;&amp;0&lt;ta().length);Ia.i=ob}var L=function(a,b,c,d){wa(a,b,w(d||&quot;osd_or_lidar::&quot;+b,c),void 0)},pb=function(a,b,c){if(!(0&gt;=b)){var d=0,e=function(){a();d++;d&lt;b&amp;&amp;t.setTimeout(w(c,e),100)};e()}};var M=function(a,b){this.b=a||0;this.a=b||&quot;&quot;},qb=function(a,b){a.b&amp;&amp;(b[4]=a.b);a.a&amp;&amp;(b[12]=a.a)};M.prototype.match=function(a){return(this.b||this.a)&amp;&amp;(a.b||a.a)?this.a||a.a?this.a==a.a:this.b||a.b?this.b==a.b:!1:!1};M.prototype.toString=function(){var a=&quot;&quot;+this.b;this.a&amp;&amp;(a+=&quot;-&quot;+this.a);return a};var rb=function(){var a=N,b=[];a.b&amp;&amp;b.push(&quot;adk=&quot;+a.b);a.a&amp;&amp;b.push(&quot;exk=&quot;+a.a);return b},sb=function(a){var b=[];Na(a,function(a,d){var c=encodeURIComponent(d),f=a;m(f)&amp;&amp;(f=encodeURIComponent(f));b.push(c+&quot;=&quot;+f)});b.push(&quot;24=&quot;+(new Date).getTime());return b.join(&quot;\n&quot;)},O=0,tb=0,ub=function(a,b){var c=0,d=t;try{if(d&amp;&amp;d.Goog_AdSense_getAdAdapterInstance)return d}catch(f){}var e=d.location&amp;&amp;d.location.ancestorOrigins;if(!(void 0===e||e&amp;&amp;e.length))return null;for(;d&amp;&amp;5&gt;c;){try{if(d.google_osd_static_frame)return d}catch(f){}try{if(d.aswift_0&amp;&amp;(!a||d.aswift_0.google_osd_static_frame))return d.aswift_0}catch(f){}c++;d=b?0&lt;d.location.ancestorOrigins.length&amp;&amp;d.location.origin==d.location.ancestorOrigins[0]?d.parent:null:d!=d.parent?d.parent:null}return null},vb=function(a,b,c,d,e,f,g){g=g||aa;if(10&lt;tb)t.clearInterval(O),g();else if(++tb,t.postMessage&amp;&amp;(b.b||b.a)){if(f=ub(!0,f)){g={};qb(b,g);g[0]=&quot;goog_request_monitoring&quot;;g[6]=a;g[16]=c;d&amp;&amp;d.length&amp;&amp;(g[17]=d.join(&quot;,&quot;));e&amp;&amp;(g[19]=e);try{var h=sb(g);f.postMessage(h,&quot;*&quot;)}catch(k){}}}else t.clearInterval(O),g()},wb=function(a){var b=ub(!1),c=!b;!b&amp;&amp;t&amp;&amp;(b=t.parent);if(b&amp;&amp;b.postMessage)try{b.postMessage(a,&quot;*&quot;),c&amp;&amp;t.postMessage(a,&quot;*&quot;)}catch(d){}};var P=!1,xb=function(a){if(a=a.match(/[\d]+/g))a.length=3};(function(){if(navigator.plugins&amp;&amp;navigator.plugins.length){var a=navigator.plugins[&quot;Shockwave Flash&quot;];if(a&amp;&amp;(P=!0,a.description)){xb(a.description);return}if(navigator.plugins[&quot;Shockwave Flash 2.0&quot;]){P=!0;return}}if(navigator.mimeTypes&amp;&amp;navigator.mimeTypes.length&amp;&amp;(a=navigator.mimeTypes[&quot;application/x-shockwave-flash&quot;],P=!(!a||!a.enabledPlugin))){xb(a.enabledPlugin.description);return}try{var b=new ActiveXObject(&quot;ShockwaveFlash.ShockwaveFlash.7&quot;);P=!0;xb(b.GetVariable(&quot;$version&quot;));return}catch(c){}try{b=new ActiveXObject(&quot;ShockwaveFlash.ShockwaveFlash.6&quot;);P=!0;return}catch(c){}try{b=new ActiveXObject(&quot;ShockwaveFlash.ShockwaveFlash&quot;),P=!0,xb(b.GetVariable(&quot;$version&quot;))}catch(c){}})();var yb=z(&quot;Firefox&quot;),zb=Va()||z(&quot;iPod&quot;),Ab=z(&quot;iPad&quot;),Bb=z(&quot;Android&quot;)&amp;&amp;!(A()||z(&quot;Firefox&quot;)||z(&quot;Opera&quot;)||z(&quot;Silk&quot;)),Cb=A(),Db=z(&quot;Safari&quot;)&amp;&amp;!(A()||z(&quot;Coast&quot;)||z(&quot;Opera&quot;)||z(&quot;Edge&quot;)||z(&quot;Silk&quot;)||z(&quot;Android&quot;))&amp;&amp;!(Va()||z(&quot;iPad&quot;)||z(&quot;iPod&quot;));var Q=function(a){return(a=a.exec(y))?a[1]:&quot;&quot;};(function(){if(yb)return Q(/Firefox\/([0-9.]+)/);if(B||Xa||Wa)return db;if(Cb)return Q(/Chrome\/([0-9.]+)/);if(Db&amp;&amp;!(Va()||z(&quot;iPad&quot;)||z(&quot;iPod&quot;)))return Q(/Version\/([0-9.]+)/);if(zb||Ab){var a=/Version\/(\S+).*Mobile\/(\S+)/.exec(y);if(a)return a[1]+&quot;.&quot;+a[2]}else if(Bb)return(a=Q(/Android\s+([0-9.]+)/))?a:Q(/Version\/([0-9.]+)/);return&quot;&quot;})();var Fb=function(){var a=t.parent&amp;&amp;t.parent!=t,b=a&amp;&amp;0&lt;=&quot;//tpc.googlesyndication.com&quot;.indexOf(t.location.host);if(a&amp;&amp;t.name&amp;&amp;0==t.name.indexOf(&quot;google_ads_iframe&quot;)||b){var c;a=t||t;try{var d;if(a.document&amp;&amp;!a.document.body)d=new E(-1,-1);else{var e=(a||window).document,f=&quot;CSS1Compat&quot;==e.compatMode?e.documentElement:e.body;d=(new E(f.clientWidth,f.clientHeight)).round()}c=d}catch(g){c=new E(-12245933,-12245933)}return Eb(c)}c=(t.document||document).getElementsByTagName(&quot;SCRIPT&quot;);return 0&lt;c.length&amp;&amp;(c=c[c.length-1],c.parentElement&amp;&amp;c.parentElement.id&amp;&amp;0&lt;c.parentElement.id.indexOf(&quot;_ad_container&quot;))?Eb(void 0,c.parentElement):null},Eb=function(a,b){var c=Gb(&quot;IMG&quot;,a,b);return c?c:(c=Gb(&quot;IFRAME&quot;,a,b))?c:(c=Gb(&quot;OBJECT&quot;,a,b))?c:null},Gb=function(a,b,c){var d=document;c=c||d;d=a&amp;&amp;&quot;*&quot;!=a?String(a).toUpperCase():&quot;&quot;;c=c.querySelectorAll&amp;&amp;c.querySelector&amp;&amp;d?c.querySelectorAll(d+&quot;&quot;):c.getElementsByTagName(d||&quot;*&quot;);for(d=0;d&lt;c.length;d++){var e=c[d];if(&quot;OBJECT&quot;==a)a:{var f=e.getAttribute(&quot;height&quot;);if(null!=f&amp;&amp;0&lt;f&amp;&amp;0==e.clientHeight)for(var f=e.children,g=0;g&lt;f.length;g++){var h=f[g];if(&quot;OBJECT&quot;==h.nodeName||&quot;EMBED&quot;==h.nodeName){e=h;break a}}}f=e.clientHeight;g=e.clientWidth;if(h=b)h=new E(g,f),h=Math.abs(b.width-h.width)&lt;.1*b.width&amp;&amp;Math.abs(b.height-h.height)&lt;.1*b.height;if(h||!b&amp;&amp;10&lt;f&amp;&amp;10&lt;g)return e}return null};var R=0,Hb=&quot;&quot;,Ib=[],S=!1,T=!1,U=!1,Jb=!0,Kb=!1,Lb=!1,Mb=!1,Nb=!1,Ob=!1,Pb=!1,Qb=0,Rb=0,V=0,Tb=[],N=null,Ub=&quot;&quot;,Vb=[],Wb=null,Xb=[],Yb=!1,Zb=&quot;&quot;,$b=&quot;&quot;,ac=(new Date).getTime(),bc=!1,cc=&quot;&quot;,dc=!1,ec=[&quot;1&quot;,&quot;0&quot;,&quot;3&quot;],X=0,Y=0,fc=0,gc=&quot;&quot;,hc=!1,jc=function(a,b,c){S&amp;&amp;(Jb||3!=(c||3)||Mb)&amp;&amp;ic(a,b,!0);if(U||T&amp;&amp;Lb)ic(a,b),T=U=!1},kc=function(){var a=Wb;return a?2!=a():!0},ic=function(a,b,c){if((b=b||Ub)&amp;&amp;!Yb&amp;&amp;(2==Y||c)&amp;&amp;kc()){for(var d=0;d&lt;Ib.length;++d){var e=lc(Ib[d],b,c),f=a;Kb?mb(e):v(f,e,void 0)}Ob=!0;c?S=!1:Yb=!0}},mc=function(a,b){var c=[];a&amp;&amp;c.push(&quot;avi=&quot;+a);b&amp;&amp;c.push(&quot;cid=&quot;+b);return c.length?&quot;//pagead2.googlesyndication.com/activeview?&quot;+c.join(&quot;&amp;&quot;):&quot;//pagead2.googlesyndication.com/activeview&quot;},lc=function(a,b,c){c=c?&quot;osdim&quot;:U?&quot;osd2&quot;:&quot;osdtos&quot;;a=[a,-1&lt;a.indexOf(&quot;?&quot;)?&quot;&amp;id=&quot;:&quot;?id=&quot;,c];&quot;osd2&quot;==c&amp;&amp;T&amp;&amp;Lb&amp;&amp;a.push(&quot;&amp;ts=1&quot;);a.push(&quot;&amp;ti=1&quot;);a.push(&quot;&amp;&quot;,b);a.push(&quot;&amp;uc=&quot;+fc);bc?a.push(&quot;&amp;tgt=&quot;+cc):a.push(&quot;&amp;tgt=nf&quot;);a.push(&quot;&amp;cl=&quot;+(dc?1:0));Pb&amp;&amp;(a.push(&quot;&amp;lop=1&quot;),b=p()-Qb,a.push(&quot;&amp;tslp=&quot;+b));b=a.join(&quot;&quot;);for(a=0;a&lt;Vb.length;a++){try{var d=Vb[a]()}catch(e){}c=&quot;max_length&quot;;2&lt;=d.length&amp;&amp;(3==d.length&amp;&amp;(c=d[2]),b=da(b,encodeURIComponent(d[0]),encodeURIComponent(d[1]),c))}2E3&lt;b.length&amp;&amp;(b=b.substring(0,2E3));return b},Z=function(a){if(Zb){try{var b=da(Zb,&quot;vi&quot;,a);gb()&amp;&amp;v(F.contentWindow,b,void 0)}catch(c){}0&lt;=Ka(ec,a)&amp;&amp;(Zb=&quot;&quot;)}},nc=function(){Z(&quot;-1&quot;)},pc=function(a){if(a&amp;&amp;a.data&amp;&amp;m(a.data)){var b;var c=a.data;if(m(c)){b={};for(var c=c.split(&quot;\n&quot;),d=0;d&lt;c.length;d++){var e=c[d].indexOf(&quot;=&quot;);if(!(0&gt;=e)){var f=Number(c[d].substr(0,e)),e=c[d].substr(e+1);switch(f){case 5:case 8:case 11:case 15:case 16:case 18:e=&quot;true&quot;==e;break;case 4:case 7:case 6:case 14:case 20:case 21:case 22:case 23:case 24:case 25:e=Number(e);break;case 3:case 19:if(&quot;function&quot;==ba(decodeURIComponent))try{e=decodeURIComponent(e)}catch(h){throw Error(&quot;Error: URI malformed: &quot;+e);}break;case 17:e=Ma(decodeURIComponent(e).split(&quot;,&quot;),Number)}b[f]=e}}b=b[0]?b:null}else b=null;if(b&amp;&amp;(c=new M(b[4],b[12]),N&amp;&amp;N.match(c))){for(c=0;c&lt;Xb.length;c++)Xb[c](b);b&amp;&amp;(c=100*b[25],&quot;number&quot;==typeof c&amp;&amp;!isNaN(c)&amp;&amp;(window.document[&quot;4CGeArbVQ&quot;]=c|0));void 0!=b[18]&amp;&amp;(Mb=b[18],Mb||2!=V||(V=3,oc()));c=b[0];if(&quot;goog_acknowledge_monitoring&quot;==c)t.clearInterval(O),X=2;else if(&quot;goog_get_mode&quot;==c){X=1;d={};N&amp;&amp;qb(N,d);d[0]=&quot;goog_provide_mode&quot;;d[6]=Y;d[19]=gc;d[16]=T;try{var g=sb(d);a.source.postMessage(g,a.origin)}catch(h){}t.clearInterval(O);X=2}else&quot;goog_update_data&quot;==c?(Ub=b[3],++fc):&quot;goog_image_request&quot;==c&amp;&amp;(jc(t,b[3]),b[5]||b[11]||Z(&quot;0&quot;));if(&quot;goog_update_data&quot;==c||&quot;goog_image_request&quot;==c)(1==Y||2==Y||S)&amp;&amp;b[5]&amp;&amp;(a=1==b[15]&amp;&amp;&quot;goog_update_data&quot;==c,Lb=!0,Z(&quot;1&quot;),$b&amp;&amp;kc()&amp;&amp;(g=$b,gb()&amp;&amp;v(F.contentWindow,g,void 0),$b=&quot;&quot;),S&amp;&amp;!a&amp;&amp;(ic(t,void 0,!0),Nb=!0,Rb=p()),3==V&amp;&amp;(V=4,oc()),S||1!=Y||(Yb=!0)),(1==Y||2==Y||S)&amp;&amp;b[11]&amp;&amp;(T=!1,Z(&quot;3&quot;),S&amp;&amp;(ic(t,void 0,!0),1==V&amp;&amp;Mb&amp;&amp;(V=2)))}}},oc=function(){var a=t,b=V;0!=b&amp;&amp;1!=b&amp;&amp;qc(a,&quot;osdim&quot;,&quot;zas=&quot;+b)},qc=function(a,b,c){var d=[];Hb&amp;&amp;d.push(&quot;avi=&quot;+Hb);d.push(&quot;id=&quot;+b);d.push(&quot;ovr_value=&quot;+R);Pb&amp;&amp;d.push(&quot;lop=1&quot;);N&amp;&amp;(d=d.concat(rb()));d.push(&quot;tt=&quot;+((new Date).getTime()-ac));d.push(c);a.document&amp;&amp;a.document.referrer&amp;&amp;d.push(&quot;ref=&quot;+encodeURIComponent(a.document.referrer));try{v(a,&quot;//pagead2.googlesyndication.com/pagead/gen_204?&quot;+d.join(&quot;&amp;&quot;),void 0)}catch(e){}},rc=function(){jc(t);Z(&quot;0&quot;);2&gt;X&amp;&amp;!T&amp;&amp;2==Y&amp;&amp;qc(t,&quot;osd2&quot;,&quot;hs=&quot;+X)},sc=function(){var a={};qb(N,a);a[0]=&quot;goog_dom_content_loaded&quot;;var b=sb(a);try{pb(function(){wb(b)},10,&quot;osd_listener::ldcl_int&quot;)}catch(c){}},tc=function(){var a={};qb(N,a);a[0]=&quot;goog_creative_loaded&quot;;var b=sb(a);pb(function(){wb(b)},10,&quot;osd_listener::lcel_int&quot;);dc=!0},uc=function(a){if(m(a)){a=a.split(&quot;&amp;&quot;);for(var b=a.length-1;0&lt;=b;b--){var c=a[b],d=nb;c==d.G?(Jb=!1,a.splice(b,1)):c==d.C?(V=1,a.splice(b,1)):c==d.F?(T=!1,a.splice(b,1)):c==d.D?(Kb=!0,a.splice(b,1)):c==d.B&amp;&amp;(hc=!0,a.splice(b,1))}gc=a.join(&quot;&amp;&quot;)}},vc=function(){if(!bc){var a=Fb();a&amp;&amp;(bc=!0,cc=a.tagName,a.complete||a.naturalWidth?tc():L(a,&quot;load&quot;,tc,&quot;osd_listener::creative_load&quot;))}};q(&quot;osdlfm&quot;,J(&quot;osd_listener::init&quot;,function(a,b,c,d,e,f,g,h,k,n){R=a;Zb=b;$b=d;S=f;g&amp;&amp;uc(g);T=f;1==h?Tb.push(947190538):2==h?Tb.push(947190541):3==h&amp;&amp;Tb.push(947190542);N=new M(e,ea());L(t,&quot;load&quot;,nc,&quot;osd_listener::load&quot;);L(t,&quot;message&quot;,pc,&quot;osd_listener::message&quot;);Hb=c||&quot;&quot;;Ib=[n||mc(c,k)];L(t,&quot;unload&quot;,rc,&quot;osd_listener::unload&quot;);var r=t.document;!r.readyState||&quot;complete&quot;!=r.readyState&amp;&amp;&quot;loaded&quot;!=r.readyState?!Sa()||0&lt;=ha(Ua(),11)?L(r,&quot;DOMContentLoaded&quot;,sc,&quot;osd_listener::dcl&quot;):L(r,&quot;readystatechange&quot;,function(){&quot;complete&quot;!=r.readyState&amp;&amp;&quot;loaded&quot;!=r.readyState||sc()},&quot;osd_listener::rsc&quot;):sc();-1==R?Y=f?3:1:-2==R?Y=3:0&lt;R&amp;&amp;(Y=2,U=!0);T&amp;&amp;!U&amp;&amp;-1==R&amp;&amp;(Y=2);N&amp;&amp;(N.b||N.a)&amp;&amp;(X=1,O=t.setInterval(w(&quot;osd_proto::reqm_int&quot;,ca(vb,Y,N,T,Tb,gc,hc,void 0)),500));pb(vc,5,&quot;osd_listener:sfc&quot;)}));q(&quot;osdlac&quot;,J(&quot;osd_listener::lac_ex&quot;,function(a){Vb.push(a)}));q(&quot;osdlamrc&quot;,J(&quot;osd_listener::lamrc_ex&quot;,function(a){Xb.push(a)}));q(&quot;osdsir&quot;,w(&quot;osd_listener::sir_ex&quot;,jc));q(&quot;osdacrc&quot;,J(&quot;osd_listener::acrc_ex&quot;,function(a){Wb=a}));q(&quot;osdpcls&quot;,J(&quot;osd_listener::acrc_ex&quot;,function(a){if(!a||t==t.top||Yb||Ob&amp;&amp;!Nb)return!1;Pb=!0;a=/^(http[s]?:)?\/\//.test(a)?a:mc(a);if(Nb){var b=lc(a,Ub,!0),c=p()-Rb,b=ka(b,&quot;tsvp&quot;,c),c=t;Kb?mb(b):v(c,b,void 0)}Ib.push(a);Qb=p();return!0}));}).call(this);&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;osdlfm(-1,'','BpLJxowjuV4JtxZJm6vK-oAgA-bnGxLMDAAAQATgByAEJ4AIA4AQBoAYh','',3938316265,true,'ocy\x3d1\x26ud\x3d1\x26la\x3d0\x26',3,'CAASFeRodB8xGdMrI3gb_6NLYS7SgVsCaw','//pagead2.googlesyndication.com/activeview?avi\x3dBpLJxowjuV4JtxZJm6vK-oAgA-bnGxLMDAAAQATgByAEJ4AIA4AQBoAYh\x26cid\x3dCAASFeRodB8xGdMrI3gb_6NLYS7SgVsCaw');&lt;/script&gt;&lt;img src=&quot;//www.google.com/ads/measurement/l?ebcid=ALh7CaRdrSPE4gWHhpIwx3xFJ_N6ZiFQcD8buZSnYY_LDK8GvGRR2LlPdgMVz5IUcsRPygTOzaSbaa8HUjDAQpKHeeYDmx65bw&quot; style=&quot;display:none;&quot;&gt;&lt;/img&gt;&lt;script&gt;if (window.top &amp;&amp; window.top.postMessage) {window.top.postMessage('{&quot;googMsgType&quot;:&quot;adpnt&quot;}','*');}&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;{&quot;uid&quot;:1,&quot;hostPeerName&quot;:&quot;http://www.codeproject.com&quot;,&quot;initialGeometry&quot;:&quot;{\&quot;windowCoords_t\&quot;:-8,\&quot;windowCoords_r\&quot;:1944,\&quot;windowCoords_b\&quot;:1064,\&quot;windowCoords_l\&quot;:-8,\&quot;frameCoords_t\&quot;:123,\&quot;frameCoords_r\&quot;:1479.5,\&quot;frameCoords_b\&quot;:213,\&quot;frameCoords_l\&quot;:751.5,\&quot;styleZIndex\&quot;:\&quot;auto\&quot;,\&quot;allowedExpansion_t\&quot;:0,\&quot;allowedExpansion_r\&quot;:0,\&quot;allowedExpansion_b\&quot;:0,\&quot;allowedExpansion_l\&quot;:0,\&quot;xInView\&quot;:1,\&quot;yInView\&quot;:1}&quot;,&quot;permissions&quot;:&quot;{\&quot;expandByOverlay\&quot;:false,\&quot;expandByPush\&quot;:false,\&quot;readCookie\&quot;:false,\&quot;writeCookie\&quot;:false}&quot;,&quot;metadata&quot;:&quot;{\&quot;shared\&quot;:{\&quot;sf_ver\&quot;:\&quot;1-0-4\&quot;,\&quot;ck_on\&quot;:1,\&quot;flash_ver\&quot;:\&quot;\&quot;}}&quot;,&quot;reportCreativeGeometry&quot;:false,&quot;isDifferentSourceWindow&quot;:false}" title="3rd party ad content" id="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_0" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/container.htm" style="border: 0px none; vertical-align: bottom;" frameborder="0" height="90" width="728"></iframe></div><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_0__hidden__" title="" id="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_0__hidden__" frameborder="0" height="0" width="0"></iframe><input style="z-index: 1000; position: relative; left: 0px; top: -90px; margin-top: 0px; margin-left: 0px; display: block; font-size: 0px; border: 0px none; padding: 0px; height: 14px; width: 14px;" title="Report Ad" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/undo.png" align="left" type="image"></div><div style="display: none; width: 728px; height: 90px; z-index: 100; text-align: left; border-style: solid; border-width: 1px; position: relative; background-color: white; box-sizing: border-box; top: 0px; left: 0px;"><input style="z-index: 1000; position: relative; left: 0px; top: 0px; width: 14px; height: 14px; margin-top: 0px; margin-left: 0px; font-size: 0px; display: block; padding: 0px; border: 0px none;" title="Show Ad" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/redo.png" type="image"><div class="sendReportContainer" style="padding-left: 2px; display:block"><div style="display:inline-block; font:14px/18px &quot;Segoe UI&quot;, Arial"><b>Don't like this Ad?</b></div><div class="dropzone" style="margin-left:10px; height:60px; width: 250px; background-color:lightgray; border-style:dotted; border-color:black; border-radius: 5px; border-width: 2px; text-align: center; display:inline-block; white-space:normal" contenteditable="true">1. Hit the refresh icon to show the ad again and take a screenshot. 2. Drag and Drop or paste the screenshot here</div><div style="margin-left:10px; display:inline-block; font:14px/18px &quot;Segoe UI&quot;, Arial;"> <select class="reportReason" style="max-width:150px !important"><option selected="selected">Offensive</option><option>Abusive</option><option>Off topic</option><option>Don't like the Ad</option><option>Wrong language</option></select>&nbsp;<input disabled="disabled" class="reportButton" padding="0px" value="Report" type="button"></div></div><div class="reportSentContainer" style="display:none; padding: 15px 20px; font:14px/18px &quot;Segoe UI&quot;, Arial;"><span style="color:#999">Thank you for the report!</span></div><a href="http://www.developermedia.com/" target="_blank"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/dm-logo-150x23.png" style="max-width:100%;position:absolute; right:10px; top:10px;"></a></div></div></div>
+        </div>
+    </div>
+
+	<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t_002.gif"></a>
+
+	
+	<div id="ctl00_TPR" class="sub-headerbar clearfix fixed">
+    <div class="float-right">
+		
+
+<div class="searchbar">
+
+<form method="get" action="/search.aspx?sbo=kw" name="Search" class="tight">
+
+
+<table class="search" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><input tabindex="2" class="search highlight" id="sb_tb" value="jqgrid" name="q"></td><td><input src="jQGrid%20PDF%20Export%20-%20CodeProject_files/search.gif" type="image"></td></tr></tbody></table>
+
+<div class="hover-container">
+	<div style="display: none;" id="SearchFilter" class="search-advanced small-text align-left">
+	<b>Search within:<br></b>
+		
+		<input id="sb_kw" name="sbo" value="kw" checked="checked" type="radio"><label for="sb_kw">Articles</label><br>
+<input id="sb_qa" name="sbo" value="qa" type="radio"><label for="sb_qa">Quick Answers</label><br>
+<input id="sb_fm" name="sbo" value="fm" type="radio"><label for="sb_fm">Messages</label><br>
+
+
+		
+		
+
+		
+		
+	</div>
+</div>
+</form>
+
+</div>
+    </div>
+    <div class="float-left">
+		
+
+<div class="navbar clearfix">
+<ul class="navmenu openable">
+
+<li class="desktop-only"><a id="ctl00_TopNavBar_Home" href="http://www.codeproject.com/">home</a>
+
+
+</li><li class=""><a id="ctl00_TopNavBar_Art" class="down selected" href="http://www.codeproject.com/script/Articles/Latest.aspx">articles</a>
+
+	<ul>
+		<li class=""><a id="ctl00_TopNavBar_ArtTopicList" class="fly" onmouseover="navBarMenu.ShowMap(this, 'ctl00_TopNavBar_MapFlyout');" href="http://www.codeproject.com/script/Content/SiteMap.aspx">Chapters and Sections<span class="has-submenu">&gt;</span></a><ul id="ctl00_TopNavBar_MapFlyout">
+			<li>
+				<div id="siteMap">
+					<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/animated.gif" alt="loading" style="margin:150px;width:100px;height:100px;">
+				</div>
+			</li>
+			</ul>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtSearch" class="fly break" href="http://www.codeproject.com/search.aspx?sbo=kw">Search</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestArts" class="fly" href="http://www.codeproject.com/script/Articles/Latest.aspx?at=1,3,7">Latest Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestTips" class="fly" href="http://www.codeproject.com/script/Articles/Latest.aspx?at=6">Latest Tips/Tricks</a></li>
+		<li><a id="ctl00_TopNavBar_ArtTop" class="fly" href="http://www.codeproject.com/script/Articles/TopArticles.aspx?ta_so=5">Top Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBeginner" class="fly" href="http://www.codeproject.com/search.aspx?sbo=kw?aidlst=152&amp;sa_us=True">Beginner Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBlogArticles" class="fly break" href="http://www.codeproject.com/script/Articles/BlogArticleList.aspx">Technical Blogs</a></li>
+		<li><a id="ctl00_TopNavBar_ArtGuide" class="fly" href="http://www.codeproject.com/info/Submit.aspx">Posting/Update Guidelines</a></li>
+		<li><a id="ctl00_TopNavBar_ArtHelpForum" class="fly" href="http://www.codeproject.com/Forums/1641/Article-Writing.aspx">Article Help Forum</a></li>
+		<li><a id="ctl00_TopNavBar_ArtCompetition" class="fly break" href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1">Article Competition</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostArticle" class="fly highlight1" href="http://www.codeproject.com/script/Articles/Submit.aspx">
+			<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/write13.png" height="13px" width="13px"> Submit an article or tip
+			</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostBlog" class="fly highlight2" href="http://www.codeproject.com/script/Articles/BlogFeed.aspx">
+			<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/write13.png" height="13px" width="13px"> Post your Blog
+			</a></li>		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+
+<li class="">
+<a id="ctl00_TopNavBar_Answers" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">
+    <span class="desktop-only tablet-only">quick answers</span><span class="mobile-only">Q&amp;A</span>
+</a>
+	<ul>
+		<li id="ctl00_TopNavBar_AQL"><a id="ctl00_TopNavBar_ArticleQuestion" class="fly highlight1" href="#_comments">
+			<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/write13.png" height="13px" width="13px"> Ask a Question about this 
+			article</a>
+		</li>
+
+		<li><a id="ctl00_TopNavBar_QAAsk" class="fly highlight2" href="http://www.codeproject.com/Questions/ask.aspx"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/write13.png" height="13px" width="13px"> Ask a Question</a></li>
+
+		
+		<li><a id="ctl00_TopNavBar_QAUnanswered" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=unanswered">View Unanswered Questions</a></li>
+		<li><a id="ctl00_TopNavBar_QALatest" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">View All Questions...</a></li>
+		
+				<li><a id="ctl00_TopNavBar_QATR_ctl00_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=81" style="padding-left:30px">C# questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl01_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=120" style="padding-left:30px">Linux questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl02_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=85" style="padding-left:30px">ASP.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl03_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=93" style="padding-left:30px">SQL questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl04_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=842" style="padding-left:30px">VB.NET questions</a></li>
+			
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+
+<li class=""><a id="ctl00_TopNavBar_Forums" href="http://www.codeproject.com/script/Forums/List.aspx">
+        <span class="desktop-only tablet-only">discussions</span><span class="mobile-only">forums</span>
+</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_MessageBoardsAll" class="fly" href="http://www.codeproject.com/script/Forums/List.aspx">All Message Boards...</a></li>
+		<li class=""><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1580997/Application-Lifecycle.aspx">Application Lifecycle<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="http://www.codeproject.com/Forums/1533717/Running-a-Business.aspx">Running a Business</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1533716/Sales-Marketing.aspx">Sales / Marketing</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration / Beta Testing</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/3304/Work-Issues.aspx">Work  Issues</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/369270/Design-and-Architecture.aspx">Design and Architecture</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/12076/ASP-NET.aspx">ASP.NET</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1580226/JavaScript.aspx">JavaScript</a>
+</li>
+<li class=""><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1647/C-Cplusplus-MFC.aspx">C / C++ / MFC<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="http://www.codeproject.com/Forums/4486/ATL-WTL-STL.aspx">ATL /  WTL / STL</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed C++/CLI</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1649/Csharp.aspx">C#</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1627782/Free-Tools.aspx">Free Tools</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1827460/Objective-C-and-Swift.aspx">Objective-C and Swift</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1725/Database.aspx">Database</a>
+</li>
+<li class=""><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/186301/Hardware-Devices.aspx">Hardware &amp; Devices<span class="has-submenu">&gt;</span></a>
+<ul class="openable"><li><a class="fly" href="http://www.codeproject.com/Forums/1644/System-Admin.aspx">System Admin</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1606152/Hosting-and-Servers.aspx">Hosting and Servers</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1643/Java.aspx">Java</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1650/NET-Framework.aspx">.NET Framework</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1848626/Android.aspx">Android</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1876716/iOS.aspx">iOS</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/13695/Mobile.aspx">Mobile</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1540733/SharePoint.aspx">SharePoint</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1004257/Silverlight-WPF.aspx">Silverlight / WPF</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1646/Visual-Basic.aspx">Visual Basic</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1640/Web-Development.aspx">Web Development</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/suggestions.aspx">Site Bugs / Suggestions</a>
+</li>
+<li><a class="fly" style="padding-left:30px" href="http://www.codeproject.com/Forums/1652005/Spam-and-Abuse-Watch.aspx">Spam and Abuse Watch</a>
+</li>
+
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+<li class="desktop-only"><a id="ctl00_TopNavBar_Features" href="http://www.codeproject.com/Feature/">features</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_Comps" class="fly" href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1&amp;awsac=true">Competitions</a></li>
+		<li><a id="ctl00_TopNavBar_News" class="fly" href="http://www.codeproject.com/script/News/List.aspx">News</a></li>
+		<li><a id="ctl00_TopNavBar_Insider" class="fly" href="http://www.codeproject.com/Feature/Insider/">The Insider Newsletter</a></li>
+    	<li><a id="ctl00_TopNavBar_DailyBuild" class="fly" href="http://www.codeproject.com/Feature/DailyBuild">The Daily Build Newsletter</a></li>
+		<li><a id="ctl00_TopNavBar_Newsletters" class="fly" href="http://www.codeproject.com/script/Mailouts/Archive.aspx?mtpid=1">Newsletter archive</a></li>
+		<li><a id="ctl00_TopNavBar_Surveys" class="fly" href="http://www.codeproject.com/script/Surveys/List.aspx">Surveys</a></li>
+		<li><a id="ctl00_TopNavBar_Showcase" class="fly" href="http://www.codeproject.com/KB/showcase/">Product Showcase</a></li>
+		<li><a id="ctl00_TopNavBar_Research" class="fly" href="http://www.codeproject.com/script/ResearchLibrary/Index.aspx">Research Library</a></li>
+
+		<li><a id="ctl00_TopNavBar_Stuff" class="fly" href="http://www.codeproject.com/Info/Stuff.aspx">CodeProject Stuff</a></li>
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+
+<li class=""><a id="ctl00_TopNavBar_Lounge" href="http://www.codeproject.com/Lounge.aspx">
+            <span class="desktop-only tablet-only">community</span><span class="mobile-only">lounge</span>
+</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_WhosWho" class="fly" href="http://www.codeproject.com/script/Membership/Profiles.aspx">Who's Who</a></li>
+		<li><a id="ctl00_TopNavBar_MVPs" class="fly break" href="http://www.codeproject.com/script/Awards/MVPWinners.aspx">Most Valuable Professionals</a></li>
+		
+
+		<li><a id="ctl00_TopNavBar_LoungeLnk" class="fly highlight2" href="http://www.codeproject.com/Lounge.aspx">The Lounge &nbsp;</a></li>
+		<li><a id="ctl00_TopNavBar_InsiderLnk" class="fly" href="http://www.codeproject.com/Insider.aspx">The Insider News</a></li>
+		<li><a id="ctl00_TopNavBar_WeirdWonderful" class="fly" href="http://www.codeproject.com/Feature/WeirdAndWonderful.aspx">The Weird &amp; The Wonderful</a></li>
+		<li><a id="ctl00_TopNavBar_SoapBoxLnk" class="fly" href="http://www.codeproject.com/Forums/1536756/The-Soapbox.aspx">The Soapbox</a></li>
+		<li><a id="ctl00_TopNavBar_PRLnk" class="fly break" href="http://www.codeproject.com/Forums/1738007/Press-Releases.aspx">Press Releases</a></li>
+
+		
+		<li class=""><a class="fly" href="http://www.codeproject.com/Forums/1580229/Hindi.aspx">Non-English Language
+			<span class="has-submenu">&gt;</span></a>
+		<ul>
+		<li><a class="fly" href="http://www.codeproject.com/Forums/1580229/Hindi.aspx">General Indian Topics</a></li>
+		<li><a class="fly" href="http://www.codeproject.com/Forums/1580230/Chinese.aspx">General Chinese Topics</a></li>
+		</ul>
+		</li><li class="last"></li>
+		
+	</ul>
+
+</li>
+
+
+<li class="desktop-only tablet-only" style="margin-left:20px"><a id="ctl00_TopNavBar_Help" href="http://www.codeproject.com/KB/FAQs/">help</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_HelpWhatIs" class="fly" href="http://www.codeproject.com/info/guide.aspx">What is 'CodeProject'?</a></li>
+		<li><a id="ctl00_TopNavBar_HelpGeneral" class="fly break" href="http://www.codeproject.com/KB/FAQs/">General FAQ</a></li>
+		<li><a id="ctl00_TopNavBar_HelpPostQuestion" class="fly break highlight2" href="http://www.codeproject.com/Questions/ask.aspx">Ask a Question</a></li>
+		<li><a id="ctl00_TopNavBar_HelpBugs" class="fly" href="http://www.codeproject.com/suggestions.aspx">Bugs and Suggestions</a></li>
+		<li><a id="ctl00_TopNavBar_HelpArticles" class="fly" href="http://www.codeproject.com/Forums/1641/Article-Writing.aspx">Article Help Forum</a></li>
+		<li><a id="ctl00_TopNavBar_HelpSiteMap" class="fly" href="http://www.codeproject.com/script/Content/SiteMap.aspx">Site Map</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAdvertise" class="fly" href="http://developermedia.com/">Advertise with us</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutAds" class="fly" href="http://www.codeproject.com/info/AboutOurAds.aspx">About our Advertising</a></li>
+		<li><a id="ctl00_TopNavBar_HelpJobs" class="fly" href="http://www.codeproject.com/info/Jobs/">Employment Opportunities</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutUs" class="fly" href="http://www.codeproject.com/info/about.aspx">About Us</a></li>
+		<li class="last"></li>
+	</ul>
+
+</li>
+
+</ul>
+
+</div>
+    </div>
+	<div class="sub-headerbar-divider"></div>
+	</div>		
+	
+
+	<div id="A" class="container-content-wrap fixed"> 
+
+	<div itemscope="" itemtype="http://schema.org/Article" class="container-content"> 
+
+
+		<div class="clearfix">
+			<div class="container-breadcrumb float-left ">
+				<div><a href="http://www.codeproject.com/script/Content/SiteMap.aspx">Articles</a> » <a href="http://www.codeproject.com/Chapters/2/Web-Development.aspx">Web Development</a> » <a href="http://www.codeproject.com/KB/aspnet/"><span itemprop="articleSection">ASP.NET</span></a> » <a href="http://www.codeproject.com/KB/aspnet/#Howto">Howto</a></div>
+			</div>
+
+			<div class="float-left">
+				
+			</div>
+
+			<div class="edit-links float-right">
+				
+
+
+ 
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+			</div>
+
+			<div class="article-nav float-right">
+					
+		        
+		        
+					
+
+                
+				
+
+<a id="ctl00_ActionLinks_BookmarkMd_ImgBt" title="Bookmark" alternatetext="Bookmark" name="bm_608173_2" onclick="return bookmarkMe(608173,2,'/script/Bookmarks/Ajax/Add.aspx?obid=608173&amp;obtid=2&amp;action=AddBookmark&amp;bio=true&amp;bis=medium','medium');" href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=608173&amp;obtid=2&amp;action=AddBookmark&amp;bio=true&amp;bis=medium" style="display:inline-block;height:24px;width:24px;"><img title="Bookmark" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/bookmark24.png" alt="" style="border-width:0px;"></a>
+
+
+<span id="ctl00_ActionLinks_BookmarkMd_StatusMsg" class="tiny-text" style="display:none" name="bm_608173_2"></span>
+<a id="ctl00_ActionLinks_PrintMd" href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?display=Print">
+	<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/print24.png" title="Print" style="border:0" height="24px" width="24px">
+</a>
+			</div>
+		</div>
+
+		<table class="extended container-article-parts" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top">
+		<td class="article-wing-left" width="117px">
+
+			<div style="position: static; top: 328px; left: 432.5px;" id="ctl00_Nav" class="container-article-tabs">
+    			
+
+<div class="tabs">
+	<div class="selected">Article</div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/ViewDownloads.aspx?aid=608173">Browse Code</a></div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/Statistics.aspx?aid=608173">Stats</a></div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/ListVersions.aspx?aid=608173">Revisions (6)</a></div><div class="unselected"><a href="http://www.codeproject.com/script/Articles/ListAlternatives.aspx?aid=608173">Alternatives</a></div>
+
+	<div class="unselected"><a href="http://www.codeproject.com/Articles/608173/WebControls/#_comments" id="ctl00_ArticleTabs_CommentLink" class="anchorLink">Comments 
+        <span id="ctl00_ArticleTabs_CmtCnt">(5)</span></a>
+	</div>
+</div>	
+
+
+				<a id="ctl00_AddAlternative" title="Write a related article about upgrades or translate this into a different language." class="add-item" href="http://www.codeproject.com/script/Articles/SubmissionWizard.aspx?at=1&amp;apid=608173">Add your own<br>alternative version</a>
+
+			    <div class="tags"> 
+                    <h4>Tagged as</h4>
+                    
+                    <div class="tags">
+<span class="t"><a href="http://www.codeproject.com/search.aspx?sbo=kw&amp;aidlst=87">Javascript</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?sbo=kw&amp;aidlst=81">C#</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?sbo=kw&amp;aidlst=317">jQuery</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?sbo=kw&amp;aidlst=85">ASP.NET</a></span></div>
+			    </div>
+                
+
+                <div class="stats">
+                <h4>Stats</h4>
+                <div id="ctl00_ArtStats"><div class="stats"><div>28.7K views</div><div>1.6K downloads</div><div>23 bookmarked</div></div></div>
+                </div>
+
+                <div class="subdue padded-top" title="Date First posted">Posted 
+                    <span itemprop="datePublished" content="2013-06-18">18 Jun 2013</span></div>
+
+                
+			</div>
+
+		</td>
+		<td>
+			
+			<div id="AT" class="container-article  fixed"> 
+
+				<div class="article">
+
+					<form name="aspnetForm" method="post" action="/Articles/608173/jQGrid-PDF-Export" id="aspnetForm" style="margin:0;padding:0"><div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="w3TaFZYTAgXKuIIY3FyMn7v2L7t+7G+lMUHjq6JbCdx9QFI7Jz+psLWC2z1fR/kkJE5Pg06aulkns5oAm4Bf2GMwbI22uySpF31/7KwOjRiAFKTgBRiI8mvNkyaVxg0fBgOanYpBi0rXFxGNTSy03ScSY8fPqlEM4WSUJyD5i1HLvASDhfVtJh0wW9mYQb03g9/y+Wfh0F7muRCEJbMLhiWlSMwN6E/OWBCLXeQHbFC3yXqH38ft/pypLsNgS5OhWX7J4c84FU3/1X6klQdrNpZy1l/dNRq2nezO/d88Dp5nUscrMOU90kJms2bhjXtmkC1rViWHxDpzrgz9eI4KF4+QKc2Y+/r0uHnrU94NX6DI9z1KebFwQeWmt1hG8vB0LMOgBtJrSLqGfGtzCYLGp11OY4lBX7uOu0WHIT73UTtOFiU9Y7b9NNIdI8N4hcr5Z0M+wBt4+rvN/kVcJPECzSH1IcfngWVij2XiIik3QS45fY4n+PjYLg++Y8sB4vjm9typ6jnZNPl4TUEypXROkedRDxSPaCqR3d0cZfK0jgPW3HIKiVw8lEz2eQz9/GdjzFzuGbywrG9STnp7h7gOpUOI3i8qnX/SCjnrFp+hVRCqS+NR7kx+dLYTR4GlLg5hMri+xHI6sdD/6fYt4tScvY3EPr2VrLeeWDpA9C+woiF0c4Yd2+6CL7Ud6zbePVQSN4UX4CRIOGIOWiibvskuBH3BEVexQ/va+oZTQvagxM6pEKFum4h2a54RutIDYLp3ki8V9UEU7S9RauWGi8tiOzotr04bpjF01hMnL/OaUbkdCsqcZnhsU9zXutpI7IpC6NYzCaaV9aJxu1KE4i9SWLsed+AN+RZCCiP3xIYvrlccihb9cEtDXnr8VxGraJuosU9dQp7bABJYqm4QNYqYMdbcbxtz6BjG+066UTtwbt/2cTmNtWxjQIf7SivI0mEN8pc3p+7fp83tEnB06M07M6JnbwINMIg6gUfKs91RfWmtVEZHaBEbHnT87DFECCr4c3ctvwAX94lK+gXs0f9XSiN+In509JQNL1kkN5Wki9Ap/cA7f/Zc4gy27ERhLKuXBDjQhoGApwMLEjs5GVNiIjQPQq6CG+dsWs4QQPTFlalu8HEsVVkNqvkXPS/jLsHXh6AzXqHZ+Pcp8Wx/zat1tHiR2D2KZb+ljmYFP2Np95oVf/gsie8i/kLEL1UgBu5QFj4ZkCIn8eIu0/KTbaShH7NjJYJ7yelbE8CYINqbn9lqLWVQqcZNTylJSH1/VzmAMjbhx2by8+EsYRkX2Ctn0i5a99dA97RQBamjLM6n6ZjNzw80CaFeD3/e1tzODXib2hH12cJTwDWAl/YqAqLWbddJAVbz8krZjFZ3Ukz7QVqonNeL0MSWQhhZmsoHCxZZI5AmNxR8o4huDc2Zv5YnL9FkVnejg4oWWyXysigbBXyi/YA8LdK0iHTwtDDWFUJYa3COPRDcioNWavdnMmS9IxyUr4ZPmwH2Ro/UKOJ3JOWKJ9jbW1cvS7/sCQjjylIOJeLh+mHcXzIhWmYnDbbzlSwkBZFVUsXKx0V7uYrWLYlsuVcosLPgS/GG5TIji5HLbe+4QnxIKHSLz78egnLBNh0kUuqBO9g5qCEFL+Qplrg48sf8XTgjU0WzQNCbzyytyq09aCDlz+MicXL+wciFotg2OUlRLTVoTfUiBBWgd1TZ8Pq9uM/SJg58+DjzEvdpBReMqPySXchzdqQc0MnoLZNUZYGeCfHFm2x8sL/Y0D+y9KMwbQraMTNyfAWJ157mZR2W4qYPw0vZ+JEhqgpq3CCUo/ECUrCMT2kuQy1kYlrFObZQjU8184PQHtTI88ofdZy8DshsjVXvkk595Wj+PzrwJPKfFwOwEFg2GCIUXk20m4YBKqgaKHbGadBDDCgUeeW0YU6SV8roo9sPMdVvNJwpgJaMngkAmi9bemqFBoB+t5NkmUvtu/VlRgAYy6GcHLgYXZAS+uw4f1A6UaKJ+fdZsThA0LnYoeCwN+ciGUb+ha4qDCXXYItRcf3ApL3UQi4FISiNWhjXqn8GOxpy3bFhem6afL0HfzWEjaebUNNJuXZagV9JEQkDnohr2pbL4KQSBQshgw3nZYYcREUAketNviXQyHBYM/0dt89mZVe4SePTO0tqMgsvKgT4/DBmKp77LnVREa9bCamftB1/apB9BBUde9k4fOWvhRRn72duBDLsr/ZJ2E8AsqBBVDnT8pbvqC+iK2NSeYm+PBCradYNmDyEynpmUbkTExYkl29xXB8av1MRDdVgjkOSnDliDPgT2ob9yHGNy5WixA1CZnivGmWgDpTGbJvjS48AqJWm61O71l0I0MVdTWxLMyTATowNYD8J+igPOU65CtpdeCT/ndbATmFBc2M9BNBQH+i/SPRE0v3FVkz7p7/DVyDYPEnyN/3n71vqy4qbHDev/quf9benp+lBPi1njEK1/VH+CZYtDKvhy2P7EaY4H5s8RDROYw96ZwzBs2+SeWbNaAOtFdHmNuimWXcO+zw8yXmRwN5R1f3JXUhDd0k752uh+fMj0AKbdLvRjgNsgQ6WLZVLnqBprfmSTEM4adRCWgayrrThe/PjtONJR3LLJ515L6eEPADOcN626NqKr3s/jtraLI8QwumU0scEc936XRqAB3iRkA76l5PxfkvmxcE3S8Zvg2TnuC2PI5FPOYMPlsAVMgmpumDvDey1Cm31McpYW+oBiZ4CQkQLVVEJpnYR8tTxEuRFTOroNpY/0DIQMFK6HUmHx/Ykw6hEiwAy+BYitiqx" type="hidden">
+</div>
+
+<div>
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10C1FD69" type="hidden">
+</div>
+
+					
+					 
+					<div class="header">
+					    <a name="Main"></a>
+
+					    
+					    <a name="_articleTop" id="_articleTop"></a>
+					    <div class="title">
+					        
+					        <h1 id="ctl00_ArticleTitle" itemprop="name"><span class="search-highlight">jQGrid</span> PDF Export</h1> 
+					    </div>
+
+                        <div style="height:34px">
+					        
+					        <div class="entry float-left">
+                                <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/98cf93fa-7d1b-4be9-b2ec-5979115a24f6.jpg" id="ctl00_avatar" class="float-left avatar">
+                                <div class="float-left">
+
+						            <span class="author"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3396012" rel="author"><span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">Thanigainathan.S</span></span></a></span>, 
+						            <span class="date" itemprop="dateModified" title="Date last updated" content="2013-06-18 10:18:00">
+							            18 Jun 2013</span>
+			
+                                    <a id="ctl00_LicenseLink" title="The Code Project Open License (CPOL)" class="license" href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a><div id="ctl00_CurRat" class="tooltip anchorLink" style="cursor:pointer;margin-top: 5px" name="CurRat_608173">
+				
+							            
+
+<table class="small-text" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" cellpadding="0" cellspacing="0"> 
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		
+			<meta itemprop="bestRating" content="5"> 
+			<meta itemprop="worstRating" content="1">
+		
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars-medium" style="height:18px;width:80px;position:relative;">
+	<div class="clipped align-left float-left" style="height:16px;width:80px;">
+		<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/stars-fill-md.png" style="border-width:0px;">
+	</div><div class="clipped" style="height:16px;width:0px;position:relative;">
+		<img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/stars-empty-md.png" style="border-width:0px;position:absolute;top:0;right:0;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;
+		<span id="ctl00_ArticleRating_VotesR">&nbsp;<span itemprop="ratingValue" class="rating">5.00</span> (<span itemprop="ratingCount" class="count">2</span> votes)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+
+							            <div id="ctl00_RB" class="speech-bubble-container-up">
+								            <div class="speech-bubble-up" style="width:150px !important">
+									                        
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="50px" width="100%"><tbody><tr class="chart-row"><td class="chart-column"><span title="0 votes">1</span></td>
+<td class="chart-column"><span title="0 votes">2</span></td>
+<td class="chart-column"><span title="0 votes">3</span></td>
+<td class="chart-column"><span title="0 votes">4</span></td>
+<td class="chart-column"><div><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pollcol.gif" alt="2 votes, 100.0%" title="2 votes, 100.0%" border="0px" height="50px" width="20pxpx"></div><span title="2 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 2 votes</div><div class="small-text align-center subdue">μ 5.00, σ<sub>a</sub> 5.00 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+								            </div>
+								            <div class="speech-bubble-pointer-up">
+									            <div class="speech-bubble-pointer-up-inner"></div>
+								            </div>
+							            </div>
+						            </div>
+                                </div>
+					        </div>
+
+                            
+						    <div id="ctl00_RateArticleRow" class="float-right align-right voting-bar">
+						        <div id="ctl00_RateArticle_RateItemWrapper" class="small-text" name="RateItem_608173">
+
+	<table class="small-text" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+		<td id="ctl00_RateArticle_VoteResultDiv" class="rating-result align-right">
+			<span class="align-right"></span>
+			<img class="loaderImg" alt="loading..." src="jQGrid%20PDF%20Export%20-%20CodeProject_files/animated_loading_blue.gif" style="display:none;" height="16px" width="16px"> 
+		</td>
+
+	
+		<td class="voteTbl" style="white-space:nowrap" align="right">
+			<table class="small-text">
+			<tbody><tr>
+				
+				<td id="ctl00_RateArticle_StartForm" align="right" nowrap="nowrap">Rate: </td>
+
+				<td id="ctl00_RateArticle_VoteFormDiv" class="nowrap rating-stars-voter-large">
+					
+
+					<span id="ctl00_RateArticle_RB" class="tooltip ajaxHist radio voting">
+						<span id="ctl00_RateArticle_VoteRBL"><input style="display: none;" id="ctl00_RateArticle_VoteRBL_0" name="ctl00$RateArticle$VoteRBL" value="1" type="radio"><input style="display: none;" id="ctl00_RateArticle_VoteRBL_1" name="ctl00$RateArticle$VoteRBL" value="2" type="radio"><input style="display: none;" id="ctl00_RateArticle_VoteRBL_2" name="ctl00$RateArticle$VoteRBL" value="3" type="radio"><input style="display: none;" id="ctl00_RateArticle_VoteRBL_3" name="ctl00$RateArticle$VoteRBL" value="4" type="radio"><input style="display: none;" id="ctl00_RateArticle_VoteRBL_4" name="ctl00$RateArticle$VoteRBL" value="5" type="radio"></span> 
+
+						
+					<div class="rating-star-block"><a title="vote 1" class="star outline" rating="1" href="#">vote 1</a><a title="vote 2" class="star outline" rating="2" href="#">vote 2</a><a title="vote 3" class="star outline" rating="3" href="#">vote 3</a><a title="vote 4" class="star outline" rating="4" href="#">vote 4</a><a title="vote 5" class="star outline" rating="5" href="#">vote 5</a></div></span>
+
+				</td>
+
+				
+				<td style="padding-left:5px">	
+					<input style="display: none;" name="ctl00$RateArticle$SubmitRateBtn" value="Vote!" id="ctl00_RateArticle_SubmitRateBtn" class="button" type="submit">
+				</td>
+			</tr>
+			</tbody></table>
+			
+		</td>
+	</tr>
+	</tbody></table>
+	<div class="hover-container">
+		<div id="ctl00_RateArticle_RCD" class="rating-comment align-left float-right">
+			Add a reason or comment to your vote:
+            <a href="#" id="clear-rate_ctl00_RateArticle_RCD" title="close" class="rating-close">x</a>
+            <br>
+			<textarea class="RateComment" rows="5" cols="60" style="width:98%;"></textarea>
+			<span id="ctl00_RateArticle_CommentReq" class="subdue">Adding a comment to your rating is optional</span>
+		</div>
+        
+	</div>
+</div>
+						    </div>
+						    	
+                        </div>
+
+   					    
+                        <div id="ctl00_description" class="summary" itemprop="headline">Export your content from <span class="search-highlight">jQGrid</span> to PDF format with less pain using iTextSharp.</div><span id="ctl00_thumbnailUrl" class="date" itemprop="image" content="http://www.codeproject.com/KB/aspnet/608173/Thumb-608173.png"></span>			
+
+                    </div>
+                    
+					
+					
+
+					
+
+					
+					
+					
+
+						
+					
+
+					
+
+						
+						<div id="contentdiv" class="text" itemprop="articleBody">
+						
+
+
+
+<ul class="download">
+<li><a href="http://www.codeproject.com/KB/aspnet/608173/ExportDemo-noexe.zip">Download demo - 646.9 KB</a> </li>
+
+<li><a href="http://www.codeproject.com/KB/aspnet/608173/ExportDemo.zip">Download demo - 889.8 KB</a> </li>
+</ul>
+
+<h2>Introduction</h2>
+
+<p>The aim of this article is to address the PDF export from client side grid frameworks. The solution is done using the <a href="http://itextpdf.com/">iTextSharp</a> in ASP.NET MVC 4 and Visual Studio 2012. <a href="http://www.trirand.net/"><span class="search-highlight">jQGrid</span></a>
+ is one of the client grid framework built on top of the jQuery 
+framework. It helps in building a beautiful grid with paging, sorting 
+and exiting options. There are also other features available as 
+extension plugins and developers can write their own if needed. Please 
+do a nuget update before running the demo code if you face DLL reference
+ issue. I have enabled nugget restore, hence references will be 
+downloaded and updated during the build.</p>
+
+<h2>Background</h2>
+
+<p>The article assumes the developer to have a fair amount of knowledge on <a href="http://www.asp.net/mvc">ASP.NET MVC</a> and C#. </p>
+
+<p>Tools used:</p>
+
+<ul>
+<li>Visual Studio 2012 </li>
+
+<li>ASP.NET MVC 4 </li>
+
+<li>Nuget Package Manager </li>
+</ul>
+
+<p>Developers can learn about the jQuery and jQueryUI at <a href="http://jquery.com/">http://jquery.com/</a> </p>
+
+<p><span class="search-highlight">jQgrid</span> related wiki can be found at below links: </p>
+
+<ul>
+<li><a href="http://www.trirand.net/examples/grid/exporting/pdf/default.aspx">http://www.trirand.net/examples/grid/exporting/pdf/default.aspx</a> </li>
+
+<li><a href="http://www.trirand.com/jqgridwiki/doku.php">http://www.trirand.com/<span class="search-highlight">jqgrid</span>wiki/doku.php</a> </li>
+</ul>
+
+<p>iTextSharp tutorials can be found at the following link</p>
+
+<ul>
+<li><a href="http://www.mikesdotnetting.com/Article/86/iTextSharp-Introducing-Tables">http://www.mikesdotnetting.com/Article/86/iTextSharp-Introducing-Tables</a> </li>
+
+<li><a href="http://www.itextpdf.com/">http://www.iTextPdf.com</a> </li>
+</ul>
+
+<h2>Using the code</h2>
+
+<p>You can download the <span class="search-highlight">jQgrid</span> from the <a href="http://www.trirand.net/"><span class="search-highlight">jQGrid</span></a> homepage or as NUget package. I have given below the command to download the <span class="search-highlight">jQGrid</span>
+ through the package manager console. From the tools menu select 
+“Library Package Manager” and then select “Package Manager Console”. I 
+have given the screenshot below. </p>
+
+<p><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pic1.png" align="bottom" border="0" height="269" hspace="0" width="537"></p>
+
+<p><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pic2.png" align="bottom" border="0" hspace="0"></p>
+
+<p>This command will pull down the latest <span class="search-highlight">JQGrid</span> package and adds them in the script folder.</p>
+
+<p><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pic3.png" align="bottom" border="0" height="164" hspace="0" width="197"></p>
+
+<p>Once the script is downloaded and referenced in the project update 
+the bundleconfig file to add the script reference in the pages. 
+Bundleconfig can be found in the <em>App_Start</em> folder in the project structure. .</p>
+
+<div class="pre-action-link" id="premain517269" style="width:100%;display:block;"><span id="prehide517269" onclick="processCodeBlocks.togglePre(517269);">Hide</span>  &nbsp; <span id="copycode517269" onclick="return processCodeBlocks.copyCode(517269);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre517269" lang="cs">bundles.Add(<span class="code-keyword">new</span> StyleBundle(<span class="code-string">"</span><span class="code-string">~/Content/<span class="search-highlight">jqgrid</span>"</span>).Include(<span class="code-string">"</span><span class="code-string">~/Content/ui.<span class="search-highlight">jqgrid</span>.css"</span>)); 
+bundles.Add(<span class="code-keyword">new</span> ScriptBundle(<span class="code-string">"</span><span class="code-string">~/bundles/jquerygrid"</span>).Include(
+  <span class="code-string">"</span><span class="code-string">~/Scripts/<span class="search-highlight">jqGrid</span>/jquery.<span class="search-highlight">jqGrid</span>*"</span>));</pre>
+
+<p>Once added the config’s refer the bundles to the <em>Views/Shared/LayoutPage.cshtml</em>. Add the following lines to the head section of the page.</p>
+
+<div class="pre-action-link" id="premain508145" style="width:100%;display:block;"><span id="prehide508145" onclick="processCodeBlocks.togglePre(508145);">Hide</span>  &nbsp; <span id="copycode508145" onclick="return processCodeBlocks.copyCode(508145);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre508145" lang="cs">@Styles.Render(<span class="code-string">"</span><span class="code-string">~/Content/<span class="search-highlight">jqgrid</span>"</span>)</pre>
+
+<p>Add the following lines to the end of the page before html close tags. </p>
+
+<div class="pre-action-link" id="premain322779" style="width:100%;display:block;"><span id="prehide322779" onclick="processCodeBlocks.togglePre(322779);">Hide</span>  &nbsp; <span id="copycode322779" onclick="return processCodeBlocks.copyCode(322779);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre322779" lang="cs">@Scripts.Render(<span class="code-string">"</span><span class="code-string">~/bundles/jquery"</span>)
+@Scripts.Render(<span class="code-string">"</span><span class="code-string">~/bundles/jqueryui"</span>)
+@Scripts.Render(<span class="code-string">"</span><span class="code-string">~/bundles/jquerygrid"</span>) </pre>
+
+<p>That’s all to be done from the view perspective. Once these steps are done the developer can start coding for the <span class="search-highlight">JQGrid</span>.
+ In this example we will modify the HomeController for the demo. The 
+index action will be the default action. We will add an argument for 
+this index action. Let it be nullable bool. It’s just to mark the PDF 
+request. In <em>Index.cshtml</em>, we will add a table tag with an id “<code>gridTable</code>”. We will use this table for making the grid. Since <span class="search-highlight">jQGrid</span>
+ is an extension for the jQuery we will initialize the grid setting at 
+the script section of the page. This script section is marked at the end
+ of the page to improve performance. The script section is placed just 
+below the bundle reference for jQuery and jQueryUI. This is the one of 
+improvement factors from “why slow” provided by yahoo. </p>
+
+<div class="pre-action-link" id="premain266271" style="width:100%;display:block;"><span id="prehide266271" onclick="processCodeBlocks.togglePre(266271);">Hide</span>  &nbsp; <span id="copycode266271" onclick="return processCodeBlocks.copyCode(266271);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre266271" lang="jscript">&lt;table id=<span class="code-string">"</span><span class="code-string">gridTable"</span> <span class="code-keyword">class</span>=<span class="code-string">"</span><span class="code-string">scroll"</span>&gt;<span class="code-keyword">&lt;/</span><span class="code-leadattribute">table</span>&gt;</pre>
+
+<p>The <code>exportPDF</code> method just sets the document location to 
+the Index action method with PDF Boolean as true just to mark for 
+download PDF. An in-memory list collection is used for demo purpose. The
+ <code>GetCustomerDetails</code> method is the server side action method that will provide the data as JSON list. We will see the method explanation below.</p>
+
+<div class="pre-action-link" id="premain472182" style="width:100%;display:block;"><span id="prehide472182" onclick="processCodeBlocks.togglePre(472182);">Hide</span>  &nbsp; <span id="copycode472182" onclick="return processCodeBlocks.copyCode(472182);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre472182" lang="cs">[HttpGet]
+<span class="code-keyword">public</span> JsonResult GetCustomerDetails()
+{
+    Var result = <span class="code-keyword">new</span>
+    {
+        total = <span class="code-digit">1</span>,
+        page = <span class="code-digit">1</span>,
+        records = customerList.Count(),
+        rows =(
+        customerList.Select(e=&gt;
+        <span class="code-keyword">new</span> {id=e.CustomerID,cell=<span class="code-keyword">new</span> <span class="code-keyword">string</span>[]{
+          e.CustomerID.ToString(),e.CustomerName,e.Location,e.PrimaryBusiness}})
+        ).ToArray()
+    };
+    <span class="code-keyword">return</span> Json(result, JsonRequestBehavior.AllowGet);
+}</pre>
+
+<p><span class="search-highlight">jQGrid</span> can understand the 
+response data from server in certain format. The server method shown 
+above is taking care of formatting the response so that <span class="search-highlight">JQGrid</span>
+ understand the data properly. The response data should contain total 
+pages, current page, full record count, rows of data with ID and 
+remaining columns as string array. The response is built using an 
+anonymous object and will be sent as a MVC JsonResult. Since we are 
+using HttpGet it’s better to mark the attribute as HttpGet and also the 
+JSON requestbehavious as <code>AllowGet</code>. The in-memory list is initialized in the homecontroller constructor for reference. </p>
+
+<div class="pre-action-link" id="premain865427" style="width:100%;display:block;"><span id="prehide865427" onclick="processCodeBlocks.togglePre(865427);">Hide</span>  &nbsp; <span id="preShrink865427" onclick="processCodeBlocks.shrinkExpand(865427);">Shrink</span> <img id="preimg865427" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(865427);">  &nbsp; <span id="copycode865427" onclick="return processCodeBlocks.copyCode(865427);">Copy Code</span></div><pre class="notranslate" processed="true" style="margin-top: 0px;" id="pre865427" lang="cs"><span class="code-keyword">public</span> <span class="code-keyword">class</span> HomeController : Controller
+{
+    <span class="code-keyword">private</span> <span class="code-keyword">readonly</span> IList&lt;CustomerViewModel&gt; customerList;
+    <span class="code-keyword">public</span> HomeController()
+    {
+        customerList =<span class="code-keyword">new</span> List&lt;CustomerViewModel&gt;() {
+        <span class="code-keyword">new</span> CustomerViewModel{CustomerID=<span class="code-digit">100</span>,
+          CustomerName=<span class="code-string">"</span><span class="code-string">Sundar"</span>,Location=<span class="code-string">"</span><span class="code-string">Chennai"</span>,PrimaryBusiness=<span class="code-string">"</span><span class="code-string">Teacing"</span>},
+        <span class="code-keyword">new</span> CustomerViewModel{CustomerID=<span class="code-digit">101</span>,
+          CustomerName=<span class="code-string">"</span><span class="code-string">Sudhagar"</span>,Location=<span class="code-string">"</span><span class="code-string">Chennai"</span>,PrimaryBusiness=<span class="code-string">"</span><span class="code-string">Software"</span>},
+        <span class="code-keyword">new</span> CustomerViewModel{CustomerID=<span class="code-digit">102</span>,
+          CustomerName=<span class="code-string">"</span><span class="code-string">Thivagar"</span>,Location=<span class="code-string">"</span><span class="code-string">China"</span>,PrimaryBusiness=<span class="code-string">"</span><span class="code-string">SAP"</span>},
+    };
+    }
+    <span class="code-keyword">public</span> ActionResult Index(<span class="code-keyword">bool</span>? pdf)
+    {
+        <span class="code-keyword">if</span> (!pdf.HasValue)
+        {
+            <span class="code-keyword">return</span> View(customerList);
+        }
+        <span class="code-keyword">else</span>
+        {
+            <span class="code-keyword">string</span> filePath = Server.MapPath(<span class="code-string">"</span><span class="code-string">Content"</span>) + <span class="code-string">"</span><span class="code-string">Sample.pdf"</span>;
+            ExportPDF(customerList, <span class="code-keyword">new</span> <span class="code-keyword">string</span>[] { <span class="code-string">"</span><span class="code-string">CustomerID"</span>, 
+              <span class="code-string">"</span><span class="code-string">CustomerName"</span>, <span class="code-string">"</span><span class="code-string">Location"</span>, <span class="code-string">"</span><span class="code-string">PrimaryBusiness"</span> }, filePath);
+            <span class="code-keyword">return</span> File(filePath, <span class="code-string">"</span><span class="code-string">application/pdf"</span>,<span class="code-string">"</span><span class="code-string">list.pdf"</span>); 
+        }
+    }
+} </pre>
+
+<p>The index actionmethod has a Boolean argument named <code>pdf</code>.
+ It’s used to indicate for PDF download. When the application starts 
+this method is first hit for initial page request. For PDF operation a 
+filename is generated and then sent to the <code>ExportPDF</code> method which will take care of generating the PDF from the datasource. The <code>ExportPDF</code>
+ method is listed below. This is a generic method which can handle any 
+data source. since column names are passed as argument there is no need 
+to worry about the property names.</p>
+
+<div class="pre-action-link" id="premain840845" style="width:100%;display:block;"><span id="prehide840845" onclick="processCodeBlocks.togglePre(840845);">Hide</span>  &nbsp; <span id="preShrink840845" onclick="processCodeBlocks.shrinkExpand(840845);">Shrink</span> <img id="preimg840845" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/arrow-up-16.png" style="height:16px;width:16px" onclick="processCodeBlocks.shrinkExpand(840845);">  &nbsp; <span id="copycode840845" onclick="return processCodeBlocks.copyCode(840845);">Copy Code</span></div><pre class="notranslate" processed="true" style="margin-top: 0px;" id="pre840845" lang="cs"><span class="code-keyword">private</span> <span class="code-keyword">static</span> <span class="code-keyword">void</span> ExportPDF&lt;TSource&gt;(IList&lt;TSource&gt; customerList,<span class="code-keyword">string</span>[] columns, <span class="code-keyword">string</span> filePath)
+{
+    Font headerFont = FontFactory.GetFont(<span class="code-string">"</span><span class="code-string">Verdana"</span>, <span class="code-digit">10</span>, Color.WHITE);
+    Font rowfont = FontFactory.GetFont(<span class="code-string">"</span><span class="code-string">Verdana"</span>, <span class="code-digit">10</span>, Color.BLUE);
+    Document document = <span class="code-keyword">new</span> Document(PageSize.A4);
+    PdfWriter writer = PdfWriter.GetInstance(document, 
+               <span class="code-keyword">new</span> FileStream(filePath, FileMode.OpenOrCreate));
+    document.Open();
+    PdfPTable table = <span class="code-keyword">new</span> PdfPTable(columns.Length);
+    <span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> column <span class="code-keyword">in</span> columns)
+    {
+        PdfPCell cell = <span class="code-keyword">new</span> PdfPCell(<span class="code-keyword">new</span> Phrase(column, headerFont));
+        cell.BackgroundColor = Color.BLACK;
+        table.AddCell(cell);
+    }
+    
+    <span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> item <span class="code-keyword">in</span> customerList)
+    {
+        <span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> column <span class="code-keyword">in</span> columns)
+        {
+            <span class="code-keyword">string</span> <span class="code-sdkkeyword">value</span> = item.GetType().GetProperty(column).GetValue(item).ToString();
+            PdfPCell cell5 = <span class="code-keyword">new</span> PdfPCell(<span class="code-keyword">new</span> Phrase(<span class="code-sdkkeyword">value</span>, rowfont));
+            table.AddCell(cell5);
+        } 
+    }
+    document.Add(table);
+    document.Close();
+}</pre>
+
+<p>iTextSharp is one of the pioneer in PDF export. It’s an opensource library readily available as NUget library. </p>
+
+<p><a href="http://www.codeproject.com/KB/aspnet/608173/pic5.png"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pic5_small.png" align="bottom" border="0" hspace="0"></a></p>
+
+<p>This command will pulldown latest available library. I am using the 
+version 4.1.2.0. The latest version may have changed. There are three 
+main things in this library.</p>
+
+<ul>
+<li><strong>Document</strong>: This is the document class which takes 
+care of creating the document sheet with particular size. We have used 
+A4 size. There is also an option to define the rectangle size. This 
+document instance will be further used in next methods for reference. </li>
+
+<li><strong>PdfWriter</strong>: PdfWriter takes the filename and the 
+document as the reference. This class enables the document class to 
+generate the PDF content and save them in a file. </li>
+
+<li><strong>Font</strong>: Using the FONT class the developer can 
+control the font features. Since I need a nice looking font I am giving 
+the Verdana font. </li>
+</ul>
+
+<p>Following this <code>PdfPTable</code> and <code>PdfPCell</code> are used for generating the normal table layout. We have created two set of fonts for header and footer.</p>
+
+<div class="pre-action-link" id="premain452668" style="width:100%;display:block;"><span id="prehide452668" onclick="processCodeBlocks.togglePre(452668);">Hide</span>  &nbsp; <span id="copycode452668" onclick="return processCodeBlocks.copyCode(452668);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre452668" lang="cs">Font headerFont = FontFactory.GetFont(<span class="code-string">"</span><span class="code-string">Verdana"</span>, <span class="code-digit">10</span>, Color.WHITE);
+Font rowfont = FontFactory.GetFont(<span class="code-string">"</span><span class="code-string">Verdana"</span>, <span class="code-digit">10</span>, Color.BLUE);</pre>
+
+<p>We are getting the header columns as string array. Columns argument 
+array is looped and header is generated. We are using the headerfont for
+ this purpose.</p>
+
+<div class="pre-action-link" id="premain970980" style="width:100%;display:block;"><span id="prehide970980" onclick="processCodeBlocks.togglePre(970980);">Hide</span>  &nbsp; <span id="copycode970980" onclick="return processCodeBlocks.copyCode(970980);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre970980" lang="cs">PdfWriter writer = 
+   PdfWriter.GetInstance(document, <span class="code-keyword">new</span> FileStream(filePath, FileMode.OpenOrCreate));
+document.Open();
+PdfPTable table = <span class="code-keyword">new</span> PdfPTable(columns.Length);
+<span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> column <span class="code-keyword">in</span> columns)
+{
+    PdfPCell cell = <span class="code-keyword">new</span> PdfPCell(<span class="code-keyword">new</span> Phrase(column, headerFont));
+    cell.BackgroundColor = Color.BLACK;
+    table.AddCell(cell);
+}</pre>
+
+<p>Then reflection is used to generate the row wise details and form the grid. </p>
+
+<div class="pre-action-link" id="premain831938" style="width:100%;display:block;"><span id="prehide831938" onclick="processCodeBlocks.togglePre(831938);">Hide</span>  &nbsp; <span id="copycode831938" onclick="return processCodeBlocks.copyCode(831938);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre831938" lang="cs"><span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> item <span class="code-keyword">in</span> customerList)
+{
+    <span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> column <span class="code-keyword">in</span> columns)
+    {
+        <span class="code-keyword">string</span> <span class="code-sdkkeyword">value</span> = item.GetType().GetProperty(column).GetValue(item).ToString();
+        PdfPCell cell5 = <span class="code-keyword">new</span> PdfPCell(<span class="code-keyword">new</span> Phrase(<span class="code-sdkkeyword">value</span>, rowfont));
+        table.AddCell(cell5);
+    } 
+}
+document.Add(table);
+document.Close();</pre>
+
+<p>Once the process id done the PDF table is added to the document and 
+document is closed to write all the changes to the filepath given. Then 
+the control moves to the controller which will take care of sending the 
+response as a JSON result with a filename. If the file name is not given
+ then the PDF will open in the same page otherwise a popup will open up 
+asking whether to save the file or open file. </p>
+
+<div class="pre-action-link" id="premain124707" style="width:100%;display:block;"><span id="prehide124707" onclick="processCodeBlocks.togglePre(124707);">Hide</span>  &nbsp; <span id="copycode124707" onclick="return processCodeBlocks.copyCode(124707);">Copy Code</span></div><pre class="notranslate" style="margin-top: 0px;" id="pre124707" lang="cs"><span class="code-keyword">return</span> File(filePath, <span class="code-string">"</span><span class="code-string">application/pdf"</span>,<span class="code-string">"</span><span class="code-string">list.pdf"</span>);</pre>
+
+<p>The final result screen is shown below. </p>
+
+<p><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pic6.png" align="bottom" border="0" hspace="0"></p>
+
+<p>PDF file opened below to show the output. </p>
+
+<p><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/pic7.png" align="bottom" border="0" hspace="0"></p>
+
+<h2>Conclusion</h2>
+
+<p>This is how the export PDF is done for <span class="search-highlight">JQGrid</span>.
+ The problem area that is addressed here is the client-side grid 
+frameworks won’t support PDF’s export. In that time it’s better to have a
+ fine grained control over the data and generated PDF. <a href="http://itextpdf.com/">iTextSharp</a> has helped us to achieve our goal. </p>
+
+
+						</div>
+						
+
+						<div class="float-right" style="margin:20px 0 0 10px;border:1px solid #ccc">
+						<div class="msg-300x250" data-format="300x250" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Web-Development/ASP-NET/Howto" data-country="RU" data-loadonview="true" data-tags="C#, ASP.NET, Javascript, Intermediate, jQuery,rating4.5"><noscript><a href="http://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=300x250&c=778774"><img src="http://pubads.g.doubleclick.net/gampad/ad?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=300x250&c=778774"  width="300px" height="250px" target="_blank"/></a></noscript></div>
+						</div>
+                        
+                        
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						
+
+                        
+						<h2>Share</h2>
+				        <div class="share-list">
+					        
+
+
+
+<!-- Buttons start here. Copy this ul to your document. -->
+<ul class="rrssb-buttons clearfix rrssb-1">
+    <li data-size="34" data-initwidth="16.666666666666668" style="width: calc(50% - 84px);" class="email">
+
+        <a href="mailto:?subject=jQGrid%20PDF%20Export%20-%20CodeProject&amp;body=Here%27s%20an%20interesting%20article%20on%20for%20you%20on%20codeproject.com%0a%0ahttp%3a%2f%2fwww.codeproject.com%2fArticles%2f608173%2fjQGrid-PDF-Export%0a">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve"><g>
+                        <path d="M20.111 26.147c-2.336 1.051-4.361 1.401-7.125 1.401c-6.462 0-12.146-4.633-12.146-12.265 
+                            c0-7.94 5.762-14.833 14.561-14.833c6.853 0 11.8 4.7 11.8 11.252c0 5.684-3.194 9.265-7.399 
+                            9.3 c-1.829 0-3.153-0.934-3.347-2.997h-0.077c-1.208 1.986-2.96 2.997-5.023 2.997c-2.532 
+                            0-4.361-1.868-4.361-5.062 c0-4.749 3.504-9.071 9.111-9.071c1.713 0 3.7 0.4 4.6 0.973l-1.169 
+                            7.203c-0.388 2.298-0.116 3.3 1 3.4 c1.673 0 3.773-2.102 3.773-6.58c0-5.061-3.27-8.994-9.303-8.994c-5.957 
+                            0-11.175 4.673-11.175 12.1 c0 6.5 4.2 10.2 10 10.201c1.986 0 4.089-0.43 5.646-1.245L20.111 
+                            26.147z M16.646 10.1 c-0.311-0.078-0.701-0.155-1.207-0.155c-2.571 0-4.595 2.53-4.595 5.529c0 
+                            1.5 0.7 2.4 1.9 2.4 c1.441 0 2.959-1.828 3.311-4.087L16.646 10.068z"></path></g>
+                </svg>
+            </span>
+            <span class="text">email</span>
+        </a>
+    </li>
+    <li data-size="45" data-initwidth="16.666666666666668" style="width: calc(50% - 84px);" class="twitter">
+        <!-- Replace href with your Meta and URL information  -->
+        <a href="http://twitter.com/home?status=jQGrid+PDF+Export+-+CodeProject+-+http%3a%2f%2fwww.codeproject.com%2fArticles%2f608173%2fjQGrid-PDF-Export" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32
+                    c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155
+                    C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965
+                    C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683
+                    c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851
+                    C26.275,7.229,25.39,8.196,24.253,8.756z"></path>
+                </svg>
+            </span>
+            <span class="text">twitter</span>
+        </a>
+    </li>
+
+    <li data-size="57" data-initwidth="16.666666666666668" style="width: 42px;" class="facebook small">
+        <!-- Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header: 
+        https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.codeproject.com%2fArticles%2f608173%2fjQGrid-PDF-Export" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <path d="M27.825,4.783c0-2.427-2.182-4.608-4.608-4.608H4.783c-2.422,0-4.608,2.182-4.608,4.608v18.434
+                        c0,2.427,2.181,4.608,4.608,4.608H14V17.379h-3.379v-4.608H14v-1.795c0-3.089,2.335-5.885,5.192-5.885h3.718v4.608h-3.726
+                        c-0.408,0-0.884,0.492-0.884,1.236v1.836h4.609v4.608h-4.609v10.446h4.916c2.422,0,4.608-2.188,4.608-4.608V4.783z"></path>
+                </svg>
+            </span>
+            <span class="text">facebook</span>
+        </a>
+    </li>
+    
+    <li data-size="51" data-initwidth="16.666666666666668" style="width: 42px;" class="linkedin small">
+        <!-- Replace href with your meta and URL information -->
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fwww.codeproject.com%2fArticles%2f608173%2fjQGrid-PDF-Export&amp;title=jQGrid+PDF+Export+-+CodeProject&amp;summary=&amp;source=codeproject.com" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803
+                        c-0.129,0.315-0.162,0.753-0.162,1.194v8.216h-4.899c0,0,0.066-13.349,0-14.731h4.899v2.088c-0.01,0.016-0.023,0.032-0.033,0.048
+                        h0.033V11.69c0.65-1.002,1.812-2.435,4.414-2.435C23.008,9.254,25.424,11.361,25.424,15.887z M5.348,2.501
+                        c-1.676,0-2.772,1.092-2.772,2.539c0,1.421,1.066,2.538,2.717,2.546h0.032c1.709,0,2.771-1.132,2.771-2.546
+                        C8.054,3.593,7.019,2.501,5.343,2.501H5.348z M2.867,24.334h4.897V9.603H2.867V24.334z"></path>
+                </svg>
+            </span>
+            <span class="text">linkedin</span>
+        </a>
+    </li>
+    <li data-size="38" data-initwidth="16.666666666666668" style="width: 42px;" class="reddit small">
+        <a href="http://www.reddit.com/submit?url=http%3a%2f%2fwww.codeproject.com%2fArticles%2f608173%2fjQGrid-PDF-Export&amp;title=jQGrid+PDF+Export+-+CodeProject">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve"><g>
+                <path d="M11.794 15.316c0-1.029-0.835-1.895-1.866-1.895c-1.03 0-1.893 0.865-1.893 1.895s0.863 1.9 1.9 1.9 C10.958 17.2 11.8 16.3 11.8 15.316z"></path>
+                <path d="M18.1 13.422c-1.029 0-1.895 0.864-1.895 1.895c0 1 0.9 1.9 1.9 1.865c1.031 0 1.869-0.836 1.869-1.865 C19.969 14.3 19.1 13.4 18.1 13.422z"></path>
+                <path d="M17.527 19.791c-0.678 0.678-1.826 1.006-3.514 1.006c-0.004 0-0.009 0-0.014 0c-0.004 0-0.01 0-0.015 0 
+                c-1.686 0-2.834-0.328-3.51-1.005c-0.264-0.265-0.693-0.265-0.958 0c-0.264 0.265-0.264 0.7 0 1 c0.943 0.9 2.4 1.4 
+                4.5 1.402c0.005 0 0 0 0 0c0.005 0 0 0 0 0c2.066 0 3.527-0.459 4.47-1.402 c0.265-0.264 0.265-0.693 0.002-0.958C18.221 
+                19.5 17.8 19.5 17.5 19.791z"></path><path d="M27.707 13.267c0-1.785-1.453-3.237-3.236-3.237c-0.793 0-1.518 0.287-2.082 
+                0.761c-2.039-1.295-4.646-2.069-7.438-2.219 l1.483-4.691l4.062 0.956c0.071 1.4 1.3 2.6 2.7 2.555c1.488 0 2.695-1.208 
+                2.695-2.695C25.881 3.2 24.7 2 23.2 2 c-1.059 0-1.979 0.616-2.42 1.508l-4.633-1.091c-0.344-0.081-0.693 0.118-0.803 
+                0.455l-1.793 5.7 C10.548 8.6 7.7 9.4 5.6 10.75C5.006 10.3 4.3 10 3.5 10.029c-1.785 0-3.237 1.452-3.237 3.2 c0 1.1 0.6 
+                2.1 1.4 2.69c-0.04 0.272-0.061 0.551-0.061 0.831c0 2.3 1.3 4.4 3.7 5.9 c2.299 1.5 5.3 2.3 8.6 2.325c3.228 0 6.271-0.825 
+                8.571-2.325c2.387-1.56 3.7-3.66 3.7-5.917 c0-0.26-0.016-0.514-0.051-0.768C27.088 15.5 27.7 14.4 27.7 13.267z M23.186 
+                3.355c0.74 0 1.3 0.6 1.3 1.3 c0 0.738-0.6 1.34-1.34 1.34s-1.342-0.602-1.342-1.34C21.844 4 22.4 3.4 23.2 3.355z M1.648 
+                13.3 c0-1.038 0.844-1.882 1.882-1.882c0.31 0 0.6 0.1 0.9 0.209c-1.049 0.868-1.813 1.861-2.26 2.9 C1.832 14.2 1.6 13.8 1.6 
+                13.267z M21.773 21.57c-2.082 1.357-4.863 2.105-7.831 2.105c-2.967 0-5.747-0.748-7.828-2.105 
+                c-1.991-1.301-3.088-3-3.088-4.782c0-1.784 1.097-3.484 3.088-4.784c2.081-1.358 4.861-2.106 7.828-2.106 c2.967 0 5.7 
+                0.7 7.8 2.106c1.99 1.3 3.1 3 3.1 4.784C24.859 18.6 23.8 20.3 21.8 21.57z M25.787 14.6 
+                c-0.432-1.084-1.191-2.095-2.244-2.977c0.273-0.156 0.59-0.245 0.928-0.245c1.035 0 1.9 0.8 1.9 1.9 
+                C26.354 13.8 26.1 14.3 25.8 14.605z"></path></g></svg>
+            </span>
+            <span class="text">reddit</span>
+        </a>
+    </li>
+    <li data-size="52" data-initwidth="16.666666666666668" style="width: 42px;" class="googleplus small">
+        <!-- Replace href with your meta and URL information.  -->
+        <a href="https://plus.google.com/share?url=http%3a%2f%2fwww.codeproject.com%2fArticles%2f608173%2fjQGrid-PDF-Export" class="popup">
+            <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M14.703,15.854l-1.219-0.948c-0.372-0.308-0.88-0.715-0.88-1.459c0-0.748,0.508-1.223,0.95-1.663
+                                c1.42-1.119,2.839-2.309,2.839-4.817c0-2.58-1.621-3.937-2.399-4.581h2.097l2.202-1.383h-6.67c-1.83,0-4.467,0.433-6.398,2.027
+                                C3.768,4.287,3.059,6.018,3.059,7.576c0,2.634,2.022,5.328,5.604,5.328c0.339,0,0.71-0.033,1.083-0.068
+                                c-0.167,0.408-0.336,0.748-0.336,1.324c0,1.04,0.551,1.685,1.011,2.297c-1.524,0.104-4.37,0.273-6.467,1.562
+                                c-1.998,1.188-2.605,2.916-2.605,4.137c0,2.512,2.358,4.84,7.289,4.84c5.822,0,8.904-3.223,8.904-6.41
+                                c0.008-2.327-1.359-3.489-2.829-4.731H14.703z M10.269,11.951c-2.912,0-4.231-3.765-4.231-6.037c0-0.884,0.168-1.797,0.744-2.511
+                                c0.543-0.679,1.489-1.12,2.372-1.12c2.807,0,4.256,3.798,4.256,6.242c0,0.612-0.067,1.694-0.845,2.478
+                                c-0.537,0.55-1.438,0.948-2.295,0.951V11.951z M10.302,25.609c-3.621,0-5.957-1.732-5.957-4.142c0-2.408,2.165-3.223,2.911-3.492
+                                c1.421-0.479,3.25-0.545,3.555-0.545c0.338,0,0.52,0,0.766,0.034c2.574,1.838,3.706,2.757,3.706,4.479
+                                c-0.002,2.073-1.736,3.665-4.982,3.649L10.302,25.609z"></path>
+                            <polygon points="23.254,11.89 23.254,8.521 21.569,8.521 21.569,11.89 18.202,11.89 18.202,13.604 21.569,13.604 21.569,17.004
+                                23.254,17.004 23.254,13.604 26.653,13.604 26.653,11.89      "></polygon>
+                        </g>
+                    </g>
+                </svg>
+            </span>
+            <span class="text">google+</span>
+        </a>
+    </li>
+    
+</ul>
+<!-- Buttons end here -->
+
+				        </div> 
+    			        
+
+
+						
+						<h2 id="ctl00_AboutHeading">About the Author</h2>
+						    
+
+
+<div class="author-wrapper">
+
+    <div class="pic-wrapper"> 
+        <img id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhoto" class="profile-pic" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/98cf93fa-7d1b-4be9-b2ec-5979115a24f6.jpg" style="border-width:0px;transform:rotate(-2deg);">
+
+    </div>
+
+    <div class="container-member">  
+        <b><a id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink" class="author" href="http://www.codeproject.com/Members/Thanigainathan-S">Thanigainathan.S</a></b>
+
+        <table class="extended">
+        <tbody><tr>
+            <td rowspan="2" nowrap="nowrap" valign="middle">
+            
+            </td>
+            <td width="100%">
+                <div class="company">
+                    <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle">Software Developer (Senior)</span>
+	                <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany">Cognizant technology Solutions</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation">India <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/IN.gif" alt="India" height="11px" width="16px"></span>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+    <div class="description">
+        I love open source development. I used to go through technical 
+updates from dotnet, try new softwares from community and evaluate them.
+ I like to develop new programs that helps in my daily routine works and
+ would blog them for my future reference. I used to reply fro questions 
+in forums like codeprject,satckoverflow and asp.net.<br>
+<br>
+I have my personal blog at http://www.codetherasa.in/
+
+        
+    </div>
+
+</div><br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						<div style="padding-top:8px">
+							
+						</div>
+
+					
+
+				    
+					</form>
+
+				</div>
+
+				
+				<div class="bottom-promo"> 
+				    <div class="msg-728x90" data-format="728x90" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Web-Development/ASP-NET/Howto" data-country="RU" data-loadonview="true" data-tags="C#, ASP.NET, Javascript, Intermediate, jQuery,rating4.5,pos_bottom"><noscript><a href="http://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=728x90&c=778774"><img src="http://pubads.g.doubleclick.net/gampad/ad?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=728x90&c=778774"  width="728px" height="90px" target="_blank"/></a></noscript></div>
+				</div>
+				
+
+                
+        <h2 id="ctl00_AlsoRead_RelatedResults_ctl00_Header" class="also-read">You may also be interested in...</h2>
+        <table class="spaced content-list also-read">
+    
+	    <tbody><tr>
+        <td class="content-list-item" valign="top" width="50%">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl01_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl01_Thumbnail" href="http://www.codeproject.com/Articles/609442/Using-JqGrid-in-ASP-NET"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/Thumb-609442.jpg" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl01_Link" href="http://www.codeproject.com/Articles/609442/Using-JqGrid-in-ASP-NET">Using JqGrid in ASP.NET</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" valign="top" width="50%">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl02_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl02_Thumbnail" href="http://www.codeproject.com/Articles/1129036/Build-BOT-with-Microsoft-Bot-Framework-Rest-API"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/Thumb-1129036.png" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl02_Link" href="http://www.codeproject.com/Articles/1129036/Build-BOT-with-Microsoft-Bot-Framework-Rest-API">Build BOT with Microsoft Bot Framework Rest API</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+	    <tr>
+        <td class="content-list-item" valign="top" width="50%">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl03_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl03_Thumbnail" href="http://www.codeproject.com/Articles/771767/JqGrid-In-MVC-Basics"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/Thumb-771767.jpg" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl03_Link" href="http://www.codeproject.com/Articles/771767/JqGrid-In-MVC-Basics">JqGrid In MVC -Basics</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" valign="top" width="50%">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl04_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl04_Thumbnail" href="http://www.codeproject.com/Articles/1126292/Using-UARTs-on-Intel-Quark-Microcontroller-D"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/article100x80.png" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl04_Link" href="http://www.codeproject.com/Articles/1126292/Using-UARTs-on-Intel-Quark-Microcontroller-D">Using UARTs on Intel® Quark™ Microcontroller D2000</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+	    <tr>
+        <td class="content-list-item" valign="top" width="50%">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl05_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl05_Thumbnail" href="http://www.codeproject.com/Articles/1134560/Learnings-from-a-DevOps-Hackfest-with-a-Major-ISV"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/Thumb-1134560.png" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl05_Link" href="http://www.codeproject.com/Articles/1134560/Learnings-from-a-DevOps-Hackfest-with-a-Major-ISV">Learnings from a DevOps Hackfest with a Major ISV</a></div>
+                
+            </div>
+        </td>
+	
+        <td class="content-list-item" valign="top" width="50%">
+            <div id="ctl00_AlsoRead_RelatedResults_ctl06_ThumbnailContainer" class="thumbnail">
+                <a id="ctl00_AlsoRead_RelatedResults_ctl06_Thumbnail" href="http://www.codeproject.com/Articles/23/SAPrefs-Netscape-like-Preferences-Dialog"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/Thumb-23.gif" alt="" style="border-width:0px;"></a>
+            </div>
+            <div class="text">
+                <div class="title"><a id="ctl00_AlsoRead_RelatedResults_ctl06_Link" href="http://www.codeproject.com/Articles/23/SAPrefs-Netscape-like-Preferences-Dialog">SAPrefs - Netscape-like Preferences Dialog</a></div>
+                
+            </div>
+        </td>
+	    </tr>
+	
+		</tbody></table>
+	
+
+
+
+				
+				
+
+					<h2>Comments and Discussions</h2>
+					<a class="float-left" name="_comments" id="_comments">&nbsp;</a><div id="_MessageBoardctl00_MessageBoard" onclick="return SwitchMessage(event, null)">
+<table id="ForumTable" class="forum compact" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td><table border="0" cellpadding="3px" cellspacing="0" width="100%">
+<tbody><tr class="header1">
+<td colspan="2" style="white-space:nowrap;"><div class="container">
+<div class="button new-message compose float-left" onclick="FireNew(this)">
+<a rel="nofollow" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;floc=/Articles/608173/jQGrid-PDF-Export" name="Frm_HoverNL" target="_top">Add a Comment or Question&nbsp;</a>
+</div><div class="admin-links float-left align-middle" style="width:60px;line-height:24px;margin-top:4px;">
+&nbsp;<a href="http://www.codeproject.com/KB/FAQs/MessageBoardsFAQ.aspx"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/help_sm.png" title="FAQ" alt="FAQ" style="border-width:0;width:16px;height:16px;vertical-align:middle;"></a>
+</div><div class="float-right">
+<form action="/Search.aspx?sbo=fm" method="get" class="searchbar">
+<input name="fid" value="1835208" type="hidden"><input name="sbo" value="fm" type="hidden"><b>Search Comments </b><input class="search" name="qf" type="search">&nbsp;<input value="Go" class="button" type="submit">
+</form>
+</div>
+</div></td>
+</tr><tr class="header2">
+<td></td><td style="width:100%;"><div style="text-align:right;">
+<form action="/script/Forums/SetOptions.aspx?floc=%2fArticles%2f608173%2fjQGrid-PDF-Export&amp;fid=1835208" method="get" style="margin:0;padding:0;">
+<input name="fid" value="1835208" type="hidden"><input name="currentQS" value="floc=%2fArticles%2f608173%2fjQGrid-PDF-Export&amp;fid=1835208" type="hidden"><input name="floc" value="/Articles/608173/jQGrid-PDF-Export" type="hidden"><input checked="checked" name="prof" id="prof" style="vertical-align:middle;" type="checkbox"><label for="prof">Profile popups</label>&nbsp;&nbsp;&nbsp;&nbsp;Spacing<select size="1" class="dropdown" name="spc">
+<option value="Relaxed">Relaxed</option><option selected="selected" value="Compact">Compact</option><option value="Tight">Tight</option>
+</select>&nbsp;&nbsp;Layout<select size="1" class="dropdown" name="view">
+<option value="Normal">Normal</option><option value="Topic">Open Topics</option><option selected="selected" value="Expanded">Open All</option><option value="Thread">Thread View</option>
+</select>&nbsp;&nbsp;Per page<select size="1" class="dropdown" name="mpp">
+<option value="10">10</option><option value="25">25</option><option selected="selected" value="50">50</option>
+</select>&nbsp;&nbsp;&nbsp;<input value="Update" name="SetOpt" class="button" type="submit">
+</form>
+</div></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><a name="xx0xx"></a><table border="0" cellpadding="2px" cellspacing="0" width="100%">
+<tbody><tr class="navbar">
+<td></td><td style="text-align:right;width:50%;"></td><td style="text-align:right;white-space:nowrap;"><span class="nav-link disabled">First</span> <span class="nav-link disabled">Prev</span> <span class="nav-link disabled">Next</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><table class="fixed-layout blank-background" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" border="0" height="5px" width="1px"></td>
+</tr><tr id="F5021461_h0" class="header hover-row root">
+<td class="subject-line expanded " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="indent" width="20px"><a name="xx5021461xx"></a><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_question.gif" alt="Question" align="top" height="16px" width="16px"></td><td class="subject hover-container">How to add logo in the pdf?<img alt="new" style="vertical-align:middle;height:12px;width:31px" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/new12.png"><div class="mobile-only">
+	<span class="author">Member 11519459</span><span class="date">16-Mar-15  19:11</span>
+</div></td><td class="icon"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/icn-member-16.gif" title="member" alt="member" border="0" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=11519459">Member 11519459</a></span></td><td class="date"><span>16-Mar-15  19:11&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="content root">
+<td class="expanded" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div done="true" class="voteform vertical" ownerid="11519459" msgid="5021461" votingtype="GoodOrBad"><a href="#xx5021461xx" onclick="RateMsg(11519459,5021461,5,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/upvote16.png" alt="upvote" title="upvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+<br><a href="#xx5021461xx" onclick="RateMsg(11519459,5021461,1,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/downvote16.png" alt="downvote" title="downvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+</div><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" height="1px" width="20px"></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">How to add logo in the pdf?<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a class="new-message" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=5021461&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=r" title="Reply">Reply</a>·<wbr><a class="nav-link" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=5021461&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=e" title="Email">Email</a>·<wbr><a href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?fid=1835208&amp;tid=5021461" title="View&nbsp;Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/5021461/How-to-add-logo-in-the-pdf.aspx" title="Get permanent link">Permalink</a>·<wbr><a href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=5021461&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=5021461&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small',false, this, this);">Bookmark</a></td><td style="text-align:right;"><span id="MVF5021461" data-ref="3_5021461" class="rating-label" style="white-space:nowrap;"><span class="reportform" ownerid="11519459" msgid="5021461"></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5019658_h0" class="header hover-row root">
+<td class="subject-line expanded " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="indent" width="20px"><a name="xx5019658xx"></a><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_question.gif" alt="Question" align="top" height="16px" width="16px"></td><td class="subject hover-container">Please help me to resolve my error<img alt="new" style="vertical-align:middle;height:12px;width:31px" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/new12.png"><div class="mobile-only">
+	<span class="author">Member 11519459</span><span class="date">13-Mar-15  11:20</span>
+</div></td><td class="icon"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/icn-member-16.gif" title="member" alt="member" border="0" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=11519459">Member 11519459</a></span></td><td class="date"><span>13-Mar-15  11:20&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="content root">
+<td class="expanded" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div done="true" class="voteform vertical" ownerid="11519459" msgid="5019658" votingtype="GoodOrBad"><a href="#xx5019658xx" onclick="RateMsg(11519459,5019658,5,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/upvote16.png" alt="upvote" title="upvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+<br><a href="#xx5019658xx" onclick="RateMsg(11519459,5019658,1,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/downvote16.png" alt="downvote" title="downvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+</div><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" height="1px" width="20px"></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Exception was: Could not find a part of the path 'D:\Prasath\2.3.2015\eAcademy\eAcademy\Achievement\ContentSample.pdf'.<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a class="new-message" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=5019658&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=r" title="Reply">Reply</a>·<wbr><a class="nav-link" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=5019658&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=e" title="Email">Email</a>·<wbr><a href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?fid=1835208&amp;tid=5019658" title="View&nbsp;Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/5019658/Please-help-me-to-resolve-my-error.aspx" title="Get permanent link">Permalink</a>·<wbr><a href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=5019658&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=5019658&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small',false, this, this);">Bookmark</a></td><td style="text-align:right;"><span id="MVF5019658" data-ref="3_5019658" class="rating-label" style="white-space:nowrap;"><span class="reportform" ownerid="11519459" msgid="5019658"></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F5021058_h0" class="header hover-row">
+<td class="subject-line expanded " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="indent" width="38px"><a name="xx5021058xx"></a><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_answer.gif" alt="Answer" align="top" height="16px" width="16px"></td><td class="subject hover-container"><a class="message-link" name="5021058" parent="5019658" thread="5019658" href="http://www.codeproject.com/Messages/5021058/Re-Please-help-me-to-resolve-my-error.aspx">Re: Please help me to resolve my error</a><img alt="new" style="vertical-align:middle;height:12px;width:31px" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/new12.png"><div class="mobile-only">
+	<span class="author">Member 11519459</span><span class="date">16-Mar-15  10:40</span>
+</div></td><td class="icon"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/icn-member-16.gif" title="member" alt="member" border="0" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=11519459">Member 11519459</a></span></td><td class="date"><span>16-Mar-15  10:40&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="content">
+<td class="expanded" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:38px;"><div done="true" class="voteform vertical" ownerid="11519459" msgid="5021058" votingtype="GoodOrBad"><a href="#xx5021058xx" onclick="RateMsg(11519459,5021058,5,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/upvote16.png" alt="upvote" title="upvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+<br><a href="#xx5021058xx" onclick="RateMsg(11519459,5021058,1,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/downvote16.png" alt="downvote" title="downvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+</div><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" height="1px" width="38px"></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2"><div class="parent"><a rel="nofollow" onclick="return SwitchMessage(null,5019658);" href="http://www.codeproject.com/Messages/5019658/Please-help-me-to-resolve-my-error.aspx"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/arrow-up24.png" title="Go to Parent" style="width:16px;height:16px;border:0"></a></div>string filePath = Server.MapPath("Content") + "Sample.pdf";<br>
+<br>
+I have changed above sentence like below<br>
+<br>
+string filePath = Server.MapPath("Content/") + "Sample.pdf";<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a class="new-message" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=5021058&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=r" title="Reply">Reply</a>·<wbr><a class="nav-link" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=5021058&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=e" title="Email">Email</a>·<wbr><a href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?fid=1835208&amp;tid=5019658" title="View&nbsp;Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/5021058/Re-Please-help-me-to-resolve-my-error.aspx" title="Get permanent link">Permalink</a>·<wbr><a href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=5021058&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=5021058&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small',false, this, this);">Bookmark</a></td><td style="text-align:right;"><span id="MVF5021058" data-ref="3_5021058" class="rating-label" style="white-space:nowrap;"><span class="reportform" ownerid="11519459" msgid="5021058"></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4855799_h0" class="header hover-row root">
+<td class="subject-line expanded " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="indent" width="20px"><a name="xx4855799xx"></a><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_question.gif" alt="Question" align="top" height="16px" width="16px"></td><td class="subject hover-container">Alternative solution<img alt="new" style="vertical-align:middle;height:12px;width:31px" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/new12.png"><div class="mobile-only">
+	<span class="author">Vahid_N</span><span class="date">7-Jul-14  12:06</span>
+</div></td><td class="icon"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/icn-member-16.gif" title="member" alt="member" border="0" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=128611">Vahid_N</a></span></td><td class="date"><span>7-Jul-14  12:06&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="content root">
+<td class="expanded" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div done="true" class="voteform vertical" ownerid="128611" msgid="4855799" votingtype="GoodOrBad"><a href="#xx4855799xx" onclick="RateMsg(128611,4855799,5,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/upvote16.png" alt="upvote" title="upvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+<br><a href="#xx4855799xx" onclick="RateMsg(128611,4855799,1,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/downvote16.png" alt="downvote" title="downvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+</div><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" height="1px" width="20px"></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Thanks for this article.<br>
+Another sample to show how to export jqGrid's filtered data to PDF: <a href="https://pdfreport.codeplex.com/SourceControl/latest#Samples/jqGridToPdfReportMvcApp/">jqGridToPdfReportMvcApp</a>[<a href="https://pdfreport.codeplex.com/SourceControl/latest#Samples/jqGridToPdfReportMvcApp/" target="_blank" title="New Window">^</a>]<br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a class="new-message" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=4855799&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=r" title="Reply">Reply</a>·<wbr><a class="nav-link" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=4855799&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=e" title="Email">Email</a>·<wbr><a href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?fid=1835208&amp;tid=4855799" title="View&nbsp;Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4855799/Alternative-solution.aspx" title="Get permanent link">Permalink</a>·<wbr><a href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=4855799&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=4855799&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small',false, this, this);">Bookmark</a></td><td style="text-align:right;"><span id="MVF4855799" data-ref="3_4855799" class="rating-label" style="white-space:nowrap;"><span class="reportform" ownerid="128611" msgid="4855799"></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F4593737_h0" class="header hover-row root">
+<td class="subject-line expanded " width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="indent" width="20px"><a name="xx4593737xx"></a><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="subject hover-container">Great Work thani..<img alt="new" style="vertical-align:middle;height:12px;width:31px" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/new12.png"><div class="mobile-only">
+	<span class="author">avaneeth</span><span class="date">21-Jun-13  9:12</span>
+</div></td><td class="icon"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/icn-member-16.gif" title="member" alt="member" border="0" height="16px"></td><td class="author"><span><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=5430753">avaneeth</a></span></td><td class="date"><span>21-Jun-13  9:12&nbsp;</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="content root">
+<td class="expanded" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top">
+<td class="indent align-right" style="width:20px;"><div done="true" class="voteform vertical" ownerid="5430753" msgid="4593737" votingtype="GoodOrBad"><a href="#xx4593737xx" onclick="RateMsg(5430753,4593737,5,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/upvote16.png" alt="upvote" title="upvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+<br><a href="#xx4593737xx" onclick="RateMsg(5430753,4593737,1,0);"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/downvote16.png" alt="downvote" title="downvote" align="absmiddle" border="0" height="16px" width="16px"></a>
+</div><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" height="1px" width="20px"></td><td class="text"><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Nice article.. well written.. this will surely help developers.. <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/smiley_smile.gif" alt="Smile | :)" align="top"> <br></td>
+</tr><tr class="footer" style="vertical-align:top;">
+<td><a class="new-message" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=4593737&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=r" title="Reply">Reply</a>·<wbr><a class="nav-link" href="http://www.codeproject.com/script/Forums/Edit.aspx?fid=1835208&amp;select=4593737&amp;floc=/Articles/608173/jQGrid-PDF-Export&amp;action=e" title="Email">Email</a>·<wbr><a href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?fid=1835208&amp;tid=4593737" title="View&nbsp;Thread">View&nbsp;Thread</a>·<wbr><a href="http://www.codeproject.com/Messages/4593737/Great-Work-thani.aspx" title="Get permanent link">Permalink</a>·<wbr><a href="http://www.codeproject.com/script/Bookmarks/Add.aspx?obid=4593737&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small" title="Bookmark this post" onclick="return bookmarkMe(0,0,'/script/Bookmarks/Ajax/Add.aspx?obid=4593737&amp;obtid=3&amp;action=AddBookmark&amp;bio=false&amp;bis=small',false, this, this);">Bookmark</a></td><td style="text-align:right;"><span id="MVF4593737" data-ref="3_4593737" class="rating-label" style="white-space:nowrap;"><span class="reportform" ownerid="5430753" msgid="4593737"></span></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/t.gif" alt="" border="0" height="5px" width="1px"></td>
+</tr><tr>
+<td><table cellpadding="2px" cellspacing="0" width="100%">
+<tbody><tr class="footer">
+<td><span class="last-visit desktop-only tablet-only">Last Visit: 1-Jan-00  9:00 &nbsp; &nbsp; Last Update: 30-Sep-16  7:38</span></td><td><a rel="nofollow" href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?fid=1835208">Refresh</a></td><td style="text-align:right;white-space:nowrap;"><input id="_mbnUrl" value="/Articles/608173/jQGrid-PDF-Export?fid=1835208&amp;fr=6" type="hidden"><span class="nav-link selected">1</span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+</div><p class="small-text"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"> General &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_news.gif" alt="News" align="top" height="16px" width="16px"> News &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_idea.gif" alt="Suggestion" align="top" height="16px" width="16px"> Suggestion &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_question.gif" alt="Question" align="top" height="16px" width="16px"> Question &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_bug.gif" alt="Bug" align="top" height="16px" width="16px"> Bug &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_answer.gif" alt="Answer" align="top" height="16px" width="16px"> Answer &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_joke.gif" alt="Joke" align="top" height="16px" width="16px"> Joke &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_kudos.gif" alt="Praise" align="top" height="16px" width="16px"> Praise &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_rant.gif" alt="Rant" align="top" height="16px" width="16px"> Rant &nbsp;&nbsp; <img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/msg_admin.gif" alt="Admin" align="top" height="16px" width="16px"> Admin &nbsp;&nbsp; </p>
+				
+
+			</div>
+			
+		</td>
+		<td class="article-wing-right" width="170px">
+			<div id="ctl00_RightSideBar" class="container-article-info">
+
+                <div style="position: static; top: 328px; left: 1300.5px;" id="RHSticky" class="container-article-info-sticky">
+        			
+
+
+<div class="article-summary">
+
+    
+
+
+    
+
+    
+
+    
+</div>
+
+				    
+
+				    <div style="width:160px;margin: 10px auto;">
+					    <div class="msg-160x600" data-format="160x600" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Web-Development/ASP-NET/Howto" data-country="RU" data-tags="C#, ASP.NET, Javascript, Intermediate, jQuery,rating4.5"><noscript><a href="http://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=160x600&c=92910"><img src="http://pubads.g.doubleclick.net/gampad/ad?iu=/6839/lqm.codeproject.site/Web-Development/ASP-NET/Howto&sz=160x600&c=92910"  width="160px" height="600px" target="_blank"/></a></noscript><div data-google-query-id="CMfJpdq9ts8CFcKFGQodDKgMHw" id="div-gpt-ad-lqm.codeproject.site/web-development/asp-net/howto-4" style="height: 600px; width: 160px; box-sizing: border-box; border: 0px none; font-size: 0px;"><div style="border: 0pt none;" id="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_1__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_1" title="3rd party ad content" id="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_1" frameborder="0" height="600" width="160"></iframe></div><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_1__hidden__" title="" id="google_ads_iframe_/6839/lqm.codeproject.site/web-development/asp-net/howto_1__hidden__" frameborder="0" height="0" width="0"></iframe></div></div>
+				    </div>
+
+                    
+
+				    
+
+				    
+
+				    
+
+                    <div class="anchorLink gototop" id="gototop">
+                        <a id="ctl00_GoToTop" href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export#_articleTop">Go to top</a>
+                    </div>
+
+				</div>
+
+			</div>
+		</td>
+		</tr></tbody></table>
+
+		
+		<div class="theme1-background" style="height:2px" id="stickyStop"></div>
+
+		<div class="extended tiny-text">
+			<div class="row">
+				<div class="float-left">
+					<a id="ctl00_PermaLink" itemprop="url" href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export">Permalink</a> | 
+					<a id="ctl00_AdvertiseLink" href="http://developermedia.com/">Advertise </a> |
+					<a id="ctl00_PrivacyLink" href="http://www.codeproject.com/info/privacy.aspx">Privacy</a> |
+                    <a id="ctl00_TermsOfUseLink" href="http://www.codeproject.com/info/TermsOfUse.aspx">Terms of Use</a> |
+					<a id="ctl00_Mobile">Mobile</a>
+					<br>
+								
+					
+					Web02 |
+					2.8.160929.1 |
+					Last Updated 18 Jun 2013								
+				</div>
+
+                <div id="ctl00_GoogleTranslate" class="translate float-left"><div style="" dir="ltr" class="skiptranslate goog-te-gadget"><div class="goog-te-gadget-simple" style="white-space: nowrap;" id=":0.targetLanguage"><img style="background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;" alt="" class="goog-te-gadget-icon" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/cleardot.gif"><span style="vertical-align: middle;"><a href="javascript:void(0)" class="goog-te-menu-value" role="menu"><span>Выбрать язык</span><img alt="" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/cleardot.gif" height="1" width="1"><span style="border-left: 1px solid rgb(187, 187, 187);">​</span><img alt="" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/cleardot.gif" height="1" width="1"><span style="color: rgb(155, 155, 155);">▼</span></a></span></div></div></div>      
+
+				<div class="float-right align-right">
+					Article Copyright 2013 by Thanigainathan.S<br>Everything else
+					Copyright © <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2016 <br>
+				</div>
+
+				
+
+
+<div class="page-width">
+Layout: <a id="ctl00_PageWidth_FixedT" title="Fixed width layout" rel="nofollow" class=" active" href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?PageFlow=FixedWidth">fixed</a>
+|
+<a id="ctl00_PageWidth_FluidT" title="Fluid layout" rel="nofollow" href="http://www.codeproject.com/Articles/608173/jQGrid-PDF-Export?PageFlow=Fluid">fluid</a>
+</div>
+
+
+
+			</div>
+		</div>
+		
+
+		<br clear="all">
+		
+			
+
+	</div> 
+	</div>
+</div>
+
+
+<img id="ctl00_Audience" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/DFPAudiencePixel.gif" style="border-width:0px;height:1px;width:1px;">
+
+
+
+<script type="text/javascript" language="Javascript" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/article.js"></script>
+<script type="text/javascript" language="Javascript" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/element.js"></script>
+<script type="text/javascript" language="Javascript" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/navbar.js"></script>
+<script type="text/javascript" language="Javascript" src="jQGrid%20PDF%20Export%20-%20CodeProject_files/Notifications.js"></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+$(document).ready(function () { processCodeBlocks.Initialise('#contentdiv'); });
+function googleTranslateElementInit() {  new google.translate.TranslateElement({   pageLanguage: 'en',   layout: google.translate.TranslateElement.InlineLayout.SIMPLE,   autoDisplay: false,   gaTrack: true,   gaId: 'UA-1735123-1'},  'ctl00_GoogleTranslate');}
+$(document).ready(function() { anchorAnimate();
+$('#RHSticky').sticky($('#stickyStop'));
+$('#ctl00_Nav').sticky($('#stickyStop'));
+});
+function markAllText(){
+ markTextInElement('jqgrid','contentdiv');
+}
+$(function(){markAllText()});
+$(document).ready(function() {   $('.alert-bar').slideDown('fast');   $('.alert-bar a.close-notify').click(function() {      $('.alert-bar').slideUp('fast');        return false;    });});
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ if(InitWatermark)InitWatermark('sb_tb', 'Search for articles, questions, tips');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide(); sfilter.removeClass('open');
+  sbar.blur(function() {
+ if (!oSrchFlt) {sfilter.hide(); sfilter.removeClass('open');}
+ srchBoxFoc=false;
+ });
+  sbar.focus(function() {
+ oSrchFlt=false; srchBoxFoc=true;
+ sfilter.show(); sfilter.addClass('open');
+ });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox) { sfilter.hide(); sfilter.removeClass('open'); }});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$('#clear-rate_ctl00_RateArticle_RCD').click(function () {    $('#ctl00_RateArticle_RCD').hide(); return false;});$("#ctl00_RateArticle_RateItemWrapper")   .removeClass("container-rating")   .hover( function() { $('#ctl00_RateArticle_RCD').fadeIn('fast'); },            function() { $('#ctl00_RateArticle_RCD').fadeOut('fast'); } );
+function PostBack_ctl00_RateArticle_RateItemWrapper() {
+  return rateItem(608173,2,1,true,true,0,'LargeStars');
+}
+
+                        function getVotesHistogram(objectId, objectTypeId, containerId, loadingId) {
+                            if (!$('#' + containerId).attr('alreadyRequested')){
+                                $.ajax({
+                                    url: '/script/Ratings/Ajax/Histogram.aspx?obid=' + objectId + '&obtid='+objectTypeId,
+                                    success: function (data) {
+                                        $('#' + containerId).html(data);
+                                        $('#' + loadingId).hide();
+                                    }
+                                });
+                                $('#' + containerId).attr('alreadyRequested', 'true');
+                            }
+                        }
+$(document).ready(function() {   new starRating('#ctl00_RateArticle_VoteFormDiv', PostBack_ctl00_RateArticle_RateItemWrapper,'ctl00_RateArticle');
+  $('#ctl00_RateArticle_RB').mouseenter(function() {     getVotesHistogram(608173,2   ,'ctl00_RateArticle_Histogram','ctl00_RateArticle_Loading');  })})
+$(document).ready(function() { $('#ctl00_RateArticle_SubmitRateBtn').hide(); });
+$(document).ready(function() { $('#ctl00_RateArticle_SubmitRateBtn').hide(); });function ChkRtctl00_RateArticle(val) {}
+
+forumDir = '/script/Forums/';
+allowReporting = false;
+allowRating = true;
+allowRatingDisplay = true;
+var smoothScroll = false;
+Selected        = -1;
+oldTitle        = document.title;
+minMessageScore = 1;
+minMessageScore = 5;
+abuseScore      = -2;
+spamScore       = -1;
+getRatingUrl    = '/script/Ratings/Ajax/GetRatings.aspx';
+getRatingRefKey = 'obrs';
+
+
+//]]>
+</script>
+
+
+
+<style type="text/css">.copied::after {  position: absolute;  display: inline-block;  content: 'copied'; color: #fff; background-color: #f90;  border-radius: 3px; padding:1px 3px; opacity: 0;  will-change: opacity, transform; animation: showcopied 1.5s ease; } @keyframes showcopied { 0% { opacity: 0; transform: translateX(-100%); } 70% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; } } </style><canvas id="cv1" width="1px" height="1px" style="position:absolute;left:0;top:0;pointer-events:none"></canvas><canvas id="cv2" width="1px" height="1px" style="position:absolute;left:0;top:0;pointer-events:none"></canvas><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="jQGrid%20PDF%20Export%20-%20CodeProject_files/translate_24dp.png" height="20" width="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Исходный текст</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Предложить лучший вариант перевода</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div><style type="text/css">.copied::after {  position: absolute;  display: inline-block;  content: 'copied'; color: #fff; background-color: #f90;  border-radius: 3px; padding:1px 3px; opacity: 0;  will-change: opacity, transform; animation: showcopied 1.5s ease; } @keyframes showcopied { 0% { opacity: 0; transform: translateX(-100%); } 70% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; } } </style><iframe style="visibility: visible; box-sizing: content-box; width: 1130px; height: 285px; display: none;" class="goog-te-menu-frame skiptranslate" frameborder="0"></iframe><iframe style="display: none; width: 0px; height: 0px;" name="google_osd_static_frame" id="google_osd_static_frame_7499082008025"></iframe></body></html>
