@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- build date: Fri, 23 Sep 2016 13:19:52 GMT -->
+	<title>ASP.NET Web Deployment using Visual Studio: Deploying to Test | The ASP.NET Site</title>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="application-name" content="Microsoft ASP.NET Site">
+	<link rel="dns-prefetch" href="http://media-www-asp.azureedge.net/">
+	<link rel="dns-prefetch" href="http://static.adzerk.net/">
+	<link rel="dns-prefetch" href="http://engine.adzerk.net/">
+	<link rel="dns-prefetch" href="http://www.google-analytics.com/">
+	<link rel="dns-prefetch" href="http://www.microsoft.com/">
+	<link rel="dns-prefetch" href="http://c.microsoft.com/">
+	<link rel="dns-prefetch" href="http://cs.microsoft.com/">
+	
+<meta name="description" content="This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by using Visual Studio 2012 or Visual Studio 20...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@aspnet">
+<meta name="twitter:domain" content="asp.net">
+<meta name="twitter:image:src" content="//www-asp.azureedge.net/v-2016-09-01-001/images/ui/asplogo-square.png">
+<meta name="twitter:title" content="Deploying to Test">
+<meta name="twitter:description" content="This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by using Visual Studio 2012 or Visual Studio 20...">
+<meta name="twitter:creator" content="@tdykstra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploying to Test">
+<meta property="og:description" content="This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by using Visual Studio 2012 or Visual Studio 20...">
+<meta property="og:image" content="//www-asp.azureedge.net/v-2016-09-01-001/images/ui/asplogo-square.png">
+<meta property="og:url" content="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis">
+<meta property="og:site_name" content="The Official Microsoft ASP.NET Site">
+<meta property="fb:admins" content="scott.hanselman">
+<meta property="fb:admins" content="jon.galloway">
+<meta property="fb:admins" content="robmcm">
+	
+	
+	<link href="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/articles.css" rel="stylesheet" type="text/css" media="all">
+
+	<!--[if lte IE 9]>
+      <script src='//www-asp.azureedge.net/v-2016-09-01-001/scripts-bundle/html5.js' type="text/javascript"></script>
+    <![endif]-->
+	<link href="http://www-asp.azureedge.net/v-2016-09-01-001/images/content/favicon.ico" rel="shortcut icon">
+	<link rel="alternate" type="application/rss+xml" title="Latest ASP.NET Content" href="http://www.asp.net/rss/content">
+
+	<!-- Anti-Clickjacking script -->
+	
+	<script src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/js"></script><script type="text/javascript" async="" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/ados"></script><script id="twitter-wjs" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/widgets.js"></script><script id="facebook-jssdk" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/all.js"></script><script type="text/javascript" async="" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/i.js"></script><script type="text/javascript" async="" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/ados.js"></script><script async="" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/analytics.js"></script><script type="text/javascript">if (self === top) { var antiClickjack = document.getElementById("antiClickjack"); antiClickjack.parentNode.removeChild(antiClickjack) } else top.location = self.location;</script>
+<script type="text/javascript" charset="utf-8" async="" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/button.c9025956238e7d486d74379e14f50282.js"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+<body class="">	
+	
+	
+	<div class="allcontent ">
+		<!--Edit me from backoffice - Raw - Banner-->
+<!--<div style="background-color:#fc0;padding:10px;font-size:16px;text-align:center;"><a href="http://aspnet.uservoice.com/forums/350103-forums-asp-net-website">Help us improve the ASP.NET Forums! We want to hear your ideas</a>!</div>-->
+		
+		<header>
+			<div class="header-content">
+				<a href="http://www.asp.net/" id="logo"><svg version="1.1" id="svg5358" x="0px" y="0px" viewBox="0 0 1033.746 220.695" enable-background="new 0 0 1033.746 220.695" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="path5056" fill="#FFFFFF" d="M1033.745,99.838v-18.18h-22.576V53.395l-0.76,0.234l-21.205,6.487l-0.417,0.128v21.414h-33.469V69.73c0-5.556,1.242-9.807,3.689-12.643c2.432-2.801,5.909-4.225,10.343-4.225c3.188,0,6.49,0.752,9.812,2.232l0.832,0.371V36.32l-0.391-0.143c-3.1-1.114-7.315-1.676-12.539-1.676c-6.585,0-12.568,1.433-17.786,4.273c-5.222,2.844-9.329,6.903-12.205,12.065c-2.868,5.156-4.322,11.111-4.322,17.702v13.115H917.03v18.18h15.721v76.59h22.567v-76.59h33.469v48.672c0,20.045,9.455,30.203,28.101,30.203c3.065,0,6.289-0.359,9.583-1.063c3.352-0.722,5.634-1.443,6.978-2.213l0.298-0.176v-18.348l-0.918,0.607c-1.225,0.816-2.75,1.483-4.539,1.979c-1.796,0.505-3.296,0.758-4.457,0.758c-4.369,0-7.6-1.177-9.606-3.5c-2.027-2.344-3.057-6.443-3.057-12.177V99.838H1033.745L1033.745,99.838z M866.634,160.26c-8.191,0-14.648-2.716-19.2-8.066c-4.578-5.377-6.898-13.043-6.898-22.783c0-10.049,2.32-17.914,6.901-23.387c4.554-5.436,10.95-8.194,19.014-8.194c7.825,0,14.054,2.635,18.515,7.836c4.485,5.228,6.76,13.03,6.76,23.196c0,10.291-2.14,18.196-6.359,23.484C881.175,157.594,874.874,160.26,866.634,160.26 M867.639,79.375c-15.627,0-28.04,4.579-36.889,13.61c-8.844,9.032-13.329,21.531-13.329,37.153c0,14.838,4.378,26.773,13.012,35.468c8.634,8.698,20.384,13.104,34.92,13.104c15.148,0,27.313-4.643,36.16-13.799c8.845-9.146,13.326-21.527,13.326-36.784c0-15.07-4.205-27.094-12.503-35.731C894.035,83.756,882.358,79.375,867.639,79.375 M781.035,79.375c-10.63,0-19.422,2.719-26.14,8.08c-6.758,5.393-10.185,12.466-10.185,21.025c0,4.448,0.739,8.4,2.195,11.752c1.466,3.363,3.733,6.324,6.744,8.809c2.99,2.465,7.603,5.047,13.718,7.674c5.139,2.115,8.973,3.904,11.407,5.314c2.38,1.382,4.07,2.771,5.023,4.124c0.927,1.323,1.398,3.136,1.398,5.372c0,6.367-4.768,9.465-14.579,9.465c-3.639,0-7.79-0.76-12.338-2.258c-4.55-1.496-8.801-3.647-12.634-6.406l-0.936-0.672v21.727l0.344,0.16c3.193,1.474,7.219,2.717,11.963,3.695c4.736,0.979,9.039,1.477,12.778,1.477c11.534,0,20.823-2.732,27.601-8.125c6.821-5.43,10.279-12.67,10.279-21.525c0-6.388-1.861-11.867-5.53-16.284c-3.643-4.382-9.965-8.405-18.785-11.961c-7.026-2.82-11.527-5.161-13.384-6.958c-1.79-1.736-2.698-4.191-2.698-7.3c0-2.756,1.121-4.964,3.425-6.753c2.321-1.797,5.551-2.711,9.604-2.711c3.76,0,7.607,0.594,11.433,1.758c3.824,1.164,7.182,2.723,9.985,4.63l0.921,0.63V83.504l-0.354-0.152c-2.587-1.109-5.996-2.059-10.138-2.828C788.029,79.761,784.288,79.375,781.035,79.375 M685.878,160.26c-8.188,0-14.648-2.716-19.198-8.066c-4.58-5.377-6.896-13.041-6.896-22.783c0-10.049,2.318-17.914,6.901-23.387c4.55-5.436,10.944-8.194,19.013-8.194c7.822,0,14.051,2.635,18.514,7.836c4.484,5.228,6.76,13.03,6.76,23.196c0,10.291-2.142,18.196-6.361,23.484C700.419,157.594,694.12,160.26,685.878,160.26 M686.886,79.375c-15.632,0-28.044,4.579-36.889,13.61c-8.844,9.032-13.331,21.531-13.331,37.153c0,14.844,4.38,26.773,13.014,35.468c8.634,8.698,20.382,13.104,34.92,13.104c15.145,0,27.313-4.643,36.16-13.799c8.842-9.146,13.326-21.527,13.326-36.784c0-15.07-4.207-27.094-12.506-35.731C713.276,83.756,701.604,79.375,686.886,79.375 M602.409,98.07V81.658h-22.293v94.767h22.293v-48.477c0-8.243,1.868-15.015,5.556-20.13c3.642-5.054,8.494-7.615,14.418-7.615c2.007,0,4.261,0.332,6.702,0.986c2.416,0.651,4.166,1.357,5.199,2.102l0.936,0.679V81.496l-0.361-0.155c-2.076-0.882-5.012-1.327-8.729-1.327c-5.602,0-10.615,1.8-14.908,5.344c-3.77,3.115-6.494,7.387-8.577,12.713H602.409L602.409,98.07z M540.195,79.375c-10.226,0-19.349,2.193-27.108,6.516c-7.775,4.333-13.787,10.52-17.879,18.385c-4.072,7.848-6.14,17.014-6.14,27.235c0,8.954,2.005,17.171,5.967,24.413c3.966,7.254,9.578,12.928,16.682,16.865c7.094,3.931,15.293,5.924,24.37,5.924c10.594,0,19.639-2.118,26.892-6.295l0.292-0.168v-20.423l-0.937,0.684c-3.285,2.393-6.956,4.303-10.906,5.679c-3.939,1.375-7.532,2.07-10.681,2.07c-8.748,0-15.769-2.737-20.866-8.133c-5.109-5.403-7.699-12.99-7.699-22.537c0-9.607,2.701-17.389,8.025-23.131c5.306-5.726,12.341-8.629,20.907-8.629c7.327,0,14.468,2.48,21.223,7.381l0.934,0.679V84.371l-0.302-0.17c-2.542-1.423-6.008-2.598-10.313-3.488C548.37,79.824,544.18,79.375,540.195,79.375 M473.715,81.658h-22.293v94.767h22.293V81.658z M462.796,41.287c-3.668,0-6.868,1.249-9.497,3.725c-2.64,2.482-3.98,5.607-3.98,9.295c0,3.629,1.324,6.697,3.938,9.113c2.598,2.408,5.808,3.63,9.54,3.63c3.731,0,6.954-1.222,9.583-3.626c2.646-2.42,3.987-5.488,3.987-9.117c0-3.559-1.305-6.652-3.879-9.195C469.918,42.574,466.656,41.287,462.796,41.287 M407.177,74.667v101.757h22.75V44.189H398.44l-40.022,98.221l-38.839-98.221h-32.769v132.234h21.379V74.657h0.734l41.013,101.767h16.134l40.372-101.757H407.177L407.177,74.667z"></path><path id="path5058" fill="#F1511B" d="M104.867,104.867H0V0h104.867V104.867z"></path><path id="path5060" fill="#80CC28" d="M220.654,104.867H115.787V0h104.867V104.867z"></path><path id="path5062" fill="#00ADEF" d="M104.865,220.695H0V115.828h104.865V220.695z"></path><path id="path5064" fill="#FBBC09" d="M220.654,220.695H115.787V115.828h104.867V220.695z"></path></svg></a><a href="http://twitter.com/aspnet" class="twitter" title="Twitter"><svg version="1.1" x="0px" y="0px" viewBox="0 0 15 12.233" enable-background="new 0 0 15 12.233" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#FFFFFF" d="M15,1.469c-0.287,0.116-0.576,0.21-0.865,0.282c-0.287,0.072-0.59,0.137-0.906,0.194c0.316-0.201,0.59-0.446,0.82-0.735c0.231-0.288,0.418-0.604,0.563-0.951c-0.318,0.145-0.643,0.289-0.973,0.432c-0.332,0.145-0.684,0.246-1.059,0.303c-0.26-0.317-0.576-0.562-0.951-0.735C11.253,0.086,10.835,0,10.375,0C9.539,0,8.819,0.302,8.213,0.908c-0.605,0.605-0.908,1.34-0.908,2.204c0,0.173,0.029,0.404,0.087,0.691C6.095,3.746,4.906,3.43,3.826,2.853c-1.082-0.576-2.011-1.34-2.789-2.291c-0.259,0.49-0.388,1.009-0.388,1.556c0,1.153,0.446,2.004,1.34,2.55c-0.52,0-0.98-0.114-1.384-0.345v0.043c0,0.75,0.23,1.405,0.692,1.966c0.461,0.563,1.037,0.916,1.729,1.06C2.91,7.421,2.787,7.443,2.658,7.457c-0.129,0.014-0.28,0.021-0.454,0.021c-0.115,0-0.288-0.028-0.518-0.086c0.172,0.605,0.518,1.109,1.037,1.512c0.519,0.404,1.124,0.621,1.816,0.648c-1.095,0.865-2.364,1.297-3.804,1.297H0c0.663,0.433,1.398,0.771,2.204,1.017c0.807,0.246,1.643,0.367,2.508,0.367c1.411,0,2.665-0.267,3.761-0.8c1.095-0.532,2.009-1.217,2.743-2.054c0.735-0.835,1.289-1.771,1.666-2.809c0.373-1.039,0.561-2.076,0.561-3.113V3.069c0.316-0.23,0.605-0.482,0.865-0.757C14.568,2.039,14.798,1.758,15,1.469"></path></svg></a><a href="https://www.facebook.com/asp.net" class="facebook" title="Facebook"><svg version="1.1" x="0px" y="0px" viewBox="0 0 7.001 15" enable-background="new 0 0 7.001 15" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g opacity="0.9"><g><defs><rect id="SVGID_1_" width="7.001" height="15"></rect></defs><clippath id="SVGID_2_"><use xlink:href="#SVGID_1_" overflow="visible"></use></clippath><path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M6.998,2.633C6.463,2.632,5.926,2.635,5.389,2.632C5.049,2.611,4.699,2.87,4.637,3.207C4.629,3.792,4.635,4.378,4.635,4.964c0.787,0.003,1.574-0.001,2.36,0.002C6.938,5.814,6.832,6.657,6.709,7.499C6.014,7.504,5.318,7.498,4.623,7.501c-0.006,2.5,0.004,5-0.004,7.5c-1.033,0.004-2.066-0.002-3.098,0.004c-0.02-2.5,0.002-5.002-0.011-7.502C1.007,7.498,0.503,7.505,0,7.499C0.001,6.657,0,5.817,0,4.977c0.504-0.006,1.007,0.002,1.51-0.003c0.016-0.817-0.015-1.635,0.017-2.452c0.05-0.646,0.296-1.297,0.78-1.744c0.585-0.557,1.416-0.745,2.2-0.769c0.83-0.007,1.66-0.003,2.49-0.002C7.002,0.881,7.002,1.757,6.998,2.633"></path></g></g></svg></a><a href="http://blogs.msdn.com/b/webdev/" class="blog">Blog</a><a href="https://gitter.im/aspnet/Home" class="gitter" title="Gitter"><svg version="1.1" x="0px" y="0px" viewBox="210.618 233.289 200.259 325.422" enable-background="new 210.618 233.289 200.259 325.422" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect x="210.618" y="233.289" fill="#FFFFFF" width="28.485" height="210.618"></rect><rect x="382.393" y="281.627" fill="#FFFFFF" width="28.484" height="162.28"></rect><rect x="267.588" y="281.627" fill="#FFFFFF" width="28.485" height="277.083"></rect><rect x="325.422" y="281.627" fill="#FFFFFF" width="28.485" height="277.083"></rect></svg></a>
+				<script type="text/javascript">var currentUsername = '';</script><div class="nav-user logged-out"><a href="javascript:;" class="profile"><svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 25 25" enable-background="new 0 0 25 25" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#ffffff" d="M5.163,21.259h1.333c0-3.311,2.694-6.005,6.004-6.005c3.31,0,6.003,2.694,6.003,6.005h1.334c0-3.064-1.891-5.693-4.564-6.79c1.535-0.938,2.564-2.624,2.564-4.55c0-2.942-2.395-5.336-5.337-5.336c-2.943,0-5.337,2.394-5.337,5.336c0,1.926,1.03,3.611,2.564,4.55C7.054,15.565,5.163,18.194,5.163,21.259 M8.498,9.919c0-2.207,1.795-4.002,4.003-4.002c2.206,0,4.001,1.795,4.001,4.002c0,2.206-1.795,4.002-4.001,4.002C10.293,13.921,8.498,12.125,8.498,9.919"></path><circle fill="none" stroke="#ffffff" stroke-width="1.483" stroke-miterlimit="10" cx="12.5" cy="12.5" r="10.873"></circle></svg></a><div class="common-dropdown collapse"><a href="https://login.asp.net/login/signin.aspx?ReturnUrl=//www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis">Sign in</a><a href="https://login.asp.net/login/createuser.aspx?ReturnUrl=//www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis">Join</a></div></div>
+				<div class="language-translation"><a href="javascript:;" class="language">Language</a><div class="common-dropdown translator collapse"><div id="MicrosoftTranslatorWidget" class="Dark" style="color:white;background-color:#555555"></div></div></div>
+				<div class="search-form">
+					<input name="searchterm" type="text" class="search-input" placeholder="Search">
+					<a href="javascript:;" class="search-submit"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve"><path fill="#FFFFFF" d="M5.89,11.594c1.32,0,2.532-0.461,3.49-1.229l7.267,7.268c0.122,0.119,0.28,0.182,0.439,0.182s0.319-0.063,0.44-0.182c0.242-0.244,0.242-0.639,0-0.881L10.26,9.486c0.767-0.958,1.229-2.17,1.229-3.49c0-3.087-2.511-5.598-5.599-5.598c-3.087,0-5.598,2.511-5.598,5.598S2.803,11.594,5.89,11.594 M5.89,1.642c2.401,0,4.354,1.953,4.354,4.354S8.291,10.35,5.89,10.35c-2.4,0-4.354-1.953-4.354-4.354S3.489,1.642,5.89,1.642"></path></svg></a>
+				</div>
+			</div>
+		</header>
+		
+        <nav class="clearfix nav-main"><div><a href="javascript:;" class="icon"></a><a href="http://www.asp.net/">ASP.NET</a><ul><li><a href="http://www.asp.net/">
+      Home
+    </a></li><li><a href="http://www.asp.net/get-started">
+      Get Started
+    </a>
+		<div class="common-dropdown collapse">
+	<div class="col">
+	  <ul>
+		<li><a href="http://www.asp.net/get-started" data-s-object-id="learn">ASP.NET</a></li>
+		<li><a href="https://docs.asp.net/en/latest/getting-started.html" data-s-object-id="learn">ASP.NET Core</a></li>
+	  </ul>
+	</div>
+  </div>
+		</li><li><a href="http://www.asp.net/learn" class="selected">
+			Learn
+		</a>
+		</li><li><a href="http://hosting.asp.net/hosting">
+      Hosting
+    </a></li><li><a href="http://www.asp.net/downloads">
+      Downloads
+    </a></li><li class="nav-community"><a href="javascript:;">
+			Community
+		</a>
+		<div class="common-dropdown collapse">
+			<div class="col">
+				<ul>
+					<li><a href="http://www.asp.net/community" data-s-object-id="community">Overview</a></li>
+					<li><a href="http://www.asp.net/community/spotlight" data-s-object-id="community">Community Spotlight</a></li>
+					<li><a href="http://www.asp.net/community/articles" data-s-object-id="community">Articles of the Day</a></li>
+					<li><a href="http://www.asp.net/whats-new" data-s-object-id="community">What's new</a></li>
+					<li><a href="http://weblogs.asp.net/" data-s-object-id="community">Community Blogs</a></li>
+					<li><a href="http://www.asp.net/community/microsoft-blogs" data-s-object-id="community">ASP.NET Team</a></li>
+					<li><a href="http://www.asp.net/community/events" data-s-object-id="community">Events</a></li>
+				</ul>
+			</div>
+			<div class="col">
+				<ul>
+					<li><a href="http://www.asp.net/community/recognition/hall-of-fame" data-s-object-id="community">Hall Of Fame</a></li>
+					<li><a href="http://code.msdn.microsoft.com/site/search?f%5B0%5D.Type=Technology&amp;f%5B0%5D.Value=ASP.NET&amp;sortBy=Date" data-s-object-id="community">MSDN Samples</a></li>
+					<li><a href="http://forums.asp.net/" data-s-object-id="community">Forums</a></li>
+				</ul>
+			</div>
+			<div class="col">
+				<ul>
+					<li><a href="http://www.asp.net/community/websites" data-s-object-id="community">Community Websites</a></li>
+					<li><a href="http://www.asp.net/community/support" data-s-object-id="community">Community Support</a></li>
+				</ul>
+			</div>
+			<div class="col">
+				<ul>
+					<li><a href="https://live.asp.net/" data-s-object-id="community">ASP.NET Community Standup</a></li>
+				</ul>
+			</div>
+		</div>
+		</li><li><a href="http://forums.asp.net/">Forums</a></li><li><a href="http://www.asp.net/contact-us">Help</a></li></ul></div></nav>
+		
+	<div class="content article-page article-content">
+		<div class="learn-nav"><ul class="common-tabs"><li class="heading">MVC:</li><li><a data-s-object-id="subnav" href="http://www.asp.net/mvc/overview" class="selected">Guidance</a></li> <li><a data-s-object-id="subnav" href="http://www.asp.net/mvc/videos" class="">Videos</a></li> <li><a data-s-object-id="subnav" href="http://www.asp.net/aspnet/samples/aspnet-mvc" class="">Samples</a></li> <li><a data-s-object-id="subnav" href="http://forums.asp.net/1146.aspx/1?MVC" class="">Forum</a></li> <li><a data-s-object-id="subnav" href="http://www.asp.net/mvc/books" class="">Books</a></li> <li><a data-s-object-id="subnav" href="http://www.asp.net/mvc/open-source" class="">Open Source</a></li>  </ul></div><a href="javascript:;" class="module-chapters-heading">Deployment</a>
+		<input type="hidden" id="loggedIn" value="False">
+		<div class="module-chapters extended clearfix">
+			<div id="MicroText4" data-adzoneid="0" data-adtypeid="448" class="ad-120x90 ad " data-adwidth="209px" data-adheight="130px" style="width:209px;height:130px;">
+<iframe id="ados_frame_MicroText4_1809554" frameborder="0" scrolling="no" height="130" width="209" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/saved_resource.html"></iframe><img height="0px" width="0px" border="0" style="position:absolute;" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/i.gif"></div> 
+			<div class="chapter-box toc-menu"><ul class="chapters"><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/getting-started" class="">Getting Started</a><ul class="articles"><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/getting-started/introduction/getting-started" class=""> Getting Started with ASP.NET MVC 5 </a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/getting-started">1. 
+				Getting Started</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-controller">2. 
+				Adding a Controller</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-view">3. 
+				Adding a View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-model">4. 
+				Adding a Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/creating-a-connection-string">5. 
+				Creating a Connection String and Working with SQL Server LocalDB</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/accessing-your-models-data-from-a-controller">6. 
+				Accessing Your Model's Data from a Controller</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view">7. 
+				Examining the Edit Methods and Edit View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/adding-search">8. 
+				Adding Search</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-new-field">9. 
+				Adding a New Field</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/adding-validation">10. 
+				Adding Validation</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods">11. 
+				Examining the Details and Delete Methods</a></li></ul></li><li><a href="http://www.microsoftvirtualacademy.com/training-courses/introduction-to-asp-net-mvc">Introduction to ASP.NET MVC</a></li><li><a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-get-started/">Create an ASP.NET Web App in Azure App Service</a></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/getting-started/pluralsight-aspnet-mvc-5-fundamentals/introduction-and-prerequisites" class="">Pluralsight ASP.NET MVC 5 Fundamentals (video course)</a><ul class="subsections"><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m1-introduction&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Introduction and Prerequisites</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m2-katana&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">OWIN and Katana</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m3-identity&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Identity and Security</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m4-bootstrap&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Bootstrap</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m5-webapi2&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Web API 2</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m6-ef6&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Entity Framework 6</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m7-signalr&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">SignalR</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m8-visualstudio&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Web Developer Tools and Visual Studio 2013</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application" class="">Getting Started with EF 6 using MVC 5</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application">1. 
+				Creating an Entity Framework Data Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application">2. 
+				Implementing Basic CRUD Functionality</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application">3. 
+				Sorting, Filtering, and Paging</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application">4. 
+				Connection Resiliency and Command Interception</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application">5. 
+				Code First Migrations and Deployment</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application">6. 
+				Creating a More Complex Data Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application">7. 
+				Reading Related Data</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application">8. 
+				Updating Related Data</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application">9. 
+				Async and Stored Procedures</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application">10. 
+				Handling Concurrency</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application">11. 
+				Implementing Inheritance</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application">12. 
+				Advanced Entity Framework Scenarios</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/getting-started/database-first-development/setting-up-database" class="">EF Database First with ASP.NET MVC</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/setting-up-database">1. 
+				Getting Started with Entity Framework 6 Database First using MVC 5</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/creating-the-web-application">2. 
+				Creating the Web Application and Data Models</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/generating-views">3. 
+				Generating Views</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/changing-the-database">4. 
+				Changing the Database</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/customizing-a-view">5. 
+				Customizing a View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/enhancing-data-validation">6. 
+				Enhancing Data Validation</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/database-first-development/publish-to-azure">7. 
+				Publish to Azure</a></li></ul></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app">ASP.NET MVC Facebook Birthday App</a></li><li><a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/">Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to an Azure App Service</a></li><li><a href="http://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-get-started/">Create a .NET WebJob in Azure App Service</a></li><li><a href="http://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-get-started/">Get Started with ASP.NET MVC and Azure Cloud Services</a></li><li><a href="http://www.windowsazure.com/en-us/documentation/articles/cloud-services-dotnet-multi-tier-app-using-service-bus-queues/">ASP.NET MVC Multi-Tier Application Using Azure Service Bus Queues</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/lifecycle-of-an-aspnet-mvc-5-application">Lifecycle of an ASP.NET MVC 5 Application</a></li><li><a href="http://www.asp.net/aspnet/overview/monitoring-and-telemetry">Monitoring and Telemetry</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">MVC Recommended Resources</a></li><li><a class="" href="http://www.asp.net/mvc/overview/getting-started/mvc-learning-sequence">MVC recommended tutorials and articles</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/controllers-and-routing" class="">Routing</a><ul class="articles"><li><a href="http://msdn.microsoft.com/en-us/library/cc668201.aspx">ASP.NET Routing</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m2-controllers&amp;mode=live&amp;clip=0&amp;course=mvc4-building">MVC Controllers and Routing</a></li><li><a href="http://msdn.microsoft.com/en-us/library/gg416513(VS.98).aspx">MVC Filtering</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">Recommended Resources for MVC</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/views" class="">UI, Layouts, and Themes</a><ul class="articles"><li><a href="http://www.asp.net/web-pages/tutorials/basics/2-introduction-to-asp-net-web-programming-using-the-razor-syntax">Introduction to Razor Syntax</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m3-views&amp;mode=live&amp;clip=0&amp;course=mvc4-building">Razor Views</a></li><li><a class="" href="http://www.asp.net/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started">Programming Basics</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m4-bootstrap&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">Bootstrap</a></li><li><a class="" href="http://www.asp.net/mvc/overview/views/using-page-inspector-in-aspnet-mvc">Using Page Inspector in ASP.NET MVC</a></li><li><a class="" href="http://www.asp.net/mvc/overview/views/dynamic-v-strongly-typed-views">Dynamic v. Strongly Typed Views</a></li><li><a href="http://blogs.msdn.com/b/cdndevs/archive/2014/06/11/30-days-of-bootstrap-with-the-mvc-framework.aspx">30 Days of Bootstrap with the MVC Framework</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">Recommended Resources for MVC</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/javascript" class="">JavaScript and Client Frameworks</a><ul class="articles"><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m6-ajax&amp;mode=live&amp;clip=0&amp;course=mvc4-building">Javascript and Ajax in MVC 4</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">Recommended Resources for MVC</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/mobile" class="">Mobile</a><ul class="articles"><li><a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/">Deploy a Mobile-Friendly ASP.NET MVC 5 Web Application on Azure App Services</a></li><li><a href="http://www.asp.net/mobile">Mobile Apps and Sites with ASP.NET</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/models-data" class="">Working with Data</a><ul class="articles"><li><a href="http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc">Getting Started with Entity Framework 6 Code First using MVC 5</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m6-ef6&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">MVC 5 and Entity Framework 6</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/database-first-development">Getting Started with Entity Framework 6 Database First using MVC 5</a></li><li><a href="http://www.asp.net/whitepapers/aspnet-data-access-content-map">ASP.NET Data Access - Recommended Resources</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/testing" class="">Testing and Debugging</a><ul class="articles"><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m9-tests&amp;mode=live&amp;clip=0&amp;course=mvc4-building">TDD and Unit Testing</a></li><li><a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/">Troubleshoot a web app in Azure App Service using Visual Studio</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">MVC Recommended Resources</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/security" class="">Security, Authentication, and Authorization</a><ul class="articles"><li><a href="http://www.asp.net/identity">ASP.NET Identity</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m3-identity&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals">ASP.NET MVC 5 Identity and Security</a></li><li><a href="http://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/">Deploy a Secure ASP.NET MVC application with OAuth, Membership and SQL Database</a></li><li><a class="" href="http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on">Code! MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset">Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication">ASP.NET MVC 5 app with SMS and email Two-Factor Authentication</a></li><li><a class="" href="http://www.asp.net/identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory">Developing ASP.NET Apps with Windows Azure Active Directory</a></li><li><a href="http://www.asp.net/aspnet/overview/owin-and-katana">OWIN and Katana</a></li><li><a class="" href="http://www.asp.net/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages">XSRF/CSRF Prevention in ASP.NET MVC and Web Pages</a></li><li><a class="" href="http://www.asp.net/mvc/overview/security/preventing-open-redirection-attacks">Preventing Open Redirection Attacks (C#)</a></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m7-security&amp;mode=live&amp;clip=0&amp;course=mvc4-building">MVC 4 Security</a></li><li><a href="http://blogs.msdn.com/b/rickandy/archive/2012/03/23/securing-your-asp-net-mvc-4-app-and-the-new-allowanonymous-attribute.aspx">MVC 4 Security - the AllowAnonymous Attribute</a></li><li><a href="http://blogs.msdn.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-63-56/1145.ASPNET_5F00_4_5F00_SecurityExtensibility.pdf">Security Extensibility in ASP.NET 4</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">Recommended Resources for MVC</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/performance" class="">Performance</a><ul class="articles"><li><a class="" href="http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4">Using Asynchronous Methods in ASP.NET MVC 4</a></li><li><a class="" href="http://www.asp.net/mvc/overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse">Profile and debug your ASP.NET MVC app with Glimpse</a></li><li><a class="" href="http://www.asp.net/mvc/overview/performance/bundling-and-minification">Bundling and Minification</a></li><li><a class="" href="http://www.asp.net/mvc/overview/performance/recommended-resources-for-mvc">MVC Recommended Resources</a></li></ul></li><li class="selected"><a href="javascript:var x = &#39;arrow&#39;;" class="arrow expanded"></a><a href="http://www.asp.net/mvc/overview/deployment" class="">Deployment</a><ul class="articles active"><li><a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-get-started/">Get Started with ASP.NET and Azure App Services</a></li><li><a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-deploy/">Deploy a Web App in Azure App Service</a></li><li><a href="http://msdn.microsoft.com/en-us/library/dd394698.aspx">Web Deployment Overview for Visual Studio and ASP.NET</a></li><li><a href="http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery">Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Azure)</a></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow expanded"></a><a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/introduction" class="">ASP.NET Web Deployment using Visual Studio</a><ul class="subsections active"><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/introduction">1. 
+				Introduction</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/preparing-databases">2. 
+				Preparing for Database Deployment</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/web-config-transformations">3. 
+				Web.config File Transformations</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/project-properties">4. 
+				Project Properties</a></li><li><a class=" hover" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis">5. 
+				Deploying to Test</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/setting-folder-permissions">6. 
+				Setting Folder Permissions</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-production">7. 
+				Deploying to Production</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-a-code-update">8. 
+				Deploying a Code Update</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-a-database-update">9. 
+				Deploying a Database Update</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/command-line-deployment">10. 
+				Command Line Deployment</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-extra-files">11. 
+				Deploying Extra Files</a></li><li><a class="" href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/troubleshooting">12. 
+				Troubleshooting</a></li></ul></li><li><a href="http://www.asp.net/whitepapers/aspnet-web-deployment-content-map">ASP.NET Deployment - Recommended Resources</a></li><li><a href="http://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/">Create an ASP.NET MVC App with Auth and SQL DB and Deploy to Azure App Service</a></li><li><a href="http://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-get-started/">Get Started with the Azure WebJobs SDK</a></li><li><a href="http://www.asp.net/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios">Web Deployment in the Enterprise using Visual Studio 2010</a></li><li><a href="http://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-get-started/">Get Started with Azure Cloud Services and ASP.NET</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/api-reference" class="">API Reference</a><ul class="articles"><li><a href="http://msdn.microsoft.com/en-us/library/dn448362(v=vs.118).aspx">MVC 5 API Reference</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/advanced" class="">Internationalization and Advanced Topics</a><ul class="articles"><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m8-infrastructure&amp;mode=live&amp;clip=0&amp;course=mvc4-building">MVC 4 Video: ASP.NET Infrastructure</a></li><li><a class="" href="http://www.asp.net/mvc/overview/advanced/custom-mvc-templates">Custom MVC Template</a></li><li><a href="http://afana.me/post/aspnet-mvc-internationalization.aspx">Internationalization and Globalization</a></li><li><a href="http://afana.me/post/ASPNET-MVC-5-Internationalization-c2b7-Date-and-Time.aspx">Internationalization - Date and Time with ASP.NET MVC 5</a></li><li><a href="http://www.asp.net/mvc/overview/getting-started/recommended-resources-for-mvc">MVC Recommended Resources</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/releases" class="">Releases</a><ul class="articles"><li><a class="" href="http://www.asp.net/mvc/overview/releases/whats-new-in-aspnet-mvc-52">What’s New in ASP.NET MVC 5.2</a></li><li><a class="" href="http://www.asp.net/mvc/overview/releases/mvc51-release-notes">What's New in ASP.NET MVC 5.1</a></li><li><a class="" href="http://www.asp.net/mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2">How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2</a></li><li><a href="http://www.asp.net/mvc/mvc5">What’s New in ASP.NET MVC 5</a></li><li><a href="http://www.asp.net/mvc/mvc4">What’s New in ASP.NET MVC 4</a></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions" class="">Older Versions - MVC 3 and 4</a><ul class="articles"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/overview/asp-net-mvc-overview">ASP.NET MVC Overview</a></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/intro-to-aspnet-mvc-4" class="">Getting Started with ASP.NET MVC 4</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/intro-to-aspnet-mvc-4">1. 
+				Intro to ASP.NET MVC 4</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-controller">2. 
+				Adding a Controller</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-view">3. 
+				Adding a View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model">4. 
+				Adding a Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/accessing-your-models-data-from-a-controller">5. 
+				Accessing Your Model's Data from a Controller</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/examining-the-edit-methods-and-edit-view">6. 
+				Examining the Edit Methods and Edit View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-new-field-to-the-movie-model-and-table">7. 
+				Adding a New Field to the Movie Model and Table</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validation-to-the-model">8. 
+				Adding Validation to the Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/examining-the-details-and-delete-methods">9. 
+				Examining the Details and Delete Methods</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application" class="">Getting Started with EF 5 using MVC 4</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application">1. 
+				Creating an Entity Framework Data Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application">2. 
+				Implementing Basic CRUD Functionality</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application">3. 
+				Sorting, Filtering, and Paging</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/creating-a-more-complex-data-model-for-an-asp-net-mvc-application">4. 
+				Creating a More Complex Data Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application">5. 
+				Reading Related Data</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application">6. 
+				Updating Related Data</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application">7. 
+				Handling Concurrency</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application">8. 
+				Implementing Inheritance</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application">9. 
+				Implementing the Repository and Unit of Work Patterns</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application">10. 
+				Advanced Entity Framework Scenarios</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/building-the-ef5-mvc4-chapter-downloads">11. 
+				Building the Chapter Downloads</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4" class="">MVC 4 Hands On Labs</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4">What's New in ASP.NET MVC 4</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals">ASP.NET MVC 4 Fundamentals</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-models-and-data-access">ASP.NET MVC 4 Models and Data Access</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-custom-action-filters">ASP.NET MVC 4 Custom Action Filters</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-entity-framework-scaffolding-and-migrations">ASP.NET MVC 4 Entity Framework Scaffolding and Migrations</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-dependency-injection">ASP.NET MVC 4 Dependency Injection</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-helpers-forms-and-validation">ASP.NET MVC 4 Helpers, Forms and Validation</a></li></ul></li><li><a href="http://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m1-intro&amp;mode=live&amp;clip=0&amp;course=mvc4-building">Introduction to MVC 4 Pluralsight Video</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/aspnet-mvc-4-mobile-features">ASP.NET MVC 4 Mobile Features</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/using-oauth-providers-with-mvc">Using OAuth Providers with MVC 4</a></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12" class="">ASP.NET Web Deployment with SQL Server Compact using Visual Studio</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12">1. 
+				Visual Studio Web Deployment with SQL Server Compact - Introduction</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12">2. 
+				Visual Studio Web Deployment with SQL Server Compact- Deploying SQL Server Compact Databases</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12">3. 
+				Visual Studio Web Deployment with SQL Server Compact - Web.Config File Transformations</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-configuring-project-properties-4-of-12">4. 
+				Visual Studio Web Deployment with SQL Server Compact - Configuring Project Properties</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12">5. 
+				Visual Studio Web Deployment with SQL Server Compact - Deploying to IIS as a Test Environment</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12">6. 
+				Visual Studio Web Deployment with SQL Server Compact - Setting Folder Permissions</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12">7. 
+				Visual Studio Web Deployment with SQL Server Compact - Deploying to the Production Environment</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12">8. 
+				Visual Studio Web Deployment with SQL Server Compact - Deploying a Code-Only Update</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12">9. 
+				Visual Studio Web Deployment with SQL Server Compact - Deploying a Database Update</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12">10. 
+				Visual Studio Web Deployment with SQL Server Compact - Migrating to SQL Server</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12">11. 
+				Visual Studio Web Deployment with SQL Server Compact - Deploying a SQL Server Database Update</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12">12. 
+				Visual Studio Web Deployment with SQL Server Compact - Troubleshooting</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs" class="">Getting Started with ASP.NET MVC3</a><ul class="subsections"><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3" class="">Getting Started with ASP.NET MVC 3 (C#)</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3">1. 
+				Intro to ASP.NET MVC 3 (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-controller">2. 
+				Adding a Controller (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-view">3. 
+				Adding a View (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-model">4. 
+				Adding a Model (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/accessing-your-models-data-from-a-controller">5. 
+				Accessing your Model's Data from a Controller (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/examining-the-edit-methods-and-edit-view">6. 
+				Examining the Edit Methods and Edit View (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-new-field">7. 
+				Adding a New Field to the Movie Model and Table (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-validation-to-the-model">8. 
+				Adding Validation to the Model (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/improving-the-details-and-delete-methods">9. 
+				Improving the Details and Delete Methods (C#)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/intro-to-aspnet-mvc-3" class="">Getting Started with ASP.NET MVC 3 (VB.NET)</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/intro-to-aspnet-mvc-3">1. 
+				Intro to ASP.NET MVC 3 (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-controller">2. 
+				Adding a Controller (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-view">3. 
+				Adding a View (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-model">4. 
+				Adding a Model (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/accessing-your-models-data-from-a-controller">5. 
+				Accessing your Model's Data from a Controller (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/examining-the-edit-methods-and-edit-view">6. 
+				Examining the Edit Methods and Edit View (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-new-field">7. 
+				Adding a New Field to the Movie Model and Database Table (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-validation-to-the-model">8. 
+				Adding Validation to the Model (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/improving-the-details-and-delete-methods">9. 
+				Improving the Details and Delete Methods (VB)</a></li></ul></li></ul></li><li><a href="http://msdn.microsoft.com/en-us/library/gg416511(VS.98).aspx">MVC 3 Test-Driven Development</a></li><li><a href="http://www.hanselman.com/blog/GlobalizationInternationalizationAndLocalizationInASPNETMVC3JavaScriptAndJQueryPart1.aspx">Globalization, Internationalization and Localization in ASP.NET MVC 3, JavaScript and jQuery</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript">Creating a MVC 3 Application with Razor and Unobtrusive JavaScript</a></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1" class="">MVC 3 Music Store</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1">1. 
+				Part 1: Overview and File-&gt;New Project</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-2">2. 
+				Part 2: Controllers</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3">3. 
+				Part 3: Views and ViewModels</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-4">4. 
+				Part 4: Models and Data Access</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-5">5. 
+				Part 5: Edit Forms and Templating</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6">6. 
+				Part 6: Using Data Annotations for Model Validation</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-7">7. 
+				Part 7: Membership and Authorization</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-8">8. 
+				Part 8: Shopping Cart with Ajax Updates</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-9">9. 
+				Part 9: Registration and Checkout</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-10">10. 
+				Part 10: Final Updates to Navigation and Site Design, Conclusion</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1" class="">MVC 3 - The HTML5 and jQuery UI Datepicker Popup Calendar</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1">1. 
+				HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 1</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2">2. 
+				HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 2</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3">3. 
+				HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 3</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4">4. 
+				HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 4</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc" class="">MVC 3 - Working with the DropDownList Box and jQuery</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc">1. 
+				Using the DropDownList Helper with ASP.NET MVC</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper">2. 
+				Examining  how  ASP.NET MVC scaffolds the DropDownList Helper</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui">3. 
+				Adding a New Category to the DropDownList using jQuery UI</a></li></ul></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1" class="">Older Versions - MVC 1 and 2</a><ul class="articles"><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/overview/asp-net-mvc-overview" class="">Overview</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/overview/asp-net-mvc-overview">ASP.NET MVC Overview</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execution-process">Understanding the ASP.NET MVC Execution Process</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-cs">Understanding Models, Views, and Controllers (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-vb">Understanding Models, Views, and Controllers (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part1" class="">Getting Started With MVC</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part1">1. 
+				Intro to ASP.NET MVC</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part2">2. 
+				Adding a Controller</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part3">3. 
+				Adding a View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part4">4. 
+				Creating a Database</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part5">5. 
+				Accessing your Model's Data from a Controller</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part6">6. 
+				Adding a Create Method and Create View</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part7">7. 
+				Adding Validation to the Model</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part8">8. 
+				Adding a Column to the Model</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-cs" class="">Models (Data)</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-cs">1. 
+				Creating Model Classes with the Entity Framework (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs">2. 
+				Creating Model Classes with LINQ to SQL (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-cs">3. 
+				Displaying a Table of Database Data (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/performing-simple-validation-cs">4. 
+				Performing Simple Validation (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-cs">5. 
+				Validating with the IDataErrorInfo Interface (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/validating-with-a-service-layer-cs">6. 
+				Validating with a Service Layer (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs">7. 
+				Validation with the Data Annotation Validators (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-vb">8. 
+				Creating Model Classes with the Entity Framework (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb">9. 
+				Creating Model Classes with LINQ to SQL (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/displaying-a-table-of-database-data-vb">10. 
+				Displaying a Table of Database Data (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/performing-simple-validation-vb">11. 
+				Performing Simple Validation (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-vb">12. 
+				Validating with the IDataErrorInfo Interface (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/validating-with-a-service-layer-vb">13. 
+				Validating with a Service Layer (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-vb">14. 
+				Validation with the Data Annotation Validators (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-cs" class="">ASP.NET MVC Views</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-cs">1. 
+				ASP.NET MVC Views Overview (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs">2. 
+				Creating Custom HTML Helpers (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-cs">3. 
+				TagBuilder Class to Build HTML Helpers (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-cs">4. 
+				Creating Page Layouts with View Master Pages (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs">5. 
+				Passing Data to View Master Pages (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb">6. 
+				ASP.NET MVC Views Overview (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/creating-custom-html-helpers-vb">7. 
+				Creating Custom HTML Helpers (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-vb">8. 
+				TagBuilder Class to Build HTML Helpers (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/creating-page-layouts-with-view-master-pages-vb">9. 
+				Creating Page Layouts with View Master Pages (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-vb">10. 
+				Passing Data to View Master Pages (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-cs" class="">Controllers and Routing</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-cs">1. 
+				ASP.NET MVC Routing Overview (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs">2. 
+				Understanding Action Filters (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs">3. 
+				Improving Performance with Output Caching (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-cs">4. 
+				Adding Dynamic Content to a Cached Page (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-cs">5. 
+				Creating a Controller (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-cs">6. 
+				Creating an Action (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-vb">7. 
+				ASP.NET MVC Routing Overview (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-vb">8. 
+				Understanding Action Filters (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-vb">9. 
+				Improving Performance with Output Caching (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-vb">10. 
+				Adding Dynamic Content to a Cached Page (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-vb">11. 
+				Creating a Controller (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-vb">12. 
+				Creating an Action (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/aspnet-mvc-controllers-overview-cs">13. 
+				ASP.NET MVC Controller Overview (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs">14. 
+				Creating Custom Routes (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs">15. 
+				Creating a Route Constraint (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-custom-route-constraint-cs">16. 
+				Creating a Custom Route Constraint (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-controller-overview-vb">17. 
+				ASP.NET MVC Controller Overview (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-vb">18. 
+				Creating Custom Routes (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-vb">19. 
+				Creating a Route Constraint (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-custom-route-constraint-vb">20. 
+				Creating a Custom Route Constraint (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs" class="">Deployment</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs">1. 
+				Using ASP.NET MVC with Different Versions of IIS (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-vb">2. 
+				Using ASP.NET MVC with Different Versions of IIS (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs" class="">Security</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs">1. 
+				Authenticating Users with Forms Authentication (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-cs">2. 
+				Authenticating Users with Windows Authentication (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-cs">3. 
+				Preventing JavaScript Injection Attacks (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-vb">4. 
+				Authenticating Users with Forms Authentication (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-vb">5. 
+				Authenticating Users with Windows Authentication (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-vb">6. 
+				Preventing JavaScript Injection Attacks (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-cs" class="">Unit Testing</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-cs">1. 
+				Creating Unit Tests for ASP.NET MVC Applications (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-vb">2. 
+				Creating Unit Tests for ASP.NET MVC Applications (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-cs" class="">Contact Manager</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-cs">1. 
+				Iteration #1 – Create the Application (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-cs">2. 
+				Iteration #2 – Make the application look nice (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-cs">3. 
+				Iteration #3 – Add form validation (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-cs">4. 
+				Iteration #4 – Make the application loosely coupled (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-5-create-unit-tests-cs">5. 
+				Iteration #5 – Create unit tests (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-cs">6. 
+				Iteration #6 – Use test-driven development (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs">7. 
+				Iteration #7 – Add Ajax functionality (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb">8. 
+				Iteration #1 – Create the Application (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb">9. 
+				Iteration #2 – Make the application look nice (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb">10. 
+				Iteration #3 – Add form validation (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb">11. 
+				Iteration #4 – Make the application loosely coupled (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-5-create-unit-tests-vb">12. 
+				Iteration #5 – Create unit tests (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-vb">13. 
+				Iteration #6 – Use test-driven development (VB)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb">14. 
+				Iteration #7 – Add Ajax functionality (VB)</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutorial" class="">NerdDinner</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutorial">1. 
+				Introducing the NerdDinner Tutorial</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/create-a-new-aspnet-mvc-project">2. 
+				Create a New ASP.NET MVC Project</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/create-a-database">3. 
+				Create a Database</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/build-a-model-with-business-rule-validations">4. 
+				Build a Model with Business Rule Validations</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui">5. 
+				Use Controllers and Views to Implement a Listing/Details UI</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support">6. 
+				Provide CRUD (Create, Read, Update, Delete) Data Form Entry Support</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/use-viewdata-and-implement-viewmodel-classes">7. 
+				Use ViewData and Implement ViewModel Classes</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/re-use-ui-using-master-pages-and-partials">8. 
+				Re-use UI Using Master Pages and Partials</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/implement-efficient-data-paging">9. 
+				Implement Efficient Data Paging</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization">10. 
+				Secure Applications Using Authentication and Authorization</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/use-ajax-to-deliver-dynamic-updates">11. 
+				Use AJAX to Deliver Dynamic Updates</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios">12. 
+				Use AJAX to Implement Mapping Scenarios</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/enable-automated-unit-testing">13. 
+				Enable Automated Unit Testing</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/nerddinner/nerddinner-wrap-up">14. 
+				NerdDinner Wrap Up</a></li></ul></li><li><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs" class="">Movie Database</a><ul class="subsections"><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs">1. 
+				Create a Movie Database Application in 15 Minutes with ASP.NET MVC (C#)</a></li><li><a class="" href="http://www.asp.net/mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb">2. 
+				Create a Movie Database Application in 15 Minutes with ASP.NET MVC (VB)</a></li></ul></li></ul></li><li class=""><a href="javascript:var x = &#39;arrow&#39;;" class="arrow"></a><a href="http://www.asp.net/mvc/overview/get-help" class="">Get Help</a><ul class="articles"><li><a href="http://forums.asp.net/1146.aspx/">ASP.NET MVC Forum</a></li><li><a href="http://stackoverflow.com/questions/tagged/asp.net-mvc">ASP.NET MVC on StackOverflow</a></li></ul></li></ul></div>
+			<div id="FeaturedAd" data-adzoneid="128994" data-adtypeid="5" class="ad-300x250 ad " data-adwidth="300px" data-adheight="250px" style="width:300px;height:250px;">
+<iframe id="ados_frame_FeaturedAd_2268005" frameborder="0" scrolling="no" height="250" width="300" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/saved_resource(1).html"></iframe><img height="0px" width="0px" border="0" style="position:absolute;" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/i(1).gif"></div> 
+		</div>
+		<div class="col-right-learn">
+			
+			<span><div class="article-title keyline"><h1><div itemprop="name">ASP.NET Web Deployment using Visual Studio: Deploying to Test</div></h1><div class="details"><div class="author-header">
+		  By
+         <a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis#author-36250" itemprop="author" class="print-no">Tom Dykstra</a><span class="print-only-inline">Tom Dykstra</span><span class="separator">|</span><time datetime="2015-03-23">last updated March 23, 2015</time><div id="helpfulness-data" style="visibility: visible;">595 of 699 people found this helpful</div></div><div class="print-bar"><a href="javascript:window.print();">Print</a></div><div class="social-bar"><span class="social-item"><div class="fb-like fb_iframe_widget" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="segoe ui" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=98&amp;font=segoe%20ui&amp;href=http%3A%2F%2Fwww.asp.net%2Fmvc%2Foverview%2Fdeployment%2Fvisual-studio-web-deployment%2Fdeploying-to-iis&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=450"><span style="vertical-align: bottom; width: 77px; height: 20px;"><iframe name="f2ad5cf8a5a0754" width="450px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/like.html" style="border: none; visibility: visible; width: 77px; height: 20px;" class=""></iframe></span></div></span><span class="social-item"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/tweet_button.c6def25548e9590b13abaa1b3330b811.en.html" style="position: static; visibility: visible; width: 60px; height: 20px;"></iframe></span></div></div></div><div class="download-box-article"><p><a href="http://go.microsoft.com/fwlink/p/?LinkId=282627">Download Starter Project</a></p></div><div class="important important-box-article"><p>This tutorial series shows you how to deploy (publish) an ASP.NET web application
+to Azure App Service Web Apps or to a third-party hosting provider, by using Visual Studio 2012 or Visual Studio 2010. For information about the series,
+see <a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/introduction">the first tutorial in the series</a>.</p>
+</div><h2>Overview</h2>
+<p>This tutorial shows how to deploy an ASP.NET web application to IIS on the 
+local computer. </p>
+<p>When you develop an application, you generally test by running it in Visual Studio. 
+By default, web application projects in Visual Studio 2012 use IIS Express as 
+the development web server. IIS Express behaves more like full IIS than the Visual Studio Development Server (also known as Cassini), 
+which Visual Studio 2010 uses by default. But neither development web server 
+works exactly like IIS. As a result, it's possible that an application will run correctly when you test it in Visual Studio, but fail when it's deployed to IIS.</p>
+<p>You can test your application more reliably in these ways:</p>
+<ol>
+	<li>
+	<p>Deploy the application to IIS on your development computer by using the same process that you'll use later to deploy it to your production environment. 
+	You can configure Visual Studio to use IIS when you run a web project, but 
+	doing that would not test your deployment process. This 
+method validates your deployment process in addition to validating that your application will run correctly under IIS. </p>
+</li>
+<li>
+<p>Deploy the application to a test environment that is nearly identical to your production environment. Since the production environment for these tutorials 
+is Web Apps in Azure App Service, the ideal test environment is an 
+additional web app created in Azure App Service. You would use this second web app only for testing, but it would be set up the same way as the production 
+web app.</p>
+</li>
+</ol>
+<p>Option 2 is the most reliable way to test, and if you do that, you don't 
+necessarily have to do option 1. However, if you are deploying to a third-party 
+hosting provider option 2 might not be feasible or might be expensive, so this 
+tutorial series shows both methods. Guidance for option 2 is provided 
+in the <a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-production">
+Deploying to the Production Environment</a> tutorial.</p>
+<p>For more information about using web servers in Visual Studio, see
+<a href="http://msdn.microsoft.com/en-us/library/58wxa9w5.aspx">Web Servers in 
+Visual Studio for ASP.NET Web Projects</a>.</p>
+<p><span>Reminder: If you get an error message or something doesn't work as you go through the tutorial, be sure to check the <a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/troubleshooting">
+troubleshooting page</a>.</span></p>
+<h2>Install IIS</h2>
+<p>To deploy to IIS on your development computer, you must have IIS and Web Deploy installed. 
+Web Deploy is installed by default with Visual Studio, but IIS is not included in the default Windows 
+8 or Windows 7 configuration. If you have already installed IIS and the default application pool 
+is already set to .NET 4, skip to 
+<a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis#sqlexpress">the next section</a>.</p>
+<ol>
+	<li><p>Using the <a href="http://www.microsoft.com/web/downloads/platform.aspx">Web Platform Installer</a> is the preferred way to install IIS and Web Deploy, because the Web Platform Installer installs a recommended configuration for IIS and it automatically installs the prerequisites for IIS and Web Deploy if necessary.</p>
+<p>To run Web Platform Installer to install IIS and Web Deploy, use the following link. If 
+you already have installed IIS, Web Deploy or any of their required components, the Web Platform Installer installs only what is missing.</p>
+<ul>
+<li><p><a href="http://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=IIS7;ASPNET;NETFramework4;WDeploy">Install IIS and Web Deploy using WebPI</a></p> </li>
+</ul>
+<p>You'll see messages indicating that IIS 7 will be installed. The link works for IIS 8 in Windows 8, but for Windows 8 make sure that ASP.NET 4.5 is installed by performing the following steps:</p>
+        <ol><li><p>Open <strong>Control Panel</strong>, <strong>Programs and Features</strong>, <strong>Turn Windows features on or off</strong>.</p>
+            </li>
+            <li>
+                <p>Expand <strong>Internet Information Services</strong>, <strong>World Wide Web Services</strong>, and <strong>Application Development Features</strong>.</p>
+            </li>
+            <li>
+                <p>Make sure that <strong>ASP.NET 4.5</strong> is selected.</p>
+                <p><img alt="Select ASP.NET 4.5" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/aspnet45.png" data-original="//media-www-asp.azureedge.net/media/45665/aspnet45.png" style="display: block;"></p>
+            </li>
+            </ol>
+</li>
+</ol>
+	<p>After installing IIS, run <strong>IIS Manager</strong> to make sure that the .NET Framework version 4 is assigned to the default application pool. </p>
+<ol>
+	<li><p>Press WINDOWS+R to open the <strong>Run</strong> dialog box.</p>
+	<p>&nbsp;(Or in Windows 8 enter "run" on the <strong>Start</strong> page, or 
+	in Windows 7 select <strong>Run</strong> from the <strong>Start</strong> 
+	menu. If <strong>Run</strong> isn't in the <strong>Start</strong> menu, right-click the taskbar, 
+click <strong>Properties</strong>, select the <strong>Start Menu</strong> tab, click <strong>
+Customize</strong>, 
+and select <strong>Run command</strong>.)</p>
+</li>
+	<li>
+	<p>Enter "inetmgr", and then click <strong>OK</strong>.</p>
+</li>
+	<li><p>In the <strong>Connections</strong> pane, expand the server node and select <strong>Application Pools</strong>. In the <strong>Application Pools</strong> pane, if <strong>DefaultAppPool</strong> is assigned to the .NET framework version 4 as in the following illustration, skip to the next section.</p>
+<p><a href="http://media-www-asp.azureedge.net/media/2872817/windows-live-writer_9a5cc04aa344_9d47_inetmgr_showing_4.0_app_pools_2.png"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/2872823/windows-live-writer_9a5cc04aa344_9d47_inetmgr_showing_4.0_app_pools_thumb.png" alt="Inetmgr_showing_4.0_app_pools" border="0"></a></p>
+</li>
+	<li><p>If you see only two application pools and both of them are set to the 
+	.NET Framework 2.0, you have to install ASP.NET 4 in IIS.</p>
+<p>For Windows 8, see the instructions in the previous section for making sure that ASP.NET 4.5 is installed, 
+or see <a href="http://support.microsoft.com/kb/2736284">this KB article</a>. For Windows 7, open a command prompt window by right-clicking <strong>Command Prompt</strong> in the Windows <strong>Start</strong> menu and selecting <strong>Run as Administrator</strong>. Then run <a href="http://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx">aspnet_regiis.exe</a> to install ASP.NET 4 in IIS, using the following commands. 
+(In 32-bit systems, replace "Framework64" with "Framework".)</p>
+<pre class="prettyprint prettyprinted"><span class="pln">cd </span><span class="pun">%</span><span class="pln">windir</span><span class="pun">%</span><span class="pln">\Microsoft</span><span class="pun">.</span><span class="pln">NET\Framework64\v</span><span class="lit">4.0</span><span class="pun">.</span><span class="lit">30319</span><span class="pln">
+aspnet_regiis</span><span class="pun">.</span><span class="pln">exe </span><span class="pun">–</span><span class="pln">i</span></pre>
+<p>This command creates new application pools for the .NET Framework 4, but the default application pool will still be set to 2.0. You'll be deploying an application that targets .NET 4 to that application pool, so you 
+have to change the application pool to .NET 4. </p>
+</li>
+	<li><p>If you closed <strong>IIS Manager</strong>, run it again, expand the server node, and click <strong>Application Pools</strong> to display the <strong>Application Pools</strong> pane again.</p>
+</li>
+	<li><p> In the <strong>Application Pools</strong> pane, click <strong>DefaultAppPool</strong>, and then in the <strong>Actions</strong> pane click <strong>Basic Settings</strong>.</p>
+<p><a href="http://media-www-asp.azureedge.net/media/3066894/windows-live-writer_9a5cc04aa344_9d47_inetmgr_selecting_basic_settings_for_app_pool_4.png"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/3066900/windows-live-writer_9a5cc04aa344_9d47_inetmgr_selecting_basic_settings_for_app_pool_thumb_1.png" width="650" height="536" alt="Inetmgr_selecting_Basic_Settings_for_app_pool" border="0"></a></p>
+</li>
+	<li><p>In the <strong>Edit Application Pool</strong> dialog box, change <strong>.NET Framework version</strong> to <strong>.NET Framework v4.0.30319</strong> and click <strong>OK</strong>.</p>
+<p><a href="http://media-www-asp.azureedge.net/media/3066906/windows-live-writer_9a5cc04aa344_9d47_selecting_.net_4_for_defaultapppool_4.png"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/3066912/windows-live-writer_9a5cc04aa344_9d47_selecting_.net_4_for_defaultapppool_thumb_1.png" width="318" height="285" alt="Selecting_.NET_4_for_DefaultAppPool" border="0"></a></p>
+</li>
+</ol>
+<p>IIS is now ready for you to publish a web application to it, but before you 
+can do that you have to create the databases that you will use in the test 
+environment.</p>
+<h2><a id="sqlexpress"></a>Install SQL Server Express</h2>
+<p>LocalDB is not designed to work in IIS, so for your test environment you need 
+to have SQL Server Express installed. If you are using Visual Studio 2010 SQL 
+Server Express is already installed by default. If you are using Visual Studio 
+2012, you have to install it.</p>
+<p>To install SQL Server Express, install it from 
+<a href="http://www.microsoft.com/en-us/download/details.aspx?id=29062">
+	Download Center: Microsoft SQL Server 2012 Express</a> by clicking 
+<a href="http://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe">
+ENU\x64\SQLEXPR_x64_ENU.exe</a> or
+<a href="http://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x86/SQLEXPR_x86_ENU.exe">
+ENU\x86\SQLEXPR_x86_ENU.exe</a>. If you choose the wrong one for 
+your system it will fail to install and you can try the other one.</p>
+<p>On the first page of the SQL Server Installation Center, click <strong>New 
+SQL Server stand-alone installation or add features to an existing installation</strong>, 
+and follow the instructions, accepting the default choices. In the installation wizard accept the 
+default settings. For more information about installation options, see
+<a href="http://msdn.microsoft.com/en-us/library/ms143219.aspx">Install SQL 
+Server 2012 from the Installation Wizard (Setup)</a>.</p>
+<h2>Create SQL Server Express databases for the test environment</h2>
+<p>The Contoso University application has two databases: the membership database 
+and the application database. You can deploy these 
+databases to two separate databases or to a single database. You might want to combine them in order to facilitate database joins between your application database and your membership database. 
+If you are deploying to a third-party hosting provider, your hosting plan might 
+also provide a reason to combine them. For example, the hosting provider might 
+charge more for multiple databases or might not even allow more than one 
+database.</p>
+<p>In this tutorial, you'll deploy to two databases in the test environment, and 
+to one database in the staging and production environments.</p>
+<p>From the <strong>View</strong> menu in Visual Studio select <strong>Server Explorer</strong> (<strong>Database 
+Explorer</strong> in Visual Web Developer), 
+and then right-click <strong>Data Connections</strong> and select <strong>Create New SQL Server Database</strong>.</p>
+<p>
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/39064/selecting_create_new_sql_server_database.png" alt="Selecting_Create_New_SQL_Server_Database"></p>
+<p>In the <strong>Create New SQL Server Database</strong> dialog box, enter ".\SQLExpress" in the <strong>Server name</strong> box and "aspnet-ContosoUniversity" in the <strong>New database name</strong> box, then click <strong>OK</strong>.</p>
+<p>
+<img alt="Create aspnet-ContosoUniversity" height="410" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45508/create_new_sql_server_database_aspnet.png" width="385"></p>
+<p>Follow the same procedure to create a new SQL Server Express School database named "ContosoUniversity".</p>
+<p><strong>Server Explorer</strong> now shows the two new databases.</p>
+<p>
+<img alt="New databases in Server Explorer" height="141" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45533/new_databases_in_server_explorer.png" width="387"></p>
+<h2>Create a grant script for the new databases</h2>
+<p>When the application runs in IIS on your development computer, the 
+application accesses the database by using the default application pool's credentials. However, by default, the application pool identity does not have permission to open the databases. So you 
+have to run a script to grant that permission. In this section you create the script that you'll run later to make sure that the application can open the databases when it runs in IIS.</p>
+<p>Right-click the solution (not one of the projects), and click <strong>Add New Item</strong>, and then create a new <strong>SQL File</strong> named <em>Grant.sql</em>. Copy the following SQL commands into the file, and then save and close the file: </p>
+<pre class="prettyprint prettyprinted"><span class="pln">IF NOT EXISTS </span><span class="pun">(</span><span class="pln">SELECT name FROM sys</span><span class="pun">.</span><span class="pln">server_principals WHERE name </span><span class="pun">=</span><span class="pln"> </span><span class="str">'IIS APPPOOL\DefaultAppPool'</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">BEGIN</span><span class="pln">
+    CREATE LOGIN </span><span class="pun">[</span><span class="pln">IIS APPPOOL\DefaultAppPool</span><span class="pun">]</span><span class="pln"> 
+      FROM WINDOWS WITH DEFAULT_DATABASE</span><span class="pun">=[</span><span class="pln">master</span><span class="pun">],</span><span class="pln"> 
+      DEFAULT_LANGUAGE</span><span class="pun">=[</span><span class="pln">us_english</span><span class="pun">]</span><span class="pln">
+</span><span class="kwd">END</span><span class="pln">
+GO
+CREATE USER </span><span class="pun">[</span><span class="typ">ContosoUniversityUser</span><span class="pun">]</span><span class="pln"> 
+  FOR LOGIN </span><span class="pun">[</span><span class="pln">IIS APPPOOL\DefaultAppPool</span><span class="pun">]</span><span class="pln">
+GO
+EXEC sp_addrolemember </span><span class="str">'db_owner'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'ContosoUniversityUser'</span><span class="pln">
+GO</span></pre>
+<div class="note"><span></span>
+<p><strong>Note</strong>  This script is designed to work with SQL Server 
+Express 2012 and with the IIS settings in Windows 8 or Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or of Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see <a href="http://go.microsoft.com/fwlink/?LinkId=132511">SQL Server Books Online</a>.</p>
+</div>
+<div class="note"><span></span>
+	<p><strong>Security Note</strong> This script gives db_owner permissions to the 
+	user that accesses the database at run time, which is what you'll have in 
+	the production environment. In some scenarios you might want to specify a 
+	user that has full database schema update permissions only for deployment, 
+	and specify for run time a different user that has permissions only to read 
+	and write data. For more information, see 
+	<a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-iis#reviewingmigrations">Reviewing the 
+	Automatic Web.config Changes for Code First Migrations</a> later in this 
+	tutorial.</p>
+</div>
+<a id="publish"></a>
+<h2>Run the grant script in the application database</h2>
+<p>You can configure the publish profile to run the grant script in the 
+membership database during deployment because that database deployment uses the 
+dbDacFx provider. You can't run scripts during Code First Migrations deployment, 
+which is how you're deploying the application database. Therefore, you have to 
+manually run the script before deployment in the application database.</p>
+<ol>
+	<li>In Visual Studio, open the <em>Grant.sql</em> file that you created 
+	earlier.</li>
+	<li>Click <strong>Connect</strong>.
+	<p><img alt="Connect button" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45506/connect_button.png"></p></li>
+	
+		<li>In the <strong>Connect to Server</strong> dialog box, enter <em>
+		.\SQLExpress</em> as the <strong>Server Name</strong>, and then click
+		<strong>Connect</strong>.</li>
+	
+	
+	<li>In the database drop-down list select <strong>ContosoUniversity</strong>, 
+	and then click <strong>Execute</strong>. 
+	<p><img height="84" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45509/database_drop-down.png" width="621"></p>
+	</li>
+</ol>
+<p>The default application pool identity now has sufficient permissions in the 
+application database for Code First Migrations to create the database tables 
+when the application runs.</p>
+<h2>Publish to IIS</h2>
+<p>There are several ways you can deploy to IIS using Visual Studio and Web  Deploy:</p>
+<ul>
+<li>Use Visual Studio one-click publish. </li>
+	<li>Publish from the command line.</li>
+<li>Create a <em>deployment package</em> and install it using the IIS Manager UI. The deployment package consists of a <em>.zip</em> file that contains all the files and metadata needed to install a site in IIS. </li>
+<li>Create a deployment package and install it using the command line. </li>
+</ul>
+<p>The process you went through in the previous tutorials to set up Visual Studio to automate deployment tasks applies to all of these methods. In these tutorials 
+you'll use the first two of these methods. For information about using deployment packages, see
+<a href="http://go.microsoft.com/fwlink/p/?LinkId=282413#package">Deploying a 
+web application by creating and installing a web deployment package</a> in the Web Deployment Content Map for Visual Studio and ASP.NET.</p>
+<p>Before publishing, make sure that you are running Visual Studio in administrator mode. 
+If you don't see <strong>(Administrator)</strong> in the title bar, close Visual 
+Studio. In the Windows 
+8 <strong>Start</strong> page or the Windows 7 <strong>Start</strong> 
+menu, right-click the icon for the version of Visual Studio you're using and select <strong>Run as Administrator</strong>.&nbsp;Administrator mode is required 
+for publishing only when you are publishing to IIS on the local computer.</p>
+<h3>Create the publish profile</h3>
+<ol>
+	<li><p>In <strong>Solution Explorer</strong>, right-click the ContosoUniversity project 
+(not the ContosoUniversity.DAL project) and select <strong>Publish</strong>.</p>
+<p>&nbsp;The <strong>Publish Web</strong> 
+wizard appears.</p>
+<p>
+<img alt="Publish Web wizard Profile tab" height="476" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45548/publish_web_wizard_profile_tab.png" width="612"></p>
+</li>
+	<li><p>In the drop-down list, select <strong>&lt;New...&gt;</strong>. (With 
+	the latest Visual Studio update installed, there is no drop-down list, and 
+	the button to click in order to create a new profile from scratch is <strong>
+	Custom</strong>.)</p>
+</li>
+	<li><p>In the <strong>New Profile</strong> dialog box, enter "Test", and then click
+<strong>OK</strong>.</p>
+<p>The wizard automatically advances to the <strong>Connection</strong> tab.</p>
+</li>
+	<li><p>In the <strong>Service URL</strong> box, enter <em>localhost</em>.</p>
+</li>
+	<li><p>In the <strong>Site/application</strong> box, enter <em>Default&nbsp;Web&nbsp;Site/ContosoUniversity</em></p>
+</li>
+	<li><p>In the <strong>Destination URL</strong> box, enter <em>http://localhost/ContosoUniversity</em> 
+</p>
+<p>The <strong>Destination URL</strong> setting isn't required. When Visual Studio finishes deploying the application, it automatically opens 
+your default browser to this URL. If you don't want 
+the browser to open automatically after deployment, leave this box 
+blank.</p>
+</li>
+	<li><p>Click <strong>Validate Connection</strong> to verify that the settings are 
+correct and you can connect to IIS on the local computer.</p>
+<p>A green check mark verifies that the connection is successful.</p>
+<p>
+<img alt="Publish Web wizard Connection tab" height="476" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45545/publish_web_wizard_connection_tab_test.png" width="612"></p>
+</li>
+<li><p>Click <strong>Next</strong> to advance to the <strong>Settings</strong> tab.</p>
+</li>
+<li><p>The <strong>Configuration</strong> drop-down box specifies the build 
+configuration to deploy. Leave it set to the default value of Release. You won't be deploying 
+Debug builds in this tutorial.</p>
+</li>
+<li><p>Expand <strong>File Publish Options</strong>, and then select <strong>Exclude 
+files from the App_Data folder</strong>.</p>
+<p>In the test environment the application will access the databases that you 
+created in the local SQL Server Express instance, not the .mdf files in the <em>
+App_Data</em> folder.</p>
+</li>
+<li><p>Leave the <strong>Precompile during publishing</strong> and <strong>Remove additional files at destination</strong> check boxes cleared.</p>
+<p>
+<img alt="File Publish Options in Settings tab" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45549/publish_web_wizard_settings_tab_test.png"></p>
+<p>Precompiling is an option that is useful mainly for very large sites; 
+it can reduce page startup time for the first time a page is requested after the 
+site is published. </p>
+<p>You don't need to remove additional files since this is your first deployment 
+and there won't be any files in the destination folder yet.</p>
+<div class="note"><span></span><p><strong>Caution:</strong> If you select <strong>Remove 
+	additional files</strong> for a subsequent deployment to the same site, make sure that you use the preview feature so that 
+you see in advance which files will be deleted before you deploy. The expected 
+behavior is that Web Deploy will delete files on the destination server that you 
+have deleted in your project. However, the entire folder structure under the 
+source and destination folders is compared, and in some scenarios Web Deploy 
+might delete files you don't want to delete. </p>
+<p>For example, if you have a web application in a subfolder on the server when 
+you deploy a project to the root folder, the subfolder will be deleted. You 
+might have one project for the main site at <span class="code">contoso.com</span> 
+and another project for a blog at <span class="code">contoso.com/blog</span>. 
+The blog application is in a subfolder. If you select <span class="label">Remove 
+additional files at destination</span> when you deploy the main site, the blog 
+application will be deleted.</p>
+<p>For another example, your App_Data folder might get deleted unexpectedly. 
+Certain databases such as SQL Server Compact store database files in the 
+App_Data folder. After the initial deployment you don't want to keep copying the 
+database files in subsequent deployments so you select <span class="label">
+Exclude App_Data</span> on the <span class="label">Package/Publish Web</span> 
+tab. After you do that, if you have <span class="label">Remove additional files 
+at destination</span> selected, your database files and the App_Data folder 
+itself will be deleted the next time you publish.</p>
+</div>
+</li>
+</ol>
+<h3>Configure deployment for the membership database</h3>
+<p>The following steps apply to the <strong>DefaultConnection</strong> database 
+in the <strong>Databases</strong> section of the dialog box.</p>
+<ol>
+<li><p>In the <strong>Remote connection string</strong> box, enter the following connection string that points to the new SQL Server Express membership database.</p>
+<pre class="prettyprint prettyprinted"><span class="typ">Data</span><span class="pln"> </span><span class="typ">Source</span><span class="pun">=.</span><span class="pln">\S</span><span class="typ">QLExpress</span><span class="pun">;</span><span class="typ">Initial</span><span class="pln"> </span><span class="typ">Catalog</span><span class="pun">=</span><span class="pln">aspnet</span><span class="pun">-</span><span class="typ">ContosoUniversity</span><span class="pun">;</span><span class="typ">Integrated</span><span class="pln"> </span><span class="typ">Security</span><span class="pun">=</span><span class="kwd">True</span></pre>
+<p>The deployment process will put this connection string in the deployed 
+Web.config file because <strong>Use this connection string at runtime</strong> 
+is selected.</p>
+<p>You can also get the connection string from <strong>Server Explorer</strong>. In <strong>Server Explorer</strong>, expand <strong>Data Connections</strong> and select the 
+<strong>&lt;machinename&gt;\sqlexpress.aspnet-ContosoUniversity</strong> database, then from the <strong>Properties</strong> window copy the <strong>Connection String</strong> value. 
+That connection string will have one additional setting that you can delete:&nbsp;
+<code>Pooling=False</code>.&nbsp;</p>
+</li>
+	<li>
+	<p>Select <strong>Update database</strong>.</p>
+<p>This will cause the database schema to be created in the destination database 
+during deployment. In the following steps you specify the additional scripts 
+that you need to run: one to grant database access to the default application 
+pool and one to deploy data.</p>
+</li>
+<li><p>Click <strong>Configure database updates</strong>.</p>
+</li>
+<li><p>In the <strong>Configure Database Updates</strong> dialog box, click <strong>
+Add SQL Script</strong> and then navigate to the <em>Grant.sql</em> script that 
+you saved earlier in the solution folder.</p>
+</li>
+<li><p>Repeat the process to add the <em>aspnet-data-dev.sql</em> script.</p>
+<p>
+<img alt="Configure Database Updates for membership database" height="227" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45505/configure_database_updates.png" width="476"></p>
+</li>
+<li><p>Click <strong>Close</strong>.</p>
+</li>
+</ol>
+<h3>Configure deployment for the application database</h3>
+<p>When Visual Studio detects an Entity Framework <code>DbContext</code> class, 
+it creates an entry in the <strong>Databases</strong> section that has an
+<strong>Execute Code First Migrations</strong> check box instead of an <strong>
+Update Database</strong> check box. For this tutorial you'll use that check box 
+to specify Code First Migrations deployment.</p>
+<p>In some scenarios, you 
+might be using a <code>DbContext</code> database but you want to use the dbDacFx 
+provider instead of Migrations to deploy the database. In that case, see
+<a href="http://msdn.microsoft.com/en-us/library/ee942158.aspx#deploy_code_first_without_migrations">
+How do I deploy a Code First database without Migrations?</a> in the ASP.NET Web 
+Deployment FAQ on MSDN.</p>
+<p>The following steps apply to the <strong>SchoolContext</strong> database in 
+the <strong>Databases</strong> section of the dialog box.</p>
+<ol>
+<li><p>In the <strong>Remote connection string</strong> box, enter the following 
+connection string that points to the new SQL Server Express application 
+database.</p>
+<pre class="prettyprint prettyprinted"><span class="typ">Data</span><span class="pln"> </span><span class="typ">Source</span><span class="pun">=.</span><span class="pln">\S</span><span class="typ">QLExpress</span><span class="pun">;</span><span class="typ">Initial</span><span class="pln"> </span><span class="typ">Catalog</span><span class="pun">=</span><span class="typ">ContosoUniversity</span><span class="pun">;</span><span class="typ">Integrated</span><span class="pln"> </span><span class="typ">Security</span><span class="pun">=</span><span class="kwd">True</span></pre>
+<p>The deployment process will put this connection string in the deployed 
+Web.config file because <strong>Use this connection string at runtime</strong> 
+is selected.</p>
+<p>You can also get the application database connection string from <strong>Server Explorer</strong> 
+the same way you got the membership database connection string.</p>
+</li>
+	<li>
+	<p>Select <strong>Execute Code First Migrations (runs on application start)</strong>.</p>
+<p>This option causes the deployment process to configure the deployed Web.config file 
+to specify the <code>MigrateDatabaseToLatestVersion</code> initializer. This initializer 
+automatically updates the database to the latest version when the application 
+accesses the database for the first time after deployment.</p>
+</li>
+</ol>
+<h3>Configure publish profile transforms</h3>
+<ol>
+<li><p>Click <strong>Close</strong>, and then click <strong>Yes</strong> when 
+you are asked if you want to save changes.</p>
+</li>
+	<li>
+	<p>In <strong>Solution Explorer</strong>, expand <strong>Properties</strong>, 
+	expand <strong>PublishProfiles</strong>.</p>
+</li>
+	<li>
+	<p>Rright-click <em>Test.pubxml,</em> and then click <strong>Add Config 
+	Transform</strong>.</p>
+	<p>
+	<img alt="Add Config Transform menu" height="539" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45497/add_config_transform_menu.png" width="504"></p>
+	<p>Visual Studio creates the <em>Web.Test.config</em> transform file and opens it.</p>
+</li>
+	<li>
+	<p>In the <em>Web.Test.config</em> transform file, insert the following code immediately after the opening
+	configuration tag.</p>
+<pre class="prettyprint prettyprinted"><span class="tag">&lt;appSettings&gt;</span><span class="pln">
+    </span><span class="tag">&lt;add</span><span class="pln"> </span><span class="atn">key</span><span class="pun">=</span><span class="atv">"Environment"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"Test"</span><span class="pln"> </span><span class="atn">xdt:Transform</span><span class="pun">=</span><span class="atv">"SetAttributes"</span><span class="pln"> </span><span class="atn">xdt:Locator</span><span class="pun">=</span><span class="atv">"Match(key)"</span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;/appSettings&gt;</span><span class="pln">  </span></pre>
+<p>When you use the Test publish profile, this transform sets the environment indicator 
+to "Test". In the deployed site you'll see "(Test)" after the "Contoso 
+University" H1 heading.</p>
+</li>
+<li><p>Save and close the file.</p>
+	</li>
+	<li><p>Right-click the <em>Web.Test.config</em> file and click <strong>
+	Preview Transform</strong> to make sure that the transform you coded 
+	produces the expected changes.&nbsp;</p>
+	<p>The <strong>Web.config Preview</strong> window shows the result of 
+	applying both the <em>Web.Release.config</em> transforms and the <em>
+	Web.Test.config</em> transforms.</p>
+	</li>
+</ol>
+<h3>Preview the deployment updates</h3>
+<ol>
+<li><p>Open the <strong>Publish Web</strong> wizard again (right-click the ContosoUniversity project and click <strong>Publish</strong>).</p>
+</li>
+<li><p>In the <strong>Preview</strong> tab, make sure that the <strong>Test</strong> 
+profile is still selected, and then click <strong>Start Preview</strong> to 
+see a list of the files that will be copied.</p>
+<p>
+<img alt="Preview button" height="476" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45546/publish_web_wizard_preview_tab_test.png" width="612"></p>
+<p>
+<img alt="Publish Preview" height="476" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45547/publish_web_wizard_preview_tab_test_with_file_list.png" width="612"></p>
+<p>You can also click the <strong>Preview database</strong> link to see the scripts that will run in the
+membership database. (No scripts are run for Code First Migrations deployment, 
+so there is nothing to preview for the application database.) </p>
+</li>
+<li><p>Click <strong>Publish</strong>.</p>
+<p>If Visual Studio is not in administrator mode, you might get an error message 
+that indicates a permissions error. In that case, close Visual Studio, open it 
+in administrator mode, and try to publish again.</p>
+<p>If Visual Studio is in administrator mode, the <strong>Output</strong> window reports successful build and publish.</p>
+<p>
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/39082/output_window_publish_test.png" alt="Output_window_publish_Test"></p>
+<p>If you entered the URL in the <strong>Destination URL</strong> box on the 
+publish profile <strong>Connection</strong> tab, the browser automatically opens to the Contoso University Home page running 
+in IIS on the local computer.&nbsp;</p>
+</li>
+</ol>
+<h2>Test in the test environment</h2>
+<p>Notice that the environment indicator shows "(Test)" instead of "(Dev)", which shows that the <em>Web.config</em> transformation for the environment indicator was successful.</p>
+<p>Run the <strong>Instructors</strong> page to verify that Code First seeded 
+the database with instructor data. When you select this page, it may take a few minutes to load because Code First creates the database and then runs the <code>Seed</code> method. 
+(It didn't do that when you were on the home page because the application didn't 
+try to access the database yet.)</p>
+<p>Click the <strong>Students</strong> tab to verify that the deployed database has no students. </p>
+<p>Select <strong>Add Students</strong> from the <strong>Students</strong> menu, add a student, and then view the new student in the <strong>Students</strong> page to verify that you can successfully write to the database.</p>
+<p>From the <strong>Courses</strong> menu, select <strong>Update Credits</strong>. The <strong>Update Credits</strong> page requires administrator permissions, so the <strong>Log In</strong> page is displayed. Enter the administrator account credentials that you created earlier ("admin" and "devpwd"). The <strong>Update Credits</strong> page is displayed, which verifies that the administrator account that you created in the previous tutorial was correctly deployed to the test environment.</p>
+<p>Verify that an <em>Elmah</em> folder exists in the <em>
+c:\inetpub\wwwroot\ContosoUniversity</em> folder with only the placeholder file in 
+it. </p>
+<h2><a name="efcfmigrations"></a>Review the automatic Web.config changes for Code First 
+Migrations</h2>
+<p>Open the <em>Web.config</em> file in the deployed application at <em>C:\inetpub\wwwroot\ContosoUniversity</em> and 
+you can see where the deployment process configured Code First Migrations to automatically 
+update the database to the latest version.</p>
+<p>
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/3320670/migratedatabasetolatestversion_initializer.png"></p>
+<p>The deployment process also created a new connection string for Code First 
+Migrations to use exclusively for updating the database schema:</p>
+<p>
+<img alt="Database_Publish connection string" height="102" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45511/databasepublish_connection_string.png" width="641"></p>
+<p>This additional connection string enables you to specify one user account for 
+database schema updates, and a different user account for application data 
+access. For example, you could assign the <strong>db_owner</strong> role to Code First 
+Migrations, and <strong>db_datareader</strong> and <strong>db_datawriter</strong> roles to the application. This 
+is a common defense-in-depth pattern that prevents potentially malicious code in 
+the application from changing the database schema. (For example, this might 
+happen in a successful SQL injection attack.) This pattern is not used by these 
+tutorials. If you want to implement this pattern in your scenario, 
+you can do it by performing the following steps:</p>
+<ol>
+	<li>In the <strong>Settings</strong> tab of the <strong>Publish Web</strong> 
+	wizard, enter the connection string that specifies a user with full database 
+	schema update permissions, and clear the <strong>Use this connection string 
+	at runtime</strong> check box. In the deployed Web.config file, this becomes 
+	the <code>DatabasePublish</code> connection string.</li>
+	<li>Create a Web.config file transformation for the connection string that 
+	you want the application to use at run time. </li>
+</ol>
+<h2>Summary</h2>
+<p>You have now deployed your application to IIS on your development computer and tested it there.</p>
+<p>
+<img alt="Home page in Test" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-original="//media-www-asp.azureedge.net/media/45526/homepagetest.png"></p>
+<p>This verifies that the deployment process copied the application's content to the right location (excluding the files that you did not want to deploy), and also that Web Deploy configured IIS correctly during deployment. In the next tutorial, you'll run one more test that finds a deployment task that has not yet been done: setting folder permissions on the <em>Elmah</em> folder.</p>
+<h2>More information</h2>
+<p>For information about running IIS or IIS Express in Visual Studio, see the following resources:</p>
+<ul>
+<li><a href="http://learn.iis.net/page.aspx/868/iis-express-overview">IIS Express Overview</a> on the IIS.net site. </li>
+<li><a href="http://weblogs.asp.net/scottgu/archive/2010/06/28/introducing-iis-express.aspx">Introducing IIS Express</a> on Scott Guthrie's blog. </li>
+<li>
+<a href="http://msdn.microsoft.com/en-us/library/58wxa9w5.aspx">Web Servers in 
+Visual Studio for ASP.NET Web Projects</a>. </li>
+<li><a href="http://www.asp.net/hosting/tutorials/core-differences-between-iis-and-the-asp-net-development-server-cs">Core Differences Between IIS and the ASP.NET Development Server </a>on the ASP.NET site. </li>
+</ul>
+<p>For information about what issues might arise when your application runs in medium trust, see <a href="http://www.4guysfromrolla.com/articles/100307-1.aspx">Hosting ASP.NET Applications in Medium Trust</a> on the 4 Guys from Rolla site.</p><p class="original-date">This article was originally created on February 15, 2013</p><div class="social-bar"><span class="social-item"><div class="fb-like fb_iframe_widget" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="segoe ui" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=98&amp;font=segoe%20ui&amp;href=http%3A%2F%2Fwww.asp.net%2Fmvc%2Foverview%2Fdeployment%2Fvisual-studio-web-deployment%2Fdeploying-to-iis&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=450"><span style="vertical-align: bottom; width: 77px; height: 20px;"><iframe name="feb344cc4eef2" width="450px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/like(1).html" style="border: none; visibility: visible; width: 77px; height: 20px;" class=""></iframe></span></div></span><span class="social-item"><iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/tweet_button.c6def25548e9590b13abaa1b3330b811.en(1).html" style="position: static; visibility: visible; width: 60px; height: 20px;"></iframe></span></div><h2>Author Information</h2><div id="author-36250" class="author-box article clearfix"><img src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/tom-dykstra.png" alt="Tom Dykstra"><p><strong>Tom Dykstra</strong>&nbsp;–&nbsp;Tom Dykstra is a Senior Programming Writer on Microsoft's Web Platform &amp; Tools Content Team...</p></div><ol class="nav-multi-part"><li class="prev"><a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/project-properties"><span><span class="arrow">←</span> Previous</span>Project Properties</a></li><li class="current"><span class="icon">&nbsp;</span><span>You're Viewing</span>Deploying to Test</li><li class="next"><a href="http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/setting-folder-permissions"><span><span class="arrow">→</span> Next</span>Setting Folder Permissions</a></li></ol></span>
+			<input type="hidden" data-documentid="45349"><input type="hidden" data-pickerid="45362"><div class="article-comments module-comment"><div class="module-comment-header"><div class="col-left"><h2 class="icon-rss-head">Comments (<span id="spanCommentCount">18</span>) <a href="http://www.asp.net/rss/comments/45362" class="icon" title="RSS Feed">RSS Feed</a></h2></div><div class="col-right"><span id="leaveCommentHeader" class="comments-status"><a href="https://login.asp.net/login/signin.aspx?ReturnUrl=http%3a%2f%2fwww.asp.net%2fmvc%2foverview%2fdeployment%2fvisual-studio-web-deployment%2fdeploying-to-iis">You must be logged in to leave a comment.</a></span><span id="comments-toggle"><a href="javascript:var x = &#39;show comments&#39;;" class="show-comments">Show Comments</a></span></div><div class="clear"> </div></div><ul id="comment-list" style="display: none;"> </ul></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="helpful-position"></div><div id="helpful" class="helpfulness-container" style=""><div class="helpfulness"><div class="helpfulness-form"><h2>Is this page helpful?</h2><a id="helpfulness-btn-yes" href="javascript:;" class="common-btn first">Yes</a><a id="helpfulness-btn-no" href="javascript:;" class="common-btn">No</a></div><div class="helpfulness-form-no" style="display:none;"><h2>Is this page helpful?</h2>
+					Sorry this wasn't helpful.
+					<input type="text" id="txt-helpfulness" placeholder="Please let us know why this wasn&#39;t helpful" maxlength="1000"><span id="helpfulness-characters-left">1000 characters remaining</span><a id="helpfulness-btn-submit" href="javascript:;" class="common-btn">Submit</a><a id="helpfulness-btn-skip" href="javascript:;" class="common-btn secondary">Skip this</a></div><a href="javascript:;" class="helpfulness-close">✖</a><div class="messages processing" style="display:none;">Sending feedback...</div><div class="messages success" style="display:none;">Thank you for your feedback!</div><div class="messages helpfulness-error" style="display:none;">Error during submission!</div></div></div>
+	<div class="clear">
+</div>
+<div id="BottomAd" data-adzoneid="0" data-adtypeid="4" class="ad-728x90 ad " data-adwidth="728px" data-adheight="90px" style="width:728px;height:90px;"><a href="http://engine.adzerk.net/r?e=eyJhdiI6MTA4MDEsImF0Ijo0LCJidCI6MCwiY20iOjM0NDk3MCwiY2giOjQ4MTEsImNrIjp7fSwiY3IiOjE1MjcxMjUsImRpIjoiZGJjZWYyMTk0MDcwNGQxNTgxYTU4YzIwN2VmNDU2MjUiLCJkbSI6MSwiZmMiOjE5NTM4OTIsImZsIjoyMjI0Nzk1LCJpcCI6IjkxLjI0Mi4xNzAuMjAwIiwibnciOjIwNzIsInBjIjowLCJlYyI6MCwicHIiOjY2MDU4LCJydCI6MSwicmYiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzI0MTU4Njg5L2hvdy10by1kZXBsb3ktYS1hc3AtbmV0LW12Yy00LXdlYnNpdGUtb24taWlzOCIsInN0IjoxODA5OSwidWsiOiJ1ZTEtZDMxM2M4ZDMzNDYxNGJiY2JmZGYyZGUzMmM5MmRhNjgiLCJ0cyI6MTQ3NTIzODA5OTg3MCwiYmYiOnRydWUsInBuIjoiQm90dG9tQWQiLCJ1ciI6Imh0dHBzOi8vdHJ5YXBwc2VydmljZS5henVyZS5jb20vP3N2PWFzcG5ldGRpcmVjdCZhcHBzZXJ2aWNlPXdlYiZsYW5ndWFnZT1jJTIzIn0&amp;s=PDdtE3fsCNKv__t51JESt1h1-Tk" rel="nofollow" target="_blank" title="Microsoft Ad"><img src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/1c602e2e45a1472db59f2fd7d08ff4b9.png" title="Microsoft Ad" alt="Microsoft Ad" border="0" width="728" height="90"></a><img height="0px" width="0px" border="0" style="position:absolute;" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/i(2).gif"></div> 
+
+		<footer>
+			<div class="footer">
+<div class="clear"></div>
+<ul class="footer-menu">
+<li class="block">
+<h2>This site is managed for Microsoft by Neudesic, LLC. | © 2016 Microsoft. All rights reserved.</h2>
+</li>
+<li><a href="http://www.asp.net/privacy" data-s-object-id="footer">Privacy Statement</a><span class="separator">|</span></li>
+<li><a href="http://www.asp.net/terms-of-use" data-s-object-id="footer">Terms of Use</a><span class="separator">|</span></li>
+<li><a href="http://www.asp.net/contact-us" data-s-object-id="footer">Contact Us</a><span class="separator">|</span></li>
+<li><a href="http://www.neudesicmediagroup.com/?site=asp#contactus" data-s-object-id="footer">Advertise With Us</a><span class="separator">|</span></li>
+<li><a href="http://www.umbraco.org/" data-s-object-id="footer">CMS by Umbraco</a><span class="separator">|</span></li>
+<li><a href="http://azure.microsoft.com/">Hosted on Microsoft Azure</a></li></ul>
+<ul class="footer-menu last">
+<li class="block">
+<h2><a class="logo-microsoft" title="Microsoft" href="http://microsoft.com/" data-s-object-id="footer">
+<svg version="1.1" id="svg5358" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 220.654 220.695" enable-background="new 0 0 220.654 220.695" xml:space="preserve">
+<path id="path5058" fill="#F1511B" d="M104.867,104.867H0V0h104.867V104.867z"></path>
+<path id="path5060" fill="#80CC28" d="M220.654,104.867H115.787V0h104.867V104.867z"></path>
+<path id="path5062" fill="#00ADEF" d="M104.865,220.695H0V115.828h104.865V220.695z"></path>
+<path id="path5064" fill="#FBBC09" d="M220.654,220.695H115.787V115.828h104.867V220.695z"></path>
+</svg>
+</a></h2>
+</li>
+<li><a href="http://aspnet.uservoice.com/" data-s-object-id="footer">Feedback on ASP.NET</a><span class="separator">|</span></li>
+<li><a href="https://connect.microsoft.com/VisualStudio" data-s-object-id="footer">File Bugs</a><span class="separator">|</span></li>
+<li><a href="http://www.asp.net/support">Support Lifecycle</a></li>
+</ul>
+</div>
+		</footer>
+	</div>
+	<div class="modal modal-webpi" style="display:none;"><a href="javascript:;" class="modal-close">✖</a><div class="modal-contents"><h2>Installs powered by the Microsoft Web Platform Installer</h2><p>The product(s) you are about to install leverage the Web Platform Installer (WebPI) for installation. By downloading and using the Web Platform Installer (WebPI), you agree to the <a href="http://go.microsoft.com/fwlink/?LinkId=251729">license terms</a> and <a href="http://go.microsoft.com/fwlink/?LinkId=251732">privacy statement</a> for WebPI. This installer will contact Microsoft over the Internet to retrieve product information.  WebPI uses the Microsoft Customer Experience Improvement Program (CEIP), which is turned on by default, see <a href="http://go.microsoft.com/fwlink/?LinkId=251732">privacy statement</a> for more information.  Some of the Microsoft software obtained through WebPI may use CEIP. To view which software uses CEIP, see <a href="http://go.microsoft.com/?LinkID=9816722">here</a>.</p><a href="javascript:;" class="btn-install">Accept and install</a></div></div><div class="modal-cover" style="display:none;"></div>
+	
+	
+	
+    
+  
+    <script id="tmpl-comment" type="text/x-jquery-tmpl">
+      <li id="comment_${id}">
+        <a href="//forums.asp.net/members/${username}.aspx"><img src="${avatar}" alt="${username}" class="social-avatar" /></a>
+        {{html comment}}
+        <p class="comment-details"><span class="comment-details-left"><a href="//forums.asp.net/members/${username}.aspx">${username}</a> - ${created}</span>
+		
+        </p>
+      </li>  
+    </script>
+  
+
+  
+
+	<script type="text/javascript">var searchDomain = "//www.asp.net"; var cdnVersionId = "2016-09-01-001";</script>
+	<script src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/jquery-1.7.2.min.js" type="text/javascript" defer="defer"></script>
+	
+	<script src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/article.js" type="text/javascript" defer="defer"></script>
+
+	<script>
+		(function (i, s, o, g, r, a, m)
+		{
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function ()
+			{
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-61337531-1', 'auto');
+		ga('send', 'pageview');
+	</script>	
+    <script type="text/javascript" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/broker.js" defer="defer"></script>
+    <script type="text/javascript" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/js(1)" defer="defer"></script>
+	<noscript>&lt;img alt="" width="1" height="1" src="//c.microsoft.com/trans_pixel.aspx" /&gt;</noscript>
+    <div id="ttdUniversalPixelTag23f0a68244584e4f8e87c1c829b9310b" style="display:none">
+        <script src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/up_loader.1.1.0.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            (function(global) {
+                if (typeof TTDUniversalPixelApi === 'function') {
+                    var universalPixelApi = new TTDUniversalPixelApi();
+                    universalPixelApi.init("uivl7wd", ["2xjx1wa"], "https://insight.adsrvr.org/track/up", "ttdUniversalPixelTag23f0a68244584e4f8e87c1c829b9310b");
+                }
+            })(this);
+        </script><iframe id="universal_pixel" allowtransparency="true" height="0" width="0" style="visibility:hidden;" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/up.html"></iframe>
+    </div>
+
+
+<script type="text/javascript" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/ms.js"></script><iframe src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/iframe.html" id="mm_sync_back_ground" style="visibility: hidden; display: none;"></iframe><div id="mid-container" style="position: absolute; top: -1000px; left: -1000px;"><canvas width="100" height="100"></canvas><script type="text/javascript" id="mid-jsonpcontainer-1" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/s"></script></div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/P5DLcu0KGJB.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/P5DLcu0KGJB(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" src="javascript:document.write(&quot;&quot;);try { window.parent.document; }catch (e) { document.domain=&quot;www.asp.net&quot;; }window.parent.__twttr.sandbox.i14752381012638298010();" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" src="./ASP.NET Web Deployment using Visual Studio_ Deploying to Test _ The ASP.NET Site_files/saved_resource(2).html"></iframe><div class="drop-hint" id="drop-to-share-hint" style="display: none; background-image: url(&quot;chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/dropToShareHint.png&quot;); background-size: 67px 327px;"><a class="share-btn-close"></a><a class="btn-options"></a><div class="drop-hint-bubble" id="drop-hint-bubble-share" style="display: none; background-image: url(&quot;chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/dropToShareHintBubble.png&quot;); background-size: 253px 79px;"></div></div><div class="drop-hint" id="drop-to-search-hint" style="display: none; background-image: url(&quot;chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/dropToSearchHint.png&quot;); background-size: 67px 327px;"><a class="search-btn-close"></a><a class="btn-options"></a><div class="drop-hint-bubble" id="drop-hint-bubble-search" style="display: none; background-image: url(&quot;chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/dropToSearchHintBubble.png&quot;); background-size: 215px 79px;"></div></div><div class="dropAreaContainer" style="display: none; right: 0px;"><div class="searchDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(220, 220, 220, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/web-search-content.png" style="max-height: 81px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="searchDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(240, 240, 240, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/video-search-content.png" style="max-height: 40px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="searchDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(220, 220, 220, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/google-images-content.png" style="max-height: 88px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="searchDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(240, 240, 240, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/google-translate-content.png" style="max-height: 82px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="searchDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(220, 220, 220, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/wikipedia-content.png" style="max-height: 86px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="dropAreaSettings" style="width: 142px; height: 16.6667%; background-color: rgba(58, 58, 58, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/btn_settings.png" style="max-height: 25px; height: 90%; background-color: transparent;" class="disable-manipulations"></div></div><div class="dropAreaContainer" style="display: none; left: 0px;"><div class="shareDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(60, 90, 152, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/facebook-share-content.png" style="max-height: 25px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="shareDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(233, 246, 255, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/twitter-content.png" style="max-height: 23px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="shareDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(235, 235, 235, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/pinterest-content.png" style="max-height: 28px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="shareDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(58, 58, 58, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/google-plus-center-content.png" style="max-height: 56px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="shareDropArea" style="width: 142px; height: 16.6667%; background-color: rgba(248, 248, 248, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/providers/linkedin-content.png" style="max-height: 31px; height: 90%; background-color: transparent;" class="disable-manipulations"></div><div class="dropAreaSettings" style="width: 142px; height: 16.6667%; background-color: rgba(58, 58, 58, 0.901961);"><span class="disable-manipulations"></span><img src="chrome-extension://cipmepknanmbbaneimacddfemfbfgpgo/images/content/btn_settings.png" style="max-height: 25px; height: 90%; background-color: transparent;" class="disable-manipulations"></div></div></body></html>
